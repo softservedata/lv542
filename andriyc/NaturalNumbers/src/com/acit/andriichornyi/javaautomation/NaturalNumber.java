@@ -7,7 +7,7 @@ public class NaturalNumber implements NaturalNumberInterface {
 
     /**
      * Constructor
-     * @param number
+     * @param number - Long value of NaturalNumber
      */
     public NaturalNumber(Long number) {
         this.setValue(number);
@@ -15,7 +15,7 @@ public class NaturalNumber implements NaturalNumberInterface {
 
     /**
      * Constructor
-     * @param number
+     * @param number - Long value of NaturalNumber
      */
     public NaturalNumber(String number) {
         this.setValue(Long.valueOf(number));

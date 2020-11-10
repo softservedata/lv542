@@ -6,8 +6,6 @@ import java.util.TreeMap;
 import static java.lang.System.*;
 
 public class Runner {
-    private static NaturalNumber number;
-    private NaturalNumber i;
 
     public Runner() {
     }
@@ -28,7 +26,7 @@ public class Runner {
                         .stream()
                         .sorted()
                         .toArray()));
-        out.println(new TreeMap(n.getPowered2TaleDigitsCoinciders()));
+        out.println(new TreeMap<>(n.getPowered2TaleDigitsCoinciders()));
 
     }
 }
