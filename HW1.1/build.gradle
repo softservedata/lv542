@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+    jcenter()
+    flatDir { dirs 'libs' }
+}
+/*
+test {
+    useJUnitPlatform()
+}
+ */
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    //testCompile group: 'junit', name: 'junit-dep', version: '4.10'
+    // https://mvnrepository.com/artifact/org.testng/testng
+    testCompile group: 'org.testng', name: 'testng', version: '6.14.3'
+
+}
+/*
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
+ */
