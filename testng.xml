@@ -4,6 +4,9 @@
 <suite name="Suite01">
 
 	<test name="Test01">
+		<classes>
+			<class name="com.softserve.edu.GoogleTest" />
+		</classes>
 	</test> <!-- Test -->
 
 </suite> <!-- Suite -->
