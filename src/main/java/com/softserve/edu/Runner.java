@@ -14,23 +14,23 @@ public class Runner {
     }
 
     public static void main(String[] args) {
-        NaturalNumber n = new NaturalNumber(
+        NaturalNumber number = new NaturalNumber(
                 ConsoleDialog
                         .getAnswerFromConsole("Input natural number: "));
-        out.println(
-                Arrays.asList(
-                n.getNaturalDividers()
-                        .stream()
-                        .sorted()
-                        .toArray()));
-        out.println(
-                Arrays.asList(
-                n.getSimpleNaturalDividers()
-                        .stream()
-                        .sorted()
-                        .toArray()));
-        out.println(new TreeMap(n.getPowered2TaleDigitsCoinciders()));
 
+        number.getNaturalDividers()
+                .stream()
+                .sorted()
+                .map(x -> x + " ")
+                .forEach(System.out::print);
+
+        number.getSimpleNaturalDividers()
+                .stream()
+                .sorted()
+                .map(x -> x + " ")
+                .forEach(System.out::print);
+
+        out.println(new TreeMap(number.getPowered2TaleDigitsCoinciders()));
     }
 }
 
