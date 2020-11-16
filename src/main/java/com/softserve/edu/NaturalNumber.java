@@ -185,16 +185,17 @@ public class NaturalNumber implements NaturalNumberInterface {
     public Set<Long> getNaturalDividers() {
         Set<Long> result = new HashSet<>();
         NaturalNumber minDivider = new NaturalNumber(1L);
-        NaturalNumber maxDivider = this.getPairedDividerFor(minDivider);
+        NaturalNumber maxDivider = getPairedDividerFor(minDivider);
 
         int step = isPaired() ? 1 : 2;
 
-        for(; minDivider.compareTo(maxDivider) < 0; minDivider.add(step)) {
+        while(minDivider.compareTo(maxDivider) < 0) {
             if ( minDivider.isDividerOf(this) ) {
-                maxDivider = this.getPairedDividerFor(minDivider);
+                maxDivider = getPairedDividerFor(minDivider);
                 result.add(minDivider.getValue());
                 result.add(maxDivider.getValue());
             }
+            minDivider.add(step);
         }
         return result;
     }
@@ -227,11 +228,12 @@ public class NaturalNumber implements NaturalNumberInterface {
         Map<Long, Long> pow2Coincidence = new HashMap<>();
 
         NaturalNumber i = new NaturalNumber(1L);
-        for(; i.compareTo(this) <= 0; i.add(i.endsWith6() ? 9 : 1) ) {
+        while(i.compareTo(this) <= 0) {
             NaturalNumber powered2 = i.powTo(2);
             if ( i.equals( powered2.getTaleDigits( i.numberOfDigits() ) ) ) {
                     pow2Coincidence.putIfAbsent(i.getValue(), powered2.getValue());
                 }
+            i.add(i.endsWith6() ? 9 : 1);
         }
         return pow2Coincidence;
     }

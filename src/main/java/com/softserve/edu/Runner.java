@@ -14,23 +14,26 @@ public class Runner {
     }
 
     public static void main(String[] args) {
-        NaturalNumber n = new NaturalNumber(
+        NaturalNumber number = new NaturalNumber(
                 ConsoleDialog
                         .getAnswerFromConsole("Input natural number: "));
-        out.println(
-                Arrays.asList(
-                n.getNaturalDividers()
-                        .stream()
-                        .sorted()
-                        .toArray()));
-        out.println(
-                Arrays.asList(
-                n.getSimpleNaturalDividers()
-                        .stream()
-                        .sorted()
-                        .toArray()));
-        out.println(new TreeMap(n.getPowered2TaleDigitsCoinciders()));
+        out.println("Natural dividers of " + number.getValue() + ":");
+        number.getNaturalDividers()
+                .stream()
+                .sorted()
+                .map(x -> String.valueOf(x) + " ")
+                .forEach(System.out::print);
 
+        out.println("\nSimple natural dividers of " + number.getValue() + ":");
+        number.getSimpleNaturalDividers()
+                .stream()
+                .sorted()
+                .map(x -> String.valueOf(x) + " ")
+                .forEach(System.out::print);
+
+        out.println("\nNumbers [1.." + number.getValue() + "], whose record coincides with the last " +
+                        "digits of their power 2 :");
+        out.println(new TreeMap(number.getPowered2TaleDigitsCoinciders()));
     }
 }
 
