@@ -21,14 +21,14 @@ public class Runner {
         number.getNaturalDividers()
                 .stream()
                 .sorted()
-                .map(x -> x + " ")
+                .map(x -> String.valueOf(x) + " ")
                 .forEach(System.out::print);
 
         out.println("\nSimple natural dividers of " + number.getValue() + ":");
         number.getSimpleNaturalDividers()
                 .stream()
                 .sorted()
-                .map(x -> x + " ")
+                .map(x -> String.valueOf(x) + " ")
                 .forEach(System.out::print);
 
         out.println("\nNumbers [1.." + number.getValue() + "], whose record coincides with the last " +
