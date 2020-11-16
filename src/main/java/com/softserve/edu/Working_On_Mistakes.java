@@ -1,4 +1,4 @@
-package com.acit.andriichornyi.javaautomation;
+package com.softserve.edu;
 
 import java.awt.*;
 class Test {
