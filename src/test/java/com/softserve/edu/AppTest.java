@@ -26,7 +26,7 @@ public class AppTest {
     }
  
 
-    @Test
+    //@Test
     @Parameters(value = "number")
     public void parameterIntTest(int number) {
         // From testNG.xml
@@ -39,6 +39,8 @@ public class AppTest {
         System.out.println("***surefire.application.password = " + System.getProperty("surefire.application.password"));
         // From OS
         System.out.println("***System.getenv().MY_PASSWORD = " + System.getenv().get("MY_PASSWORD"));
+        // From Eclipse/Idea
+        System.out.println("***System.getenv().MY_IDE = " + System.getenv().get("MY_IDE"));
     }
 
 }
