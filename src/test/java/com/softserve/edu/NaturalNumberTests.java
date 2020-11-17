@@ -102,7 +102,7 @@ class NaturalNumberTests {
      * @param number testing data, received from DataProvider - @CsvFileSource
      */
     @ParameterizedTest
-    @CsvFileSource(resources = "testsparameters/isSimplePositiveCases.csv")
+    @CsvFileSource(resources = "/isSimplePositiveCases.csv")
     void testIsSimple_PositiveCases_ShouldReturnTrue(Long number) {
         assertTrue(new NaturalNumber(number).isSimple(), "NaturalNumber.isSimple() positive test");
         assertTrue(NaturalNumberInterface.isSimple(number), "NaturalNumberInterface.isSimple(Long) positive test");
@@ -115,7 +115,7 @@ class NaturalNumberTests {
      * @param number testing data, received from DataProvider - @CsvFileSource
      */
     @ParameterizedTest
-    @CsvFileSource(resources = "testsparameters/isSimpleNegativeCases.csv")
+    @CsvFileSource(resources = "/isSimpleNegativeCases.csv")
     void testIsSimple_NegativeCases_ShouldReturnFalse(Long number) {
         assertFalse(new NaturalNumber(number).isSimple(), "NaturalNumber.isSimple() negative test");
         assertFalse(NaturalNumberInterface.isSimple(number), "NaturalNumberInterface.isSimple(Long) negative test");
@@ -124,13 +124,13 @@ class NaturalNumberTests {
     //DECISION TABLE : dividend(indep.) | divider(indep.)
     //POSITIVE - map of correct pairs in .CSV file
     @ParameterizedTest
-    @CsvFileSource(resources = "testsparameters/isDividerOfPositiveCases.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/isDividerOfPositiveCases.csv", numLinesToSkip = 1)
     void testIsDividerOf_PositiveCases_ShouldReturnTrue(String divider, String dividend) {
         assertTrue(new NaturalNumber(divider).isDividerOf(new NaturalNumber(dividend)));
     }
     //NEGATIVE - map of correct pairs in .CSV file
     @ParameterizedTest
-    @CsvFileSource(resources = "testsparameters/isDividerOfNegativeCases.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/isDividerOfNegativeCases.csv", numLinesToSkip = 1)
     void testIsDividerOf_NegativeCases_ShouldReturnFalse(String divider, String dividend) {
         assertFalse(new NaturalNumber(divider).isDividerOf(new NaturalNumber(dividend)));
     }
@@ -138,7 +138,7 @@ class NaturalNumberTests {
     //DECISION TABLE : compared(indep.) | compareTo(indep.) | result(dep.){"-1","0","1" - comparator}
     //POSITIVE & NEGATIVE : map of correct triples in .CSV file
     @ParameterizedTest
-    @CsvFileSource(resources = "testsparameters/compareToTestCaseData.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/compareToTestCaseData.csv", numLinesToSkip = 1)
     void testCompareTo(String compared, String compareTo, String result) {
         switch (result) {
             case "-1":
@@ -162,7 +162,7 @@ class NaturalNumberTests {
     //DECISION TABLE : additive1(indep.) | additeve2(indep.) | sum_expected(indep.) | isValid(dep.)
     //POSITIVE & NEGATIVE
     @ParameterizedTest
-    @CsvFileSource(resources = "testsparameters/addTestCaseData.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/addTestCaseData.csv", numLinesToSkip = 1)
     void testAdd(String additive1, String additive2, String sum_expected, String isValid) {
         NaturalNumber sum_actual = new NaturalNumber(additive1);
         NaturalNumber add2 = new NaturalNumber(additive2);
