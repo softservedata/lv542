@@ -265,7 +265,7 @@ class NaturalNumberTests {
     }
 
     private static Stream<Arguments> dataProvider_NaturalDividers_PositiveCases() {
-        String dataSourcePath = "C:\\Data\\Projects\\javaAutomationLearning\\javaAutomationLearning\\javaautomation\\Test\\com\\acit\\andriichornyi\\javaautomation\\testsparameters\\getNaturalDividersPositiveCases.csv";
+        String dataSourcePath = NaturalNumberTests.class.getResource("/getNaturalDividersPositiveCases.csv").getPath();
         return multipleResultCSVDataProvider(dataSourcePath);
     }
 
@@ -288,7 +288,7 @@ class NaturalNumberTests {
     }
 
     private static Stream<Arguments> dataProvider_NaturalDividers_NegativeCases() {
-        String dataSourcePath = "C:\\Data\\Projects\\javaAutomationLearning\\javaAutomationLearning\\javaautomation\\Test\\com\\acit\\andriichornyi\\javaautomation\\testsparameters\\getNaturalDividersNegativeCases.csv";
+        String dataSourcePath = NaturalNumberTests.class.getResource("/getNaturalDividersNegativeCases.csv").getPath();
         return multipleResultCSVDataProvider(dataSourcePath);
     }
 
@@ -310,7 +310,7 @@ class NaturalNumberTests {
     }
 
     private static Stream<Arguments> dataProvider_SimpleNaturalDividers_PositiveCases() {
-        String dataSourcePath = "C:\\Data\\Projects\\javaAutomationLearning\\javaAutomationLearning\\javaautomation\\Test\\com\\acit\\andriichornyi\\javaautomation\\testsparameters\\getSimpleNaturalDividersPositiveCases.csv";
+        String dataSourcePath = NaturalNumberTests.class.getResource("/getSimpleNaturalDividersPositiveCases.csv").getPath();
         return multipleResultCSVDataProvider(dataSourcePath);
     }
 
@@ -333,7 +333,7 @@ class NaturalNumberTests {
     }
 
     private static Stream<Arguments> dataProvider_SimpleNaturalDividers_NegativeCases() {
-        String dataSourcePath = "C:\\Data\\Projects\\javaAutomationLearning\\javaAutomationLearning\\javaautomation\\Test\\com\\acit\\andriichornyi\\javaautomation\\testsparameters\\getSimpleNaturalDividersNegativeCases.csv";
+        String dataSourcePath = NaturalNumberTests.class.getResource("/getSimpleNaturalDividersNegativeCases.csv").getPath();
         return multipleResultCSVDataProvider(dataSourcePath);
     }
 
