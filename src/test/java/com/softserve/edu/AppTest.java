@@ -49,7 +49,8 @@ public class AppTest {
     
     @Test
     public void checkCSV() {
-        String fileName = AppTest.class.getResource("/users.csv").getPath();
+        String fileName = "./target/test-classes/users.csv";
+        //String fileName = AppTest.class.getResource("/users.csv").getPath();
         System.out.println("fileName = " + fileName.substring(1));
         FileReader fr = null;
         BufferedReader br = null;
