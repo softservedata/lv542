@@ -32,6 +32,7 @@ public class GoogleTest {
         WebElement element = driver.findElement(By.name("q"));
         // element.sendKeys("Cheese!" + Keys.ENTER);
         System.out.println("1. Page title is: " + driver.getTitle());
+
         element.sendKeys("Cheese!");
         //Thread.sleep(2000); // For Presentation Only
         //
