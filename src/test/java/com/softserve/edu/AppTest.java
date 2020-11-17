@@ -1,5 +1,9 @@
 package com.softserve.edu;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Map;
 
 import org.testng.Assert;
@@ -41,6 +45,27 @@ public class AppTest {
         System.out.println("***System.getenv().MY_PASSWORD = " + System.getenv().get("MY_PASSWORD"));
         // From Eclipse/Idea
         System.out.println("***System.getenv().MY_IDE = " + System.getenv().get("MY_IDE"));
+    }
+    
+    @Test
+    public void checkCSV() {
+        String fileName = AppTest.class.getResource("/users.csv").getPath();
+        System.out.println("fileName = " + fileName.substring(1));
+        FileReader fr = null;
+        BufferedReader br = null;
+        try {
+            fr = new FileReader(fileName);
+            br = new BufferedReader(fr);
+            String s = null;
+            System.out.println("Read data from file: " + fileName);
+            while ((s = br.readLine()) != null) {
+                System.out.println("+++read: " + s);
+            }
+            br.close();
+        } catch (Exception e) {
+            System.out.println("ERROR");
+            e.printStackTrace();
+        }
     }
 
 }
