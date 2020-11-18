@@ -16,7 +16,7 @@ public class AppTest {
 
     @BeforeClass
     public void beforeClass(ITestContext context) {
-        // From testNG.xml
+        // From testNG.xml - reading parameters
         System.out.println("\t\t+++class TestNGTest6 @BeforeClass");
         for (Map.Entry<String, String> entry : context.getCurrentXmlTest().getAllParameters().entrySet()) {
             System.out.println("\t\t*** parameter: key=" + entry.getKey() + " value=" + entry.getValue());
@@ -33,7 +33,7 @@ public class AppTest {
     //@Test
     @Parameters(value = "number")
     public void parameterIntTest(int number) {
-        // From testNG.xml
+        // From testNG.xml - get parameter number 
         System.out.println("Parameterized Number is: " + (number + 1));
     }
 
