@@ -114,7 +114,8 @@ public class SearchTest {
             driver.manage().deleteAllCookies(); // clear cache; delete cookie; delete session;
         }
         //driver.findElement(By.cssSelector("#logo .img-responsive")).click();
-        driver.findElement(By.cssSelector("#logo > a")).click();
+        //driver.findElement(By.cssSelector("#logo > a")).click();
+        driver.findElement(By.xpath("//img[contains(@src, '/logo.png')]/..")).click();
         presentationSleep(); // For Presentation ONLY
     }
 
@@ -134,7 +135,7 @@ public class SearchTest {
         return result;
     }
     
-    @Test
+    //@Test
     public void findByCss() {
         // Precondition
         // Choose Curency
@@ -168,4 +169,33 @@ public class SearchTest {
         // Return to Previous State
         presentationSleep(); // For Presentation ONLY
     }
+    
+    @Test
+    public void findByXPath() {
+        // Precondition
+        // Choose Curency
+        driver.findElement(By.xpath("//button[@class='btn btn-link dropdown-toggle']")).click();
+        presentationSleep(); // For Presentation ONLY
+        driver.findElement(By.xpath("//button[@name='USD']")).click();
+        presentationSleep(); // For Presentation ONLY
+        //
+        // Steps
+        // Type Search Field
+        driver.findElement(By.xpath("//input[@name='search']")).click();
+        driver.findElement(By.xpath("//input[@name='search']")).clear();
+        driver.findElement(By.xpath("//input[@name='search']")).sendKeys("mac");
+        presentationSleep(); // For Presentation ONLY
+        //
+        // Click Search Button
+        driver.findElement(By.xpath("//button[@class='btn btn-default btn-lg']")).click();
+        presentationSleep(); // For Presentation ONLY
+        //
+        // Check
+        WebElement price = driver.findElement(By.xpath("//a[text()='MacBook']/../following-sibling::p[@class='price']"));
+        Assert.assertTrue(price.getText().contains("$602.00"));
+        //
+        // Return to Previous State
+        presentationSleep(); // For Presentation ONLY
+    }
+    
 }
