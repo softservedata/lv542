@@ -4,9 +4,17 @@
 <suite name="Suite01">
 
 	<test name="Test01">
+		<parameter name="url" value="https://ita-social-projects.github.io/GreenCityClient/#/map" />
+		<parameter name="implicitly_wait_seconds" value="10" />
+		<parameter name="text" value="Malevych" />
+		<parameter name="number" value="3" />
+		<groups>
+			<run>
+				<include name="method4" />
+			</run>
+		</groups>
 		<classes>
-			<class name="com.softserve.edu.GoogleTest" />
-			<!-- <class name="com.softserve.edu.AppTest" /> -->
+			<class name="com.softserve.edu.PlacesTest" />
 		</classes>
 	</test> <!-- Test -->
 
