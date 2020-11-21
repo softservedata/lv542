@@ -125,13 +125,13 @@ class NaturalNumberTests {
     //DECISION TABLE : dividend(indep.) | divider(indep.)
     //POSITIVE - map of correct pairs in .CSV file
     @ParameterizedTest
-    @CsvFileSource(resources = "/isDividerOfPositiveCases.csv")
+    @CsvFileSource(resources = "/isDividerOfPositiveCases.csv", numLinesToSkip = 1)
     void testIsDividerOf_PositiveCases_ShouldReturnTrue(String divider, String dividend) {
         assertTrue(new NaturalNumber(divider).isDividerOf(new NaturalNumber(dividend)));
     }
     //NEGATIVE - map of correct pairs in .CSV file
     @ParameterizedTest
-    @CsvFileSource(resources = "/isDividerOfNegativeCases.csv")
+    @CsvFileSource(resources = "/isDividerOfNegativeCases.csv", numLinesToSkip = 1)
     void testIsDividerOf_NegativeCases_ShouldReturnFalse(String divider, String dividend) {
         assertFalse(new NaturalNumber(divider).isDividerOf(new NaturalNumber(dividend)));
     }
@@ -139,7 +139,7 @@ class NaturalNumberTests {
     //DECISION TABLE : compared(indep.) | compareTo(indep.) | result(dep.){"-1","0","1" - comparator}
     //POSITIVE & NEGATIVE : map of correct triples in .CSV file
     @ParameterizedTest
-    @CsvFileSource(resources = "/compareToTestCaseData.csv")
+    @CsvFileSource(resources = "/compareToTestCaseData.csv", numLinesToSkip = 1)
     void testCompareTo(String compared, String compareTo, String result) {
         switch (result) {
             case "-1":
@@ -163,7 +163,7 @@ class NaturalNumberTests {
     //DECISION TABLE : additive1(indep.) | additeve2(indep.) | sum_expected(indep.) | isValid(dep.)
     //POSITIVE & NEGATIVE
     @ParameterizedTest
-    @CsvFileSource(resources = "/addTestCaseData.csv")
+    @CsvFileSource(resources = "/addTestCaseData.csv", numLinesToSkip = 1)
     void testAdd(String additive1, String additive2, String sum_expected, String isValid) {
         NaturalNumber sum_actual = new NaturalNumber(additive1);
         NaturalNumber add2 = new NaturalNumber(additive2);
@@ -207,7 +207,7 @@ class NaturalNumberTests {
 
     //POSITIVE - map of positive decisions in .CSV file
     @ParameterizedTest
-    @CsvFileSource(resources = "/powToPositiveCases.csv")
+    @CsvFileSource(resources = "/powToPositiveCases.csv", numLinesToSkip = 1)
     void testPowTo_PositiveCases_ShouldBeEqualWithExpected(String powered, String power, String expected_pow) {
         assertEquals(new NaturalNumber(powered).powTo(Integer.valueOf(power)).getValue(),
                 new NaturalNumber(expected_pow).getValue());
@@ -215,33 +215,33 @@ class NaturalNumberTests {
 
     //NEGATIVE - map of negative decisions in .CSV file
     @ParameterizedTest
-    @CsvFileSource(resources = "/powToNegativeCases.csv")
+    @CsvFileSource(resources = "/powToNegativeCases.csv", numLinesToSkip = 1)
     void testPowTo_PositiveCases_ShouldBeNotEqualWithExpected(String powered, String power, String expected_pow) {
         assertNotEquals(new NaturalNumber(powered).powTo(Integer.valueOf(power)).getValue(),
                 new NaturalNumber(expected_pow).getValue());
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/numberOfDigitsPositiveCases.csv")
+    @CsvFileSource(resources = "/numberOfDigitsPositiveCases.csv", numLinesToSkip = 1)
     void testNumberOfDigits_PositiveCases_ShouldBeEqualWithExpected(String number, String expectedNOfDigits) {
         assertEquals(new NaturalNumber(number).numberOfDigits(), Integer.valueOf(expectedNOfDigits));
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/numberOfDigitsNegativeCases.csv")
+    @CsvFileSource(resources = "/numberOfDigitsNegativeCases.csv", numLinesToSkip = 1)
     void testNumberOfDigits_PositiveCases_ShouldBeNotEqualWithExpected(String number, String expectedNOfDigits) {
         assertNotEquals(new NaturalNumber(number).numberOfDigits(), Integer.valueOf(expectedNOfDigits));
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/getTaleDigitsPositiveCases.csv")
+    @CsvFileSource(resources = "/getTaleDigitsPositiveCases.csv", numLinesToSkip = 1)
     void testGetTaleDigits_PositiveCases_ShouldBeEqualWithExpected(String number, String lengthOfTale, String taleDigits) {
         assertEquals(new NaturalNumber(number).getTaleDigits(Integer.parseInt(lengthOfTale)).getValue(),
                 new NaturalNumber(taleDigits).getValue());
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/getTaleDigitsNegativeCases.csv")
+    @CsvFileSource(resources = "/getTaleDigitsNegativeCases.csv", numLinesToSkip = 1)
     void testGetTaleDigits_PositiveCases_ShouldBeNotEqualWithExpected(String number, String lengthOfTale, String taleDigits) {
         assertNotEquals(new NaturalNumber(number).getTaleDigits(Integer.parseInt(lengthOfTale)).getValue(),
                 new NaturalNumber(taleDigits).getValue());
@@ -347,7 +347,7 @@ class NaturalNumberTests {
      * @param pow2coincider pow(number, 2) which ends with number
      */
     @ParameterizedTest
-    @CsvFileSource(resources = "/getPowered2TaleDigitsCoincidersPositive.csv")
+    @CsvFileSource(resources = "/getPowered2TaleDigitsCoincidersPositive.csv", numLinesToSkip = 1)
     void getPowered2TaleDigitsCoinciders_Positive_ExpectedPairsShouldBeInActualMap(Long upperLimit, Long number,
                                                                                    Long pow2coincider) {
         NaturalNumber testedNumber = new NaturalNumber(upperLimit);
@@ -364,7 +364,7 @@ class NaturalNumberTests {
      * @param pow2coincider pow(number, 2) which ends with number
      */
     @ParameterizedTest
-    @CsvFileSource(resources = "/getPowered2TaleDigitsCoincidersNegative.csv")
+    @CsvFileSource(resources = "/getPowered2TaleDigitsCoincidersNegative.csv", numLinesToSkip = 1)
     void getPowered2TaleDigitsCoinciders_Negative_ExpectedPairsShouldNotBeInActualMap(Long upperLimit, Long number,
                                                                                       Long pow2coincider) {
         NaturalNumber testedNumber = new NaturalNumber(upperLimit);
