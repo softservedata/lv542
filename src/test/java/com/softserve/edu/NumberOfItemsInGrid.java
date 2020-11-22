@@ -105,6 +105,9 @@ public class NumberOfItemsInGrid {
 	    	
 	    	driver.findElement(By.cssSelector(".navigation-menu-left a[href *= '/news']")).click();
 	    	
+	    	if (driver.findElements(By.cssSelector(".btn-tiles.btn-tiles-active") ).size() == 0) {
+	    		return; //**************
+	    	}
 	    	List<WebElement>  description = new ArrayList<WebElement>();
 	    	WebElement footer = null;
             Actions action = new Actions(driver); 
@@ -120,8 +123,8 @@ public class NumberOfItemsInGrid {
 
 	    	expectedNumberOfGridItems = Integer.parseInt( 
 	    			driver.findElement( By.cssSelector(".wrapper .main-wrapper app-remaining-count p") )
-	    			.getText()
-	    			.split(" ")[0] 
+	    									.getText()
+	    									.split(" ")[0] 
 	    		);
 	    	
 	    	actualNumberOfGridItems = driver.findElements(By.cssSelector(".list li")).size();
