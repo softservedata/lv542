@@ -32,7 +32,7 @@ import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 
-public class NumberOfItemsInGrid {
+public class NumberOfItemsInGridTest {
     private final String BASE_URL = "https://ita-social-projects.github.io/GreenCityClient/#/welcome";
     private final Long IMPLICITLY_WAIT_SECONDS =10L;
     private final Long ONE_SECOND_DELAY = 1000L;
@@ -106,7 +106,7 @@ public class NumberOfItemsInGrid {
 	    	driver.findElement(By.cssSelector(".navigation-menu-left a[href *= '/news']")).click();
 	    	
 	    	if (driver.findElements(By.cssSelector(".btn-tiles.btn-tiles-active") ).size() == 0) {
-	    		return; //**************
+	    		Assert.assertTrue(false); //**************
 	    	}
 	    	List<WebElement>  description = new ArrayList<WebElement>();
 	    	WebElement footer = null;
