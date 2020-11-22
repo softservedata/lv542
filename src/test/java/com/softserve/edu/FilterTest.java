@@ -250,51 +250,6 @@ public class FilterTest {
 		}
 		driver.findElement(By.cssSelector(".navigation-menu ul > li > a[href='#/about']")).click();
 		
-		
-		
-//    	List<WebElement> webElements = driver.findElements(By.cssSelector(".custom-chip.global-tag"));
-//
-//    	List<WebElement> linkProjects = null;
-//    	Actions action = new Actions(driver);        
-//    	action.click(webElements.get(filter1));
-//    	action.click(webElements.get(filter2));
-//    	
-//        do {
-//            action.moveToElement(driver.findElement(By.cssSelector(".links"))).perform();
-//        	Thread.sleep(2000);
-//        	linkProjects = driver.findElements(By.className("description"));
-//        	System.out.println("linkProjects.size() = " + linkProjects.size());
-//        }while(linkProjects.size()==0);
-//            
-//    	List<WebElement> listNews = driver.findElements(By.className("list-gallery"));
-//    	String expected1 = label1;
-//    	String expected2 = label2;
-//    	List<WebElement> listLabels = driver.findElements(By.cssSelector(".ul-eco-buttons.ng-star-inserted"));
-//    	boolean result = true;
-//    	
-//    	for (int i = 0; i < listNews.size(); i++) {
-//    		List<WebElement> myListLabels = listNews.get(i).findElements(By.cssSelector(".ul-eco-buttons.ng-star-inserted"));    		
-//			List<String> elementsLabels = new ArrayList<String>();
-//    		for(int j = 0; j<myListLabels.size(); j++)
-//    		{
-//    			elementsLabels.add(myListLabels.get(j).getText().toUpperCase());
-//    		}
-//    		if(!elementsLabels.contains(expected1) && !elementsLabels.contains(expected2))
-//    		{
-//    			result = false;
-//    		}
-//    		
-//		}
-//
-//    	System.out.println("SIZE = " + listNews.size());
-//    	System.out.println("SIZE = " + listLabels.size());
-//    	System.out.println("RESULT = " + result);
-//    	
-//    	webElements.get(filter1).click();
-//    	presentationSleep();
-//    	webElements.get(filter2).click();
-//    	presentationSleep();
-//    	
     	Assert.assertTrue(result); 
 	}
     
