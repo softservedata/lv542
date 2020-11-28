@@ -4,13 +4,25 @@
 <suite name="Suite01">
 
 	<test name="Test01">
-		<parameter name="url" value="https://ita-social-projects.github.io/GreenCityClient/#/map" />
-		<parameter name="implicitly_wait_seconds" value="10" />
-		<parameter name="text" value="Malevych" />
-		<parameter name="number" value="3" />
+	<!-- <parameter name="url" value="https://ita-social-projects.github.io/GreenCityClient/#/map" 
+		/> -->
+	<!-- <parameter name="implicitly_wait_seconds" value="10" /> -->
+	<!-- <parameter name="javascriptExecutor1" value="arguments[0].setAttribute('style', -->
+	<!-- 'width: 32px; height: 32px; overflow: hidden; left: -300px; top: -300px; -->
+	<!-- z-index: 1')" /> -->
+	<!-- <parameter name="javascriptExecutor2" value="arguments[0].setAttribute('style', -->
+	<!-- 'width: 32px; height: 32px; overflow: hidden; position: absolute; opacity: -->
+	<!-- 0.0001; cursor: pointer; touch-action: none; left: -300px; top: -300px; 
+		z-index: -->
+	<!-- 1;')" /> -->
+	<!-- <parameter name="javascriptExecutor3" value="arguments[0].setAttribute('style', 
+		'z-index: 1; position: absolute; left: 50%; top: 50%; width: 100%; transform: 
+		translate(0px, 500px);')" /> -->
+	<!-- <parameter name="javascriptExecutor4" value="arguments[0].scrollBy('100', 
+		'0')" /> -->
 		<groups>
 			<run>
-				<include name="method4" />
+				<include name="method1" />
 			</run>
 		</groups>
 		<classes>
