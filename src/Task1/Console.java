@@ -1,10 +1,9 @@
-package com.company;
+package opanas.task_01;
 
 import java.util.Scanner;
 
 public class Console {
     private Scanner scanner=null;
-    public int n;
     public Console() {
         scanner = new Scanner(System.in);
     }
