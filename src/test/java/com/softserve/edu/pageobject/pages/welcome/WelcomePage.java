@@ -1,0 +1,24 @@
+package com.softserve.edu.pageobject.pages.welcome;
+
+import org.openqa.selenium.WebDriver;
+
+import com.softserve.edu.pageobject.pages.TopPart;
+
+public class WelcomePage extends TopPart {
+
+    public WelcomePage(WebDriver driver) {
+        super(driver);
+        initElements();
+    }
+
+    private void initElements() {
+        // init elements
+    }
+
+    // Page Object
+
+    // Functional
+
+    // Business Logic
+
+}
