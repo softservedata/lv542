@@ -18,14 +18,17 @@ public class Console {
     public void write(int result) {
         System.out.println(result);
     }
+
     public void write(SumOfSquares sumOfSquares) {
         System.out.println(sumOfSquares.toString());
     }
+
     public void write(List<SumOfSquares> list) {
-        for (SumOfSquares sumOfSquares: list) {
-                System.out.println(sumOfSquares.toString());
+        for (SumOfSquares sumOfSquares : list) {
+            System.out.println(sumOfSquares.toString());
         }
     }
+
     public void close() {
         scanner.close();
     }

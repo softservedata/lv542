@@ -6,12 +6,12 @@ package com.softserve.edu.service;
 
 public class FirstTask {
 
-    public int calcMaxNum(int m) {
-        int num = 1;
+    public int getMaximumPowerOfANumber(int m) {
+        int number = 1;
         int k = 0;
-        if(m > 1) {
-            while (num * 4 < m) {
-                num *= 4;
+        if (m > 1) {
+            while (number * 4 < m) {
+                number *= 4;
                 k++;
             }
         } else {

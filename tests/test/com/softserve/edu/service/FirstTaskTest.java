@@ -2,42 +2,44 @@ package test.com.softserve.edu.service;
 
 import com.softserve.edu.service.FirstTask;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 
 public class FirstTaskTest {
     private static FirstTask task = null;
 
-
-    @DataProvider(name = "checkCalculationMaxNumPositive")
-    public static Object[][] checkCalculationMaxNumPositive() {
-        return new Object[][] {
-            {3, 100}, {4, 1000}, {9, 1000000}
-        };
-    }
-
-    @DataProvider(name = "checkCalculationMaxNumNegative")
-    public static Object[][] checkCalculationMaxNumNegative() {
-        return new Object[][] {
-                {0}, {-123}
-        };
-    }
-
-    @BeforeClass
-    public static void setUpBeforeClass() {
+    private void verifyMaximumPowerOfANumberWithPositiveValues(int expected, int actual) {
         task = new FirstTask();
+        Assert.assertEquals(expected, task.getMaximumPowerOfANumber(actual));
     }
 
-    @Test(dataProvider = "checkCalculationMaxNumPositive")
-    public void testCalculationMaxNum1(int expected, int actual) {
-        Assert.assertEquals(expected, task.calcMaxNum(actual) );
-  }
+    @Test
+    public void verifyMaximumPowerOfANumberWithFirstDataSetAndPositiveValues() {
+        verifyMaximumPowerOfANumberWithPositiveValues(3, 100);
+    }
 
+    @Test
+    public void verifyMaximumPowerOfANumberWithSecondDataSetAndPositiveValues() {
+        verifyMaximumPowerOfANumberWithPositiveValues(4, 1000);
+    }
 
-    @Test(dataProvider = "checkCalculationMaxNumNegative", expectedExceptions = IllegalArgumentException.class)
-    public void testCalculationMaxNum8(int expected) {
-        task.calcMaxNum(expected);
+    @Test
+    public void verifyMaximumPowerOfANumberWithThirdDataSetAndPositiveValues() {
+        verifyMaximumPowerOfANumberWithPositiveValues(9, 1000000);
+    }
+
+    private void verifyMaximumPowerOfANumberWithNegativeValues(int expected) {
+        task = new FirstTask();
+        Assert.assertEquals(0, task.getMaximumPowerOfANumber(expected));
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void verifyMaximumPowerOfANumberWithFirstDataSetAndNegativeValues() {
+        verifyMaximumPowerOfANumberWithNegativeValues(0);
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void verifyMaximumPowerOfANumberWithSecondDataSetAndNegativeValues() {
+        verifyMaximumPowerOfANumberWithNegativeValues(-123);
     }
 }
