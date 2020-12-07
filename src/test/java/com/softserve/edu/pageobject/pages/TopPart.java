@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.pageobject.pages.about.AboutPage;
 import com.softserve.edu.pageobject.pages.econews.EconewsPage;
-import com.softserve.edu.pageobject.pages.myhabits.MyHabitsPage;
 import com.softserve.edu.pageobject.pages.places.PlacesPage;
 import com.softserve.edu.pageobject.pages.tipstricks.TipsTricksPage;
 import com.softserve.edu.pageobject.pages.welcome.WelcomePage;
@@ -15,6 +14,9 @@ public abstract class TopPart implements Attributes {
 
     protected WebDriver driver;
     //
+    //private final String IMG_LOGO_CSS = "div.logo a";
+    //private By logo;
+    //@FindBy(css = "div.logo a")
     private WebElement logo;
     private WebElement search;
     private WebElement language;
@@ -33,12 +35,15 @@ public abstract class TopPart implements Attributes {
 
     public TopPart(WebDriver driver) {
         // super(driver);
+        //PageFactory.initElements(driver, this); // for @FindBy
         this.driver = driver;
         initElements();
+        //checkElements();
     }
 
     private void initElements() {
         // init elements
+        //logo = By.cssSelector("div.logo a");
         logo = driver.findElement(By.cssSelector("div.logo a"));
         search = driver.findElement(By.cssSelector("li[class*='search'] a"));
         language = driver.findElement(By.cssSelector("div.switcher-wrapper ul"));
@@ -50,11 +55,18 @@ public abstract class TopPart implements Attributes {
         about = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/about']"));
         myHabits = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/profile']"));
     }
+    
+//    private void checkElements() {
+//        getLogo();
+//    }
 
     // Page Object
 
     // logo
     public WebElement getLogo() {
+        //return driver.findElement(logo);
+        //return driver.findElement(By.cssSelector(IMG_LOGO_CSS));
+        //return driver.findElement(By.cssSelector("div.logo a"));
         return logo;
     }
 
@@ -231,8 +243,10 @@ public abstract class TopPart implements Attributes {
         return new AboutPage(driver);
     }
 
+    /*-
     public MyHabitsPage navigateMyHabitsPage() {
         clickMyHabits();
         return new MyHabitsPage(driver);
     }
+    */
 }

@@ -1,24 +1,38 @@
 package com.softserve.edu.pageobject.pages.about;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.pageobject.pages.TopPart;
 
 public class AboutPage extends TopPart {
 
-	public AboutPage(WebDriver driver) {
-		super(driver);
-		initElements();
-	}
+    private WebElement about;
 
-	private void initElements() {
-		// init elements
-	}
+    public AboutPage(WebDriver driver) {
+        super(driver);
+        initElements();
+    }
 
-	// Page Object
+    private void initElements() {
+        // init elements
+        about = driver.findElement(By.cssSelector("div.container-about h2"));
+    }
 
-	// Functional
+    // Page Object
 
-	// Business Logic
+    // about
+    public WebElement getAbout() {
+        return about;
+    }
+
+    public String getAboutText() {
+        return getAbout().getText().trim();
+    }
+
+    // Functional
+
+    // Business Logic
 
 }

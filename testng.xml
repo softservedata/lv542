@@ -2,10 +2,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Suite01">
+	<parameter name="url" value="https://ita-social-projects.github.io/GreenCityClient/" />
 
 	<test name="Test01">
 		<classes>
-			<class name="com.softserve.edu.GoogleTest" />
+			<class name="com.softserve.edu.pageobject.test.SmokeTest" />
+			<!-- <class name="com.softserve.edu.GoogleTest" /> -->
 			<!-- <class name="com.softserve.edu.AppTest" /> -->
 		</classes>
 	</test> <!-- Test -->
