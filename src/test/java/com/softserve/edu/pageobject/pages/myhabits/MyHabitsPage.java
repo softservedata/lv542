@@ -9,6 +9,7 @@ public class MyHabitsPage extends TopPart {
     public MyHabitsPage(WebDriver driver) {
         super(driver);
         initElements();
+        System.out.println("***MyHabitsPage Created");
     }
 
     private void initElements() {

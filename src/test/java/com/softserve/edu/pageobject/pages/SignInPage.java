@@ -4,9 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class SignIn implements Attributes {
+import com.softserve.edu.pageobject.data.User;
+import com.softserve.edu.pageobject.pages.myhabits.MyHabitsPage;
+
+public class SignInPage implements Attributes {
     
-    protected final String INVALID_EMAIL_PASSWORD_MESSAGE = "Submit Button is Disabled. Invalid Email or Password";
+    protected final String INVALID_EMAIL_PASSWORD_MESSAGE = "Submit Button Disable. Invalid Email or Password";
 
     private WebDriver driver;
     //
@@ -14,8 +17,9 @@ public class SignIn implements Attributes {
     private WebElement password;
     private WebElement buttonSubmit;
     private WebElement buttonGoole;
+    private WebElement buttonClose;
 
-    public SignIn(WebDriver driver) {
+    public SignInPage(WebDriver driver) {
         this.driver = driver;
         initElements();
     }
@@ -26,6 +30,7 @@ public class SignIn implements Attributes {
         password = driver.findElement(By.id("password"));
         buttonSubmit = driver.findElement(By.cssSelector("button[type='submit']"));
         buttonGoole = driver.findElement(By.cssSelector("button.google-sign-in"));
+        buttonClose = driver.findElement(By.cssSelector("a.close-modal-window"));
     }
 
     // Page Object
@@ -74,7 +79,9 @@ public class SignIn implements Attributes {
 
     // buttonSubmit
     public WebElement getButtonSubmit() {
-        if (buttonSubmit.isDisplayed()) {
+        //System.out.println("buttonSubmit.isDisplayed() = " + buttonSubmit.isDisplayed());
+        //System.out.println("buttonSubmit.isEnabled() = " + buttonSubmit.isEnabled());
+        if (!buttonSubmit.isEnabled()) {
             // TODO Deevelop Custom Exception
             throw new RuntimeException(INVALID_EMAIL_PASSWORD_MESSAGE);
         }
@@ -102,7 +109,51 @@ public class SignIn implements Attributes {
         getButtonGoole().click();
     }
 
+    // buttonClose
+    public WebElement getButtonClose() {
+        return buttonClose;
+    }
+
+    public void clickButtonClose() {
+        getButtonClose().click();
+    }
+    
+    
     // Functional
+    
+    private void fillEmail(String email) {
+        clickEmail();
+        clearEmail();
+        typeEmail(email);
+    }
+    
+    private void fillPassword(String password) {
+        clickPassword();
+        clearPassword();
+        typePassword(password);
+    }
+    
+    private void fillCredentials(User user) {
+        fillEmail(user.getEmail());
+        fillPassword(user.getPassword());
+        clickButtonSubmit();
+    }
 
     // Business Logic
+    
+    public MyHabitsPage successfulLogin(User user) {
+        fillCredentials(user);
+        return new MyHabitsPage(driver);
+    }
+    
+    public SignInPage unsuccessfulLogin(User user) {
+        fillCredentials(user);
+        return new SignInPage(driver);
+    }
+    
+    public TopPart closeLogin() {
+        clickButtonClose();
+        return new TopPart(driver) {};
+    }
+    
 }

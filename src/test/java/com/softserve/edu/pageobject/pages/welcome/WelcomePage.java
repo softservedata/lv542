@@ -16,6 +16,7 @@ public class WelcomePage extends TopPart {
     public WelcomePage(WebDriver driver) {
         super(driver);
         initElements();
+        System.out.println("***WelcomePage Created");
     }
 
     private void initElements() {

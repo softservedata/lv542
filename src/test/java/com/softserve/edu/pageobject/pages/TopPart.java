@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.softserve.edu.pageobject.data.User;
 import com.softserve.edu.pageobject.pages.about.AboutPage;
 import com.softserve.edu.pageobject.pages.econews.EconewsPage;
 import com.softserve.edu.pageobject.pages.places.PlacesPage;
@@ -12,6 +13,8 @@ import com.softserve.edu.pageobject.pages.welcome.WelcomePage;
 
 public abstract class TopPart implements Attributes {
 
+    protected final String GUEST_COMPONENT_NULL_MESSAGE = "GuestComponent is null or Disabled";
+    
     protected WebDriver driver;
     //
     //private final String IMG_LOGO_CSS = "div.logo a";
@@ -42,6 +45,7 @@ public abstract class TopPart implements Attributes {
     }
 
     private void initElements() {
+        System.out.println("***TopPart Created");
         // init elements
         //logo = By.cssSelector("div.logo a");
         logo = driver.findElement(By.cssSelector("div.logo a"));
@@ -213,40 +217,79 @@ public abstract class TopPart implements Attributes {
     public void clickMyHabits() {
         getMyHabits().click();
     }
+    
+    // guestComponent
+    protected GuestComponent getGuestComponent() {
+        if ((guestComponent == null) 
+                || (!guestComponent.getSignIn().isEnabled()))
+        {
+            // TODO Develop Custom Exception 
+            throw new RuntimeException(GUEST_COMPONENT_NULL_MESSAGE);
+        }
+        if (!guestComponent.getSignIn().isDisplayed()) {
+            clickBurger();
+        }
+        return guestComponent;
+    }
 
+    private GuestComponent createGuestComponent() {
+        guestComponent = new GuestComponent(driver);
+        return getGuestComponent();
+    }
+
+    private void clickGuestComponentSignIn() {
+        getGuestComponent().clickSignIn();
+        //dropdownGuest = null;
+    }
+    
+    private void clickGuestComponentSignUp() {
+        getGuestComponent().clickSignUp();
+        //dropdownGuest = null;
+    }
+
+    protected void closeDropdownGuest() {
+        guestComponent = null;
+    }
+    
     // Functional
 
     // Business Logic
 
-    public WelcomePage navigateWelcomePage() {
+    public WelcomePage navigateWelcome() {
         clickLogo();
         return new WelcomePage(driver);
     }
 
-    public EconewsPage navigateEconewsPage() {
+    public EconewsPage navigateEconews() {
         clickEconews();
         return new EconewsPage(driver);
     }
 
-    public TipsTricksPage navigateTipsTricksPage() {
+    public TipsTricksPage navigateTipsTricks() {
         clickTipsTricks();
         return new TipsTricksPage(driver);
     }
 
-    public PlacesPage navigatePlacesPage() {
+    public PlacesPage navigatePlaces() {
         clickPlaces();
         return new PlacesPage(driver);
     }
 
-    public AboutPage navigateAboutPage() {
+    public AboutPage navigateAbout() {
         clickAbout();
         return new AboutPage(driver);
     }
 
     /*-
-    public MyHabitsPage navigateMyHabitsPage() {
+    public MyHabitsPage navigateMyHabits() {
         clickMyHabits();
         return new MyHabitsPage(driver);
     }
     */
+    
+    public SignInPage navigateLogin() {
+        createGuestComponent().clickSignIn();
+        return new SignInPage(driver);
+    }
+    
 }

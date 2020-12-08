@@ -25,6 +25,9 @@ hs_err_pid*
 ##################
 # NEW IGNORE FILES
 
+# Credentials
+user.properties
+
 # Config Files
 *.ini
 
