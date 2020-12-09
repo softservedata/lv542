@@ -9,6 +9,8 @@ import com.softserve.edu.pageobject.pages.TopPart;
 public class EconewsPage extends TopPart {
 
     private WebElement mainHeader;
+    //
+    private NewsContainer newsContainer;
 
     public EconewsPage(WebDriver driver) {
         super(driver);
@@ -18,6 +20,7 @@ public class EconewsPage extends TopPart {
     private void initElements() {
         // init elements
         mainHeader = driver.findElement(By.cssSelector("h1.main-header"));
+        newsContainer = new NewsContainer(driver);
     }
 
     // Page Object

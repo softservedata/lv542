@@ -9,6 +9,10 @@ import com.softserve.edu.pageobject.pages.TopPart;
 public class PlacesPage extends TopPart {
 
     private WebElement sectionCaption;
+    //
+    private WebElement clearFilters;
+    private PlacesComponent placesComponent;
+    private FiltersComponent filtersComponent;
 
     public PlacesPage(WebDriver driver) {
         super(driver);

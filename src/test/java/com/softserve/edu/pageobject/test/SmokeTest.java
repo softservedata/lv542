@@ -37,11 +37,35 @@ public class SmokeTest extends GreencityTestRunner {
         };
     }
     
-    @Test(dataProvider = "users")
+    //@Test(dataProvider = "users")
     public void checkLogin(User user) {
         MyHabitsPage myHabitsPage = loadApplication()
                 .navigateLogin()
                 .successfulLogin(user);
+        Assert.assertEquals(myHabitsPage.getProfileText(),
+                user.getName());
+        WelcomePage welcomePage = myHabitsPage.gotoLogout();
+        Assert.assertTrue(welcomePage.isSignInAvailable());
+    }
+    
+    @Test(dataProvider = "users")
+    public void checkMyHabits(User user) {
+        // Steps
+        WelcomePage welcomePage = loadApplication()
+            .navigateMyHabits(user)
+            .gotoAddHabits()
+            .navigateEconews()
+            .navigateTipsTricks()
+            .navigatePlaces()
+            .navigateAbout()
+            .navigateMyHabits()
+            .navigateWelcome()
+            .gotoLogout();
+        //
+        // Check
+        Assert.assertEquals(welcomePage.getButtonStartAttributeClass(),
+                WelcomePage.HEADER_LEFT_ATTRIBUTE);
+        Assert.assertTrue(welcomePage.isSignInAvailable());
     }
     
 }

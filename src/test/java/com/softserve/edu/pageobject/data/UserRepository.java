@@ -19,7 +19,7 @@ public final class UserRepository {
     }
 
     public static User getCustomer() {
-        return new User("xdknxusqvjeovowpfk@awdrt.com",
+        return new User("xdknxusqvjeovowpfk@awdrt.com", "temp",
                 propertiesReader.getPropertiesByKey(USER_PASSWORD));
     }
 

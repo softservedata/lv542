@@ -7,19 +7,20 @@ import org.openqa.selenium.WebElement;
 import com.softserve.edu.pageobject.data.User;
 import com.softserve.edu.pageobject.pages.about.AboutPage;
 import com.softserve.edu.pageobject.pages.econews.EconewsPage;
+import com.softserve.edu.pageobject.pages.myhabits.MyHabitsPage;
 import com.softserve.edu.pageobject.pages.places.PlacesPage;
 import com.softserve.edu.pageobject.pages.tipstricks.TipsTricksPage;
 import com.softserve.edu.pageobject.pages.welcome.WelcomePage;
 
 public abstract class TopPart implements Attributes {
 
-    protected final String GUEST_COMPONENT_NULL_MESSAGE = "GuestComponent is null or Disabled";
-    
+    protected final String COMPONENT_NULL_MESSAGE = "Component is null or Disabled";
+
     protected WebDriver driver;
     //
-    //private final String IMG_LOGO_CSS = "div.logo a";
-    //private By logo;
-    //@FindBy(css = "div.logo a")
+    // private final String IMG_LOGO_CSS = "div.logo a";
+    // private By logo;
+    // @FindBy(css = "div.logo a")
     private WebElement logo;
     private WebElement search;
     private WebElement language;
@@ -38,16 +39,16 @@ public abstract class TopPart implements Attributes {
 
     public TopPart(WebDriver driver) {
         // super(driver);
-        //PageFactory.initElements(driver, this); // for @FindBy
+        // PageFactory.initElements(driver, this); // for @FindBy
         this.driver = driver;
         initElements();
-        //checkElements();
+        // checkElements();
     }
 
     private void initElements() {
-        System.out.println("***TopPart Created");
+        //System.out.println("***TopPart Created");
         // init elements
-        //logo = By.cssSelector("div.logo a");
+        // logo = By.cssSelector("div.logo a");
         logo = driver.findElement(By.cssSelector("div.logo a"));
         search = driver.findElement(By.cssSelector("li[class*='search'] a"));
         language = driver.findElement(By.cssSelector("div.switcher-wrapper ul"));
@@ -59,7 +60,7 @@ public abstract class TopPart implements Attributes {
         about = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/about']"));
         myHabits = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/profile']"));
     }
-    
+
 //    private void checkElements() {
 //        getLogo();
 //    }
@@ -68,9 +69,9 @@ public abstract class TopPart implements Attributes {
 
     // logo
     public WebElement getLogo() {
-        //return driver.findElement(logo);
-        //return driver.findElement(By.cssSelector(IMG_LOGO_CSS));
-        //return driver.findElement(By.cssSelector("div.logo a"));
+        // return driver.findElement(logo);
+        // return driver.findElement(By.cssSelector(IMG_LOGO_CSS));
+        // return driver.findElement(By.cssSelector("div.logo a"));
         return logo;
     }
 
@@ -217,14 +218,12 @@ public abstract class TopPart implements Attributes {
     public void clickMyHabits() {
         getMyHabits().click();
     }
-    
+
     // guestComponent
     protected GuestComponent getGuestComponent() {
-        if ((guestComponent == null) 
-                || (!guestComponent.getSignIn().isEnabled()))
-        {
-            // TODO Develop Custom Exception 
-            throw new RuntimeException(GUEST_COMPONENT_NULL_MESSAGE);
+        if ((guestComponent == null) || (!guestComponent.getSignIn().isEnabled())) {
+            // TODO Develop Custom Exception
+            throw new RuntimeException(COMPONENT_NULL_MESSAGE);
         }
         if (!guestComponent.getSignIn().isDisplayed()) {
             clickBurger();
@@ -239,19 +238,60 @@ public abstract class TopPart implements Attributes {
 
     private void clickGuestComponentSignIn() {
         getGuestComponent().clickSignIn();
-        //dropdownGuest = null;
-    }
-    
-    private void clickGuestComponentSignUp() {
-        getGuestComponent().clickSignUp();
-        //dropdownGuest = null;
+        // dropdownGuest = null;
     }
 
-    protected void closeDropdownGuest() {
+    private void clickGuestComponentSignUp() {
+        getGuestComponent().clickSignUp();
+        // dropdownGuest = null;
+    }
+
+    protected void closeGuestComponent() {
         guestComponent = null;
     }
-    
+
+    // loggedComponent;
+    protected LoggedComponent getLoggedComponent() {
+        if ((loggedComponent == null) || (!loggedComponent.getProfile().isEnabled())) {
+            // TODO Develop Custom Exception
+            throw new RuntimeException(COMPONENT_NULL_MESSAGE);
+        }
+        if (!loggedComponent.getProfile().isDisplayed()) {
+            clickBurger();
+        }
+        return loggedComponent;
+    }
+
+    private LoggedComponent createLoggedComponent() {
+        loggedComponent = new LoggedComponent(driver);
+        return getLoggedComponent();
+    }
+
+    private void clickLoggedComponentSettings() {
+        getLoggedComponent().clickSettings();
+        // loggedComponent = null;
+    }
+
+    private void clickLoggedComponentSignOut() {
+        getLoggedComponent().clickSignOut();
+        // loggedComponent = null;
+    }
+
+    protected void closeLoggedComponent() {
+        loggedComponent = null;
+    }
+
     // Functional
+
+    // guestComponent
+    public boolean isSignInAvailable() {
+        return createGuestComponent() != null;
+    }
+    
+    // loggedComponent;
+    public String getProfileText() {
+        return createLoggedComponent().getProfileText();
+    }
 
     // Business Logic
 
@@ -280,16 +320,26 @@ public abstract class TopPart implements Attributes {
         return new AboutPage(driver);
     }
 
-    /*-
     public MyHabitsPage navigateMyHabits() {
         clickMyHabits();
         return new MyHabitsPage(driver);
     }
-    */
     
+    public MyHabitsPage navigateMyHabits(User user) {
+        return navigateLogin().successfulLogin(user);
+    }
+
     public SignInPage navigateLogin() {
-        createGuestComponent().clickSignIn();
+        // createGuestComponent().clickSignIn();
+        createGuestComponent();
+        clickGuestComponentSignIn();
         return new SignInPage(driver);
     }
-    
+
+    public WelcomePage gotoLogout() {
+        createLoggedComponent();
+        clickLoggedComponentSignOut();
+        return new WelcomePage(driver);
+    }
+
 }
