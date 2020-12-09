@@ -20,7 +20,7 @@ public class EconewsPage extends TopPart {
     private void initElements() {
         // init elements
         mainHeader = driver.findElement(By.cssSelector("h1.main-header"));
-        newsContainer = new NewsContainer(driver);
+        //newsContainer = new NewsContainer(driver);
     }
 
     // Page Object
