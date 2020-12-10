@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class FilterContainer {
-    private final String Filter_COMPONENT_CSSSELECTOR = "????";
+    private final String Filter_COMPONENT_CSSSELECTOR = ".custom-chip.global-tag";
 
     private WebDriver driver;
     //
@@ -30,6 +30,19 @@ public class FilterContainer {
     // Page Object
 
     // Functional
+    public void clickOnFilterByName(String filter) {
+        for (WebElement element : filters) {
+            if (element.getText().toUpperCase().contains(filter)) {
+                element.click();
+            }
+        }
+    }
+
+    public FilterContainer clickOnFiltersPair(String firstFilter, String secondFilter){
+        clickOnFilterByName(firstFilter);
+        clickOnFilterByName(secondFilter);
+        return this;
+    }
 
     // Business Logic
 

@@ -8,7 +8,7 @@ import com.softserve.edu.pageobject.pages.TopPart;
 
 public class AboutPage extends TopPart {
 
-    protected WebDriver driver;
+    //protected WebDriver driver;
 
     private WebElement formHabitUpperButton;
     private WebElement formHabitBottomButton;
@@ -26,7 +26,8 @@ public class AboutPage extends TopPart {
     }
 
     private void initElements() {
-//        //not correct paths - page is changed and currently is not working
+//        //not all correct paths (page changes often)
+
 //        formHabitUpperButton = driver.findElement(By.cssSelector(".container-about .full-text-block > button"));
 //        formHabitBottomButton =  driver.findElement(By.cssSelector(".container-vision .full-text-block > button"));
 //        findEcoPlacesButton = driver.findElement(By.xpath("//a[contains(text(),'places')]")); //map
@@ -35,7 +36,7 @@ public class AboutPage extends TopPart {
 //        getInspiredButton = driver.findElement(By.xpath("//a[contains(text(),'inspired')]"));
 //        findPeopleBottomButton = driver.findElement(By.cssSelector("#fifth-card-text + a"));
 
-        aboutUsText = driver.findElement(By.cssSelector("div.container-about h2"));
+          aboutUsText = driver.findElement(By.cssSelector("div.container-about h2"));
     }
 
     // Buttons
