@@ -6,11 +6,11 @@ import org.testng.annotations.Test;
 public class SmokeTestAboutPage extends GreencityTestRunner {
 
     @Test
-    public void checkText() {
+    public void verifyPageMainText() {
         boolean isTextOnThePage = loadApplication()
     			.navigateAbout()
     	        .isAboutUsTextDisplayed();
         Assert.assertTrue(isTextOnThePage);
     }
-    
+
 }
