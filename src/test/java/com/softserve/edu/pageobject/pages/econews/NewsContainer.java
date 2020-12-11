@@ -3,14 +3,14 @@ package com.softserve.edu.pageobject.pages.econews;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 public class NewsContainer {
     private final String NEWS_COMPONENT_XPATH = "//li[@class = 'gallery-view-li-active ng-star-inserted']";
 
     private WebDriver driver;
+    private int countOfFoundItems;
+    private final int MAX_SCROLL_COUNT = 60;
 
     private List<NewsComponent> newsComponents;
 
@@ -20,11 +20,12 @@ public class NewsContainer {
     }
 
     private void initElements() {
+        countOfFoundItems = Integer.parseInt(
+                driver.findElement(By.xpath("//app-remaining-count//p")).getText().replaceAll("[^0-9]", ""));
         // READ ALL COMPONENT by Scroll
-        //
-        // init elements
+        scrollNews();
         newsComponents = new ArrayList<>();
-        for (WebElement current : driver.findElements(By.cssSelector(NEWS_COMPONENT_XPATH))) {
+        for (WebElement current : driver.findElements(By.xpath(NEWS_COMPONENT_XPATH))) {
             newsComponents.add(new NewsComponent(current));
         }
     }
@@ -60,6 +61,17 @@ public class NewsContainer {
             }
         }
         return result;
+    }
+
+    public void scrollNews()
+    {
+        List<WebElement> actualNews = driver.findElements(By.className("list-gallery"));
+        int currentScrollIndex = 0;
+        while (actualNews.size() < countOfFoundItems && currentScrollIndex < MAX_SCROLL_COUNT) {
+            driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
+            actualNews = driver.findElements(By.className("list-gallery"));
+            currentScrollIndex++;
+        }
     }
 
     protected NewsComponent getNewsComponentByTitle(String title) {

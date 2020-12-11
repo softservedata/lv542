@@ -24,7 +24,7 @@ public class NewsComponent {
     private void initElements() {
         // init elements
         listLabels = newsItem.findElements(By.cssSelector(".ul-eco-buttons.ng-star-inserted"));
-        title = newsItem.findElement(By.cssSelector("???"));
+        //title = newsItem.findElement(By.cssSelector("???"));
     }
 
     // Page Object
