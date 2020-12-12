@@ -342,4 +342,9 @@ public abstract class TopPart implements Attributes {
         return new WelcomePage(driver);
     }
 
+    //andriyc implementation
+    public String getPageTitle() {
+        return driver.getTitle();
+    }
+
 }
