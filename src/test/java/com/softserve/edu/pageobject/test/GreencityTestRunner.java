@@ -99,7 +99,7 @@ public abstract class GreencityTestRunner {
             getDriver().manage().deleteAllCookies();
             // Take Screenshot, save sourceCode, save to log, prepare report, Return to
             System.out.println("***Test " + result.getName() + " ERROR");
-            takeScreenShot(result.getName());
+            //takeScreenShot(result.getName());
             // previous state, logout, etc.
         }
         // logout; clear cache; delete cookie; delete session;
