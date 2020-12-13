@@ -11,6 +11,7 @@ public class EconewsPage extends TopPart {
     private WebElement mainHeader;
     //
     private NewsContainer newsContainer;
+    private FilterContainer filterContainer;
 
     public EconewsPage(WebDriver driver) {
         super(driver);
@@ -20,7 +21,8 @@ public class EconewsPage extends TopPart {
     private void initElements() {
         // init elements
         mainHeader = driver.findElement(By.cssSelector("h1.main-header"));
-        //newsContainer = new NewsContainer(driver);
+        filterContainer = new FilterContainer(driver);
+        newsContainer = new NewsContainer(driver);
     }
 
     // Page Object
@@ -33,6 +35,22 @@ public class EconewsPage extends TopPart {
     public String getMainHeaderText() {
         return getMainHeader().getText().trim();
     }
+
+    public EconewsPage clickOnFilterContainer(String firstFilter, String secondFilter) {
+        createFilterContainer().clickOnFiltersPair(firstFilter, secondFilter);
+        return this;
+    }
+
+    public FilterContainer createFilterContainer() {
+        filterContainer = new FilterContainer(driver);
+        return filterContainer;
+    }
+
+    public NewsContainer createNewsContainer() {
+        newsContainer = new NewsContainer(driver);
+        return newsContainer;
+    }
+
 
     // Functional
 
