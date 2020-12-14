@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.softserve.edu.pageobject.data.Languages;
 import com.softserve.edu.pageobject.pages.TopPart;
 
 public class AboutPage extends TopPart {
@@ -34,5 +35,10 @@ public class AboutPage extends TopPart {
     // Functional
 
     // Business Logic
+    
+    public AboutPage chooseLanguage(Languages languageName) {
+        chooseLanguageByName(languageName);
+        return new AboutPage(driver);
+    }
 
 }
