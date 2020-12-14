@@ -438,4 +438,7 @@ public abstract class TopPart implements Attributes {
         return new WelcomePage(driver);
     }
 
+    public String getPageTitle() {
+        return driver.getTitle();
+    };
 }
