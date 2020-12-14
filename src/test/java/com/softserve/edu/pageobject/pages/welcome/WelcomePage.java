@@ -4,10 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.softserve.edu.pageobject.data.Languages;
 import com.softserve.edu.pageobject.pages.TopPart;
 
 public class WelcomePage extends TopPart {
-    
+
     public static final String HEADER_LEFT_ATTRIBUTE = "button primary-global-button";
 
     private WebElement headerLeft;
@@ -16,7 +17,7 @@ public class WelcomePage extends TopPart {
     public WelcomePage(WebDriver driver) {
         super(driver);
         initElements();
-        //System.out.println("***WelcomePage Created");
+        // System.out.println("***WelcomePage Created");
     }
 
     private void initElements() {
@@ -35,7 +36,7 @@ public class WelcomePage extends TopPart {
     public String getHeaderLeftText() {
         return getHeaderLeft().getText().trim();
     }
-    
+
     // buttonStart
     public WebElement getButtonStart() {
         return buttonStart;
@@ -58,4 +59,8 @@ public class WelcomePage extends TopPart {
 
     // Business Logic
 
+    public WelcomePage chooseLanguage(Languages languageName) {
+        chooseLanguageByName(languageName);
+        return new WelcomePage(driver);
+    }
 }
