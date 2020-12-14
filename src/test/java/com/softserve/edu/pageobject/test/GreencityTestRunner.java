@@ -22,6 +22,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
+import com.softserve.edu.pageobject.engine.WaitWrapper;
 import com.softserve.edu.pageobject.pages.welcome.WelcomePage;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -29,7 +30,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public abstract class GreencityTestRunner {
 
     private final String BASE_URL = "url";
-    private final Long IMPLICITLY_WAIT_SECONDS = 10L;
+    //private final Long IMPLICITLY_WAIT_SECONDS = 10L;
     private final Long ONE_SECOND_DELAY = 1000L;
     private final String TIME_TEMPLATE = "yyyy-MM-dd_HH-mm-ss";
     //
@@ -41,7 +42,8 @@ public abstract class GreencityTestRunner {
         WebDriver currentWebDriver = drivers.get(Thread.currentThread().getId());
         if (currentWebDriver == null) {
             currentWebDriver = new ChromeDriver();
-            currentWebDriver.manage().timeouts().implicitlyWait(IMPLICITLY_WAIT_SECONDS, TimeUnit.SECONDS);
+            //currentWebDriver.manage().timeouts().implicitlyWait(WaitWrapper.IMPLICITLY_WAIT_SECONDS, TimeUnit.SECONDS);
+            WaitWrapper.setDefaultImplicitlyWait(currentWebDriver);
             //currentWebDriver.manage().window().maximize();
             drivers.put(Thread.currentThread().getId(), currentWebDriver);
         }
@@ -99,7 +101,7 @@ public abstract class GreencityTestRunner {
             getDriver().manage().deleteAllCookies();
             // Take Screenshot, save sourceCode, save to log, prepare report, Return to
             System.out.println("***Test " + result.getName() + " ERROR");
-            //takeScreenShot(result.getName());
+            takeScreenShot(result.getName());
             // previous state, logout, etc.
         }
         // logout; clear cache; delete cookie; delete session;
