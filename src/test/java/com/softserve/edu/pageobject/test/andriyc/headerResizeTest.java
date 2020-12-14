@@ -34,6 +34,9 @@ public class headerResizeTest extends GreencityTestRunner {
 
     @Test
     void verifySignInLinkAppearance_inWindowWidth900px() {
-    //    loadApplication().getGuestComponent();
+        Assert.assertTrue(loadApplication()
+                .isSignInAvailable());
     }
+
+
 }
