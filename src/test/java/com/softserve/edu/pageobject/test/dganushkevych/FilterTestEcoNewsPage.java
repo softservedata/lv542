@@ -1,6 +1,7 @@
-package com.softserve.edu.pageobject.test;
+package com.softserve.edu.pageobject.test.dganushkevych;
 
 import com.softserve.edu.pageobject.pages.econews.FilterContainer;
+import com.softserve.edu.pageobject.test.GreencityTestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

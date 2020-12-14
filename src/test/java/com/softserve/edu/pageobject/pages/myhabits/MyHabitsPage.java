@@ -4,7 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.softserve.edu.pageobject.data.Languages;
 import com.softserve.edu.pageobject.pages.TopPart;
+import com.softserve.edu.pageobject.pages.places.PlacesPage;
 
 public class MyHabitsPage extends TopPart {
 
@@ -54,6 +56,11 @@ public class MyHabitsPage extends TopPart {
     // Functional
 
     // Business Logic
+    
+    public MyHabitsPage chooseLanguage(Languages languageName) {
+        chooseLanguageByName(languageName);
+        return new MyHabitsPage(driver);
+    }
     
     public AllHabits gotoAddHabits() {
         clickAddNewHabits();

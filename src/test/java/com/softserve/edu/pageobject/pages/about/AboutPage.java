@@ -1,5 +1,6 @@
 package com.softserve.edu.pageobject.pages.about;
 
+import com.softserve.edu.pageobject.data.Languages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,6 +21,9 @@ public class AboutPage extends TopPart {
 
     private WebElement aboutUsText;
 
+    private WebElement about;
+
+
     public AboutPage(WebDriver driver) {
         super(driver);
         initElements();
@@ -27,6 +31,9 @@ public class AboutPage extends TopPart {
 
     private void initElements() {
 //        //not all correct paths (page changes often)
+        about = driver.findElement(By.cssSelector("div.container-about h2"));
+
+
 
 //        formHabitUpperButton = driver.findElement(By.cssSelector(".container-about .full-text-block > button"));
 //        formHabitBottomButton =  driver.findElement(By.cssSelector(".container-vision .full-text-block > button"));
@@ -101,12 +108,27 @@ public class AboutPage extends TopPart {
         return aboutUsText.getText().contains("About Us");
     }
 
-    public String getAboutText() {
+    public String getAboutHeaderText() {
         return getAboutElement().getText().trim();
+    }
+
+    // about
+    public WebElement getAbout() {
+        return about;
+    }
+
+    public String getAboutText() {
+        return getAbout().getText().trim();
     }
 
     public WebElement getAboutElement() {
         return aboutUsText;
+    }
+
+
+    public AboutPage chooseLanguage(Languages languageName) {
+        chooseLanguageByName(languageName);
+        return new AboutPage(driver);
     }
 
 }
