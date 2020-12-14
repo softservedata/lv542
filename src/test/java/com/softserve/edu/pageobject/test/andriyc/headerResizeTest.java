@@ -1,43 +1,67 @@
 package com.softserve.edu.pageobject.test.andriyc;
 
-import com.softserve.edu.pageobject.data.User;
-import com.softserve.edu.pageobject.data.UserRepository;
-import com.softserve.edu.pageobject.pages.GuestComponent;
-import com.softserve.edu.pageobject.pages.TopPart;
-import com.softserve.edu.pageobject.pages.myhabits.MyHabitsPage;
-import com.softserve.edu.pageobject.pages.welcome.WelcomePage;
 import com.softserve.edu.pageobject.test.GreencityTestRunner;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class headerResizeTest extends GreencityTestRunner {
+    private final int DEFAULT_WINDOW_HEIGHT = 700;
+    private final int WINDOW_WIDTH_900 = 900;
+    private final int WINDOW_WIDTH_850 = 850;
+    private final int WINDOW_WIDTH_500 = 500;
 
-    @Test
-    void verifyHeaderLeftMenuBlockAppearance_inWindowWidth900px() {
-
+    private boolean areAllMenuItemsAvailable() {
         try {
             loadApplication()
                     .navigateEconews()
                     .navigateTipsTricks()
                     .navigatePlaces()
                     .navigateAbout()
-                    .navigateMyHabits(UserRepository.getDefault())
-                    .gotoLogout();
-            //TODO fix a bug in navigateMyHabits() - returns new MyHabitsPage that is not applicable for not logged in users
+                    .navigateMyHabitsLoggedOut();
+        } catch (NoSuchElementException e) {
+            return false;
         }
-        catch (NoSuchElementException e) {
-            Assert.assertTrue(false, "Menu item not found");
-        }
-        Assert.assertTrue(true);
+        return true;
     }
 
     @Test
-    void verifySignInLinkAppearance_inWindowWidth900px() {
+    void verifyHeaderLeftMenuBlockAppearance_inWindowWidth_900px() {
+        setWindowSize(WINDOW_WIDTH_900, DEFAULT_WINDOW_HEIGHT);
+        Assert.assertTrue(areAllMenuItemsAvailable());
+    }
+
+    @Test
+    void verifySignInLinkAppearance_inWindowWidth_900px() {
+        setWindowSize(WINDOW_WIDTH_900, DEFAULT_WINDOW_HEIGHT);
         Assert.assertTrue(loadApplication()
                 .isSignInAvailable());
     }
 
+    @Test
+    void verifyHeaderLeftMenuBlockAppearance_inWindowWidth_850px() {
+        setWindowSize(WINDOW_WIDTH_850, DEFAULT_WINDOW_HEIGHT);
+        Assert.assertTrue(areAllMenuItemsAvailable());
+    }
+
+    @Test
+    void verifySignInLinkAppearance_inWindowWidth_850px() {
+        setWindowSize(WINDOW_WIDTH_850, DEFAULT_WINDOW_HEIGHT);
+        Assert.assertTrue(loadApplication()
+                .isSignInAvailable());
+    }
+
+    @Test
+    void verifyHeaderLeftMenuBlockAppearance_inWindowWidth_500px() {
+        setWindowSize(WINDOW_WIDTH_500, DEFAULT_WINDOW_HEIGHT);
+        Assert.assertTrue(areAllMenuItemsAvailable());
+    }
+
+    @Test
+    void verifySignInLinkAppearance_inWindowWidth_500px() {
+        setWindowSize(WINDOW_WIDTH_500, DEFAULT_WINDOW_HEIGHT);
+        Assert.assertTrue(loadApplication()
+                .isSignInAvailable());
+    }
 
 }

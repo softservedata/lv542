@@ -420,6 +420,12 @@ public abstract class TopPart implements Attributes {
         clickMyHabits();
         return new MyHabitsPage(driver);
     }
+
+    //andriyc implementation
+    public LoginPage navigateMyHabitsLoggedOut() {
+        clickMyHabits();
+        return new LoginPage(driver);
+    }
     
     public MyHabitsPage navigateMyHabits(User user) {
         return navigateLogin().successfulLogin(user);
@@ -438,6 +444,7 @@ public abstract class TopPart implements Attributes {
         return new WelcomePage(driver);
     }
 
+    //andriyc implementation
     public String getPageTitle() {
         return driver.getTitle();
     };
