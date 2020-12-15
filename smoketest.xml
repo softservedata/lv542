@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Suite01">
+<suite name="Suite03">
 	<parameter name="url" value="https://ita-social-projects.github.io/GreenCityClient/" />
 
-	<test name="Test01">
+	<test name="Test03">
 		<classes>
-			<!-- <class name="com.softserve.edu.pageobject.test.SmokeTest" /> -->
-			<!-- <class name="com.softserve.edu.GoogleTest" /> -->
-			<!-- <class name="com.softserve.edu.AppTest" /> -->
+			<class name="com.softserve.edu.pageobject.test.SmokeTest" />
 		</classes>
 	</test> <!-- Test -->
 
