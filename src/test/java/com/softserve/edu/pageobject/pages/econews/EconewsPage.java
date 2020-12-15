@@ -1,8 +1,9 @@
 package com.softserve.edu.pageobject.pages.econews;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import com.softserve.edu.pageobject.data.Languages;
 
 import com.softserve.edu.pageobject.pages.TopPart;
 
@@ -50,10 +51,13 @@ public class EconewsPage extends TopPart {
         newsContainer = new NewsContainer(driver);
         return newsContainer;
     }
-
-
     // Functional
 
     // Business Logic
+
+    public EconewsPage chooseLanguage(Languages languageName) {
+        chooseLanguageByName(languageName);
+        return new EconewsPage(driver);
+    }
 
 }

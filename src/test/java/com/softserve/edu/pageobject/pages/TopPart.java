@@ -1,10 +1,14 @@
 package com.softserve.edu.pageobject.pages;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.softserve.edu.pageobject.data.Languages;
 import com.softserve.edu.pageobject.data.User;
+import com.softserve.edu.pageobject.engine.WaitWrapper;
 import com.softserve.edu.pageobject.pages.about.AboutPage;
 import com.softserve.edu.pageobject.pages.econews.EconewsPage;
 import com.softserve.edu.pageobject.pages.myhabits.MyHabitsPage;
@@ -36,6 +40,8 @@ public abstract class TopPart implements Attributes {
     private WebElement places;
     private WebElement about;
     private WebElement myHabits;
+    //
+    Map<Languages, Map<WebElement, String>> localization;
 
     public TopPart(WebDriver driver) {
         // super(driver);
@@ -43,6 +49,7 @@ public abstract class TopPart implements Attributes {
         this.driver = driver;
         initElements();
         // checkElements();
+        initLocalization();
     }
 
     private void initElements() {
@@ -64,6 +71,30 @@ public abstract class TopPart implements Attributes {
 //    private void checkElements() {
 //        getLogo();
 //    }
+
+    private void initLocalization() {
+        localization = new HashMap<>();
+        //
+        Map<WebElement, String> localizationEn = new HashMap<>();
+        localizationEn.put(econews, "Eco news");
+        localizationEn.put(tipsTricks, "Tips & Tricks");
+        localizationEn.put(places, "Places");
+        localizationEn.put(about, "About us");
+        localizationEn.put(myHabits, "My habits");
+        localization.put(Languages.EN, localizationEn);
+        //System.out.println("EN = " + localization.get(Languages.EN).values());
+        //
+        Map<WebElement, String> localizationUa = new HashMap<>();
+        localizationUa.put(econews, "Еко новини");
+        localizationUa.put(tipsTricks, "Поради");
+        localizationUa.put(places, "Карта");
+        localizationUa.put(about, "Про нас");
+        localizationUa.put(myHabits, "Мій кабінет");
+        localization.put(Languages.UA, localizationUa);
+        //
+        //System.out.println("EN = " + localization.get(Languages.EN).values());
+        //System.out.println("UA = " + localization.get(Languages.UA).values());
+    }
 
     // Page Object
 
@@ -219,6 +250,45 @@ public abstract class TopPart implements Attributes {
         getMyHabits().click();
     }
 
+    // languageComponent
+    protected LanguageComponent getLanguageComponent() {
+        if ((languageComponent == null) || (!language.isEnabled())) {
+            // TODO Develop Custom Exception
+            throw new RuntimeException(COMPONENT_NULL_MESSAGE);
+        }
+        return languageComponent;
+    }
+
+    private LanguageComponent createLanguageComponent() {
+        clickLanguage();
+        languageComponent = new LanguageComponent(driver);
+        return getLanguageComponent();
+    }
+
+    private void clickLanguageComponentEn() {
+        getLanguageComponent().clickEn();
+        languageComponent = null;
+    }
+
+    protected void clickLanguageComponentUa() {
+        getLanguageComponent().clickEn();
+        languageComponent = null;
+    }
+
+    protected void clickLanguageComponentRu() {
+        getLanguageComponent().clickEn();
+        languageComponent = null;
+    }
+
+    protected void clickLanguageComponentByName(String name) {
+        getLanguageComponent().clickLanguageByName(name);
+        languageComponent = null;
+    }
+
+    protected void closeLanguageComponent() {
+        languageComponent = null;
+    }
+
     // guestComponent
     protected GuestComponent getGuestComponent() {
         if ((guestComponent == null) || (!guestComponent.getSignIn().isEnabled())) {
@@ -283,6 +353,15 @@ public abstract class TopPart implements Attributes {
 
     // Functional
 
+    protected void chooseLanguageByName(Languages languagesName) {
+        String languageText = getLanguageText();
+        if (!languageText.toLowerCase().trim().equals(languagesName.toString().toLowerCase().trim())) {
+            createLanguageComponent();
+            clickLanguageComponentByName(languagesName.toString());
+            WaitWrapper.invisibilityOfElementLocated​Wait(driver, By.xpath("//div[@class='switcher-wrapper']//ul/li[contains(text(),'" + languageText + "')]"));
+        }
+    }
+
     // guestComponent
     public boolean isSignInAvailable() {
         return createGuestComponent() != null;
@@ -291,6 +370,23 @@ public abstract class TopPart implements Attributes {
     // loggedComponent;
     public String getProfileText() {
         return createLoggedComponent().getProfileText();
+    }
+
+    // localization
+    public boolean isValidLocalization(Languages languageName) {
+        //System.out.println("languageName = " + languageName.name());
+        //System.out.println("MAP = " + localization.get(languageName).values());
+        boolean result = true;
+        for (Map.Entry<WebElement, String> current : localization.get(languageName).entrySet()) {
+            if (!current.getKey().getText().toLowerCase().trim()
+                    .contains(current.getValue().toLowerCase().trim()) ) {
+                //System.out.println("***Actual = " + current.getKey().getText().toLowerCase().trim());
+                //System.out.println("***Expected = " + current.getValue().toLowerCase().trim());
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 
     // Business Logic
@@ -324,7 +420,13 @@ public abstract class TopPart implements Attributes {
         clickMyHabits();
         return new MyHabitsPage(driver);
     }
-    
+
+    //andriyc implementation
+    public LoginPage navigateMyHabitsLoggedOut() {
+        clickMyHabits();
+        return new LoginPage(driver);
+    }
+
     public MyHabitsPage navigateMyHabits(User user) {
         return navigateLogin().successfulLogin(user);
     }
@@ -346,5 +448,4 @@ public abstract class TopPart implements Attributes {
     public String getPageTitle() {
         return driver.getTitle();
     }
-
 }
