@@ -23,4 +23,12 @@ public class User {
         return password;
     }
 
+    @Override
+    public String toString() {
+        return "User [email=" + email 
+                + ", name=" + name 
+                + ", password=" + password 
+                + "]";
+    }
+
 }

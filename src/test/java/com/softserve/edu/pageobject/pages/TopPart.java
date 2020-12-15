@@ -6,7 +6,10 @@ import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.softserve.edu.Appl;
 import com.softserve.edu.pageobject.data.Languages;
 import com.softserve.edu.pageobject.data.User;
 import com.softserve.edu.pageobject.engine.WaitWrapper;
@@ -19,6 +22,8 @@ import com.softserve.edu.pageobject.pages.welcome.WelcomePage;
 
 public abstract class TopPart implements Attributes {
 
+    public static final Logger logger = LoggerFactory.getLogger(TopPart.class);
+    //
     protected final String COMPONENT_NULL_MESSAGE = "Component is null or Disabled";
 
     protected WebDriver driver;
@@ -355,12 +360,14 @@ public abstract class TopPart implements Attributes {
     // Functional
 
     protected void chooseLanguageByName(Languages languagesName) {
+        logger.debug("start languagesName = " + languagesName.name());
         String languageText = getLanguageText();
         if (!languageText.toLowerCase().trim().equals(languagesName.toString().toLowerCase().trim())) {
             createLanguageComponent();
             clickLanguageComponentByName(languagesName.toString());
             WaitWrapper.invisibilityOfElementLocated​Wait(driver, By.xpath("//div[@class='switcher-wrapper']//ul/li[contains(text(),'" + languageText + "')]"));
         }
+        logger.debug("done languagesName = " + languagesName.name());
     }
 
     // guestComponent

@@ -14,6 +14,7 @@ public class SmokeTest extends GreencityTestRunner {
 
     //@Test
     public void checkMenu() {
+        logger.info("@Test checkMenu() start");
         // Precondition
         //setWindowSize(640, 480);
         //setWindowSize(480, 640);
@@ -40,6 +41,7 @@ public class SmokeTest extends GreencityTestRunner {
     
     //@Test(dataProvider = "users")
     public void checkLogin(User user) {
+        logger.info("@Test checkMenu() start, user = " + user);
         MyHabitsPage myHabitsPage = loadApplication()
                 .navigateLogin()
                 .successfulLogin(user);
@@ -51,6 +53,7 @@ public class SmokeTest extends GreencityTestRunner {
     
     //@Test(dataProvider = "users")
     public void checkMyHabits(User user) {
+        logger.info("@Test checkMyHabits() start, user = " + user);
         // Steps
         WelcomePage welcomePage = loadApplication()
             .navigateMyHabits(user)
@@ -73,12 +76,13 @@ public class SmokeTest extends GreencityTestRunner {
     public Object[][] languages() {
         return new Object[][] {
             { Languages.UA },
-            { Languages.EN },
+            //{ Languages.EN },
         };
     }
     
     @Test(dataProvider = "languages")
     public void checkLanguage(Languages languageName) {
+        logger.info("@Test checkLanguage() start, languageName = " + languageName.toString());
         // Steps
         WelcomePage welcomePage = loadApplication()
                 .chooseLanguage(languageName);
