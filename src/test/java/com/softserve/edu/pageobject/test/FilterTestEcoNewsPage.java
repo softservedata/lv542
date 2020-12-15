@@ -21,7 +21,7 @@ public class FilterTestEcoNewsPage  extends GreencityTestRunner {
     }
 
     @Test
-    public void verifyFilterEventsAdsTest() throws Exception {
+    public void verifyFilterEventsAdsTest()  {
         verifyFilterCoupleTest("EVENTS", "ADS");
     }
 
