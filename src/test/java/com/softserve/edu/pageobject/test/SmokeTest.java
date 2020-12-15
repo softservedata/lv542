@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.softserve.edu.pageobject.data.Languages;
 import com.softserve.edu.pageobject.data.User;
 import com.softserve.edu.pageobject.data.UserRepository;
 import com.softserve.edu.pageobject.pages.myhabits.MyHabitsPage;
@@ -48,7 +49,7 @@ public class SmokeTest extends GreencityTestRunner {
         Assert.assertTrue(welcomePage.isSignInAvailable());
     }
     
-    @Test(dataProvider = "users")
+    //@Test(dataProvider = "users")
     public void checkMyHabits(User user) {
         // Steps
         WelcomePage welcomePage = loadApplication()
@@ -66,6 +67,24 @@ public class SmokeTest extends GreencityTestRunner {
         Assert.assertEquals(welcomePage.getButtonStartAttributeClass(),
                 WelcomePage.HEADER_LEFT_ATTRIBUTE);
         Assert.assertTrue(welcomePage.isSignInAvailable());
+    }
+    
+    @DataProvider//(parallel = true)
+    public Object[][] languages() {
+        return new Object[][] {
+            { Languages.UA },
+            { Languages.EN },
+        };
+    }
+    
+    @Test(dataProvider = "languages")
+    public void checkLanguage(Languages languageName) {
+        // Steps
+        WelcomePage welcomePage = loadApplication()
+                .chooseLanguage(languageName);
+        //
+        // Check
+        Assert.assertTrue(welcomePage.isValidLocalization(languageName));
     }
     
 }
