@@ -9,7 +9,7 @@ public class SmokeTestAboutPage extends GreencityTestRunner {
     @Test
     public void verifyPageMainText() {
         boolean isTextOnThePage = loadApplication()
-    			.navigateAbout()
+    			.openAboutUsPage()
     	        .isAboutUsTextDisplayed();
         Assert.assertTrue(isTextOnThePage);
     }

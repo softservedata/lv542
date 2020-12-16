@@ -8,38 +8,31 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class FilterContainer {
-    private final String Filter_COMPONENT_CSSSELECTOR = ".custom-chip.global-tag";
-
+public class FilterBlock {
     private WebDriver driver;
-    //
     private List<WebElement> filters;
-    
-    public FilterContainer(WebDriver driver) {
+
+    public FilterBlock(WebDriver driver) {
         this.driver = driver;
         initElements();
     }
 
     private void initElements() {
-        // init elements
         filters = new ArrayList<>();
-        for (WebElement current : driver.findElements(By.cssSelector(Filter_COMPONENT_CSSSELECTOR))) {
+        for (WebElement current : driver.findElements(By.cssSelector(".custom-chip.global-tag"))) {
             filters.add(current);
         }
     }
 
-    // Page Object
-
-    // Functional
-    public void clickOnFilterByName(String filter) {
-        for (WebElement element : filters) {
-            if (element.getText().toUpperCase().contains(filter)) {
-                element.click();
+    public void activateFilterByName(String filter) {
+        for (WebElement filterItem : filters) {
+            if (filterItem.getText().toUpperCase().contains(filter)) {
+                filterItem.click();
             }
         }
     }
 
-    public void unclickFilters(){
+    public void deactivateAllFilters() {
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(By.cssSelector(".main-header"))).perform();
         for (WebElement currentFilter : filters) {
@@ -49,12 +42,10 @@ public class FilterContainer {
         }
     }
 
-    public FilterContainer clickOnFiltersPair(String firstFilter, String secondFilter){
-        clickOnFilterByName(firstFilter);
-        clickOnFilterByName(secondFilter);
+    public FilterBlock activateTwoFilterItems(String firstFilter, String secondFilter) {
+        activateFilterByName(firstFilter);
+        activateFilterByName(secondFilter);
         return this;
     }
-
-    // Business Logic
 
 }

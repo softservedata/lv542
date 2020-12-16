@@ -10,54 +10,38 @@ import com.softserve.edu.pageobject.pages.TopPart;
 public class WelcomePage extends TopPart {
 
     public static final String HEADER_LEFT_ATTRIBUTE = "button primary-global-button";
-
-    private WebElement headerLeft;
-    private WebElement buttonStart;
+    private WebElement firstHeader;
+    private WebElement firstButton;
 
     public WelcomePage(WebDriver driver) {
         super(driver);
         initElements();
-        // System.out.println("***WelcomePage Created");
     }
 
     private void initElements() {
-        // init elements
-        headerLeft = driver.findElement(By.cssSelector("div#header-left h1"));
-        buttonStart = driver.findElement(By.cssSelector("#header .button.primary-global-button"));
+        firstHeader = driver.findElement(By.cssSelector("div#header-left h1"));
+        firstButton = driver.findElement(By.cssSelector("#header .button.primary-global-button"));
     }
 
-    // Page Object
-
-    // headerLeft
-    public WebElement getHeaderLeft() {
-        return headerLeft;
+    public WebElement getFirstHeader() {
+        return firstHeader;
     }
 
-    public String getHeaderLeftText() {
-        return getHeaderLeft().getText().trim();
+    public String getFirstHeaderText() {
+        return getFirstHeader().getText().trim();
     }
 
-    // buttonStart
-    public WebElement getButtonStart() {
-        return buttonStart;
+    public WebElement getFirstButton() {
+        return firstButton;
     }
 
-    public String getButtonStartText() {
-        return getButtonStart().getText().trim();
+    public String getFirstButtonText() {
+        return getFirstButton().getText().trim();
     }
 
-    public String getButtonStartAttributeClass() {
-        return getButtonStart().getAttribute(TAG_ATTRIBUTE_CLASS);
+    public String getFirstButtonAttributeClass() {
+        return getFirstButton().getAttribute(TAG_ATTRIBUTE_CLASS);
     }
-
-    public void clickButtonStart() {
-        getButtonStart().click();
-        // TODO
-    }
-
-    // Functional
-
-    // Business Logic
 
     public WelcomePage chooseLanguage(Languages languageName) {
         chooseLanguageByName(languageName);

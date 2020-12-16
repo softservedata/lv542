@@ -1,4 +1,5 @@
 package com.softserve.edu.pageobject.pages.econews;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,9 +11,8 @@ import com.softserve.edu.pageobject.pages.TopPart;
 public class EconewsPage extends TopPart {
 
     private WebElement mainHeader;
-    //
-    private NewsContainer newsContainer;
-    private FilterContainer filterContainer;
+    private NewsSection newsSection;
+    private FilterBlock filterBlock;
 
     public EconewsPage(WebDriver driver) {
         super(driver);
@@ -20,15 +20,11 @@ public class EconewsPage extends TopPart {
     }
 
     private void initElements() {
-        // init elements
         mainHeader = driver.findElement(By.cssSelector("h1.main-header"));
-        filterContainer = new FilterContainer(driver);
-        newsContainer = new NewsContainer(driver);
+        filterBlock = new FilterBlock(driver);
+        newsSection = new NewsSection(driver);
     }
 
-    // Page Object
-
-    // mainHeader
     public WebElement getMainHeader() {
         return mainHeader;
     }
@@ -37,23 +33,20 @@ public class EconewsPage extends TopPart {
         return getMainHeader().getText().trim();
     }
 
-    public EconewsPage clickOnFilterContainer(String firstFilter, String secondFilter) {
-        createFilterContainer().clickOnFiltersPair(firstFilter, secondFilter);
+    public EconewsPage activateTwoFilterItems(String firstFilter, String secondFilter) {
+        createFilterBlock().activateTwoFilterItems(firstFilter, secondFilter);
         return this;
     }
 
-    public FilterContainer createFilterContainer() {
-        filterContainer = new FilterContainer(driver);
-        return filterContainer;
+    public FilterBlock createFilterBlock() {
+        filterBlock = new FilterBlock(driver);
+        return filterBlock;
     }
 
-    public NewsContainer createNewsContainer() {
-        newsContainer = new NewsContainer(driver);
-        return newsContainer;
+    public NewsSection createNewsSection() {
+        newsSection = new NewsSection(driver);
+        return newsSection;
     }
-    // Functional
-
-    // Business Logic
 
     public EconewsPage chooseLanguage(Languages languageName) {
         chooseLanguageByName(languageName);

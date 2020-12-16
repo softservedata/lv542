@@ -1,6 +1,6 @@
 package com.softserve.edu.pageobject.test.dganushkevych;
 
-import com.softserve.edu.pageobject.pages.econews.FilterContainer;
+import com.softserve.edu.pageobject.pages.econews.FilterBlock;
 import com.softserve.edu.pageobject.test.GreencityTestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -10,13 +10,13 @@ public class FilterTestEcoNewsPage  extends GreencityTestRunner {
 
     public void verifyFilterCoupleTest(String firstFilter, String secondFilter) {
         boolean isLabelsCorrect = loadApplication()
-                .navigateEconews()
-                .clickOnFilterContainer(firstFilter, secondFilter)
-                .createNewsContainer()
+                .openEcoNewsPage()
+                .activateTwoFilterItems(firstFilter, secondFilter)
+                .createNewsSection()
                 .checkFiltersWithNews(firstFilter, secondFilter);
 
-        FilterContainer filters = new FilterContainer(getDriver());
-        filters.unclickFilters();
+        FilterBlock filters = new FilterBlock(getDriver());
+        filters.deactivateAllFilters();
 
         Assert.assertTrue(isLabelsCorrect);
     }

@@ -13,7 +13,7 @@ public class MenuLoggedOutUserTest extends GreencityTestRunner {
     @Test
     void verifyEcoNewsMenuTargetPageTitleCompliance() {
         String actualEcoNewsPageTitle = loadApplication()
-                .navigateEconews()
+                .openEcoNewsPage()
                 .getPageTitle();
 
         Assert.assertEquals(actualEcoNewsPageTitle, EXPECTED_ECONEWS_PAGE_TITLE);
@@ -22,7 +22,7 @@ public class MenuLoggedOutUserTest extends GreencityTestRunner {
     @Test
     void verifyTipsTricksMenuTargetPageTitleCompliance() {
         String actualTipsTricksPageTitle = loadApplication()
-                .navigateTipsTricks()
+                .openTipsTricksPage()
                 .getPageTitle();
 
         Assert.assertEquals(actualTipsTricksPageTitle, EXPECTED_TIPSTRICKS_PAGE_TITLE);
@@ -31,7 +31,7 @@ public class MenuLoggedOutUserTest extends GreencityTestRunner {
     @Test
     void verifyPlacesMenuTargetPageTitleCompliance() {
         String actualPlacesPageTitle = loadApplication()
-                .navigatePlaces()
+                .openPlacesPage()
                 .getPageTitle();
 
         Assert.assertEquals(actualPlacesPageTitle, EXPECTED_PLACES_PAGE_TITLE);
@@ -40,7 +40,7 @@ public class MenuLoggedOutUserTest extends GreencityTestRunner {
     @Test
     void verifyAboutUsMenuTargetPageTitleCompliance() {
         String actualAboutUsPageTitle = loadApplication()
-                .navigateAbout()
+                .openAboutUsPage()
                 .getPageTitle();
 
         Assert.assertEquals(actualAboutUsPageTitle, EXPECTED_ABOUTUS_PAGE_TITLE);

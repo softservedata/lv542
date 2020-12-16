@@ -14,11 +14,11 @@ public class headerResizeTest extends GreencityTestRunner {
     private boolean areAllMenuItemsAvailable() {
         try {
             loadApplication()
-                    .navigateEconews()
-                    .navigateTipsTricks()
-                    .navigatePlaces()
-                    .navigateAbout()
-                    .navigateMyHabitsLoggedOut();
+                    .openEcoNewsPage()
+                    .openTipsTricksPage()
+                    .openPlacesPage()
+                    .openAboutUsPage()
+                    .openMyHabitsPageLoggedOutUser();
         } catch (NoSuchElementException e) {
             return false;
         }

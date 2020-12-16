@@ -20,14 +20,14 @@ public class SmokeTest extends GreencityTestRunner {
         //
         // Steps
         WelcomePage welcomePage = loadApplication()
-            .navigateEconews()
-            .navigateTipsTricks()
-            .navigatePlaces()
-            .navigateAbout()
-            .navigateWelcome();
+            .openEcoNewsPage()
+            .openTipsTricksPage()
+            .openPlacesPage()
+            .openAboutUsPage()
+            .openWelcomePage();
         //
         // Check
-        Assert.assertEquals(welcomePage.getButtonStartAttributeClass(),
+        Assert.assertEquals(welcomePage.getFirstButtonAttributeClass(),
                 WelcomePage.HEADER_LEFT_ATTRIBUTE);
     }
     
@@ -41,11 +41,11 @@ public class SmokeTest extends GreencityTestRunner {
     //@Test(dataProvider = "users")
     public void checkLogin(User user) {
         MyHabitsPage myHabitsPage = loadApplication()
-                .navigateLogin()
+                .openSignInPage()
                 .successfulLogin(user);
         Assert.assertEquals(myHabitsPage.getProfileText(),
                 user.getName());
-        WelcomePage welcomePage = myHabitsPage.gotoLogout();
+        WelcomePage welcomePage = myHabitsPage.logOut();
         Assert.assertTrue(welcomePage.isSignInAvailable());
     }
     
@@ -53,18 +53,18 @@ public class SmokeTest extends GreencityTestRunner {
     public void checkMyHabits(User user) {
         // Steps
         WelcomePage welcomePage = loadApplication()
-            .navigateMyHabits(user)
-            .gotoAddHabits()
-            .navigateEconews()
-            .navigateTipsTricks()
-            .navigatePlaces()
-            .navigateAbout()
-            .navigateMyHabits()
-            .navigateWelcome()
-            .gotoLogout();
+            .openMyHabitsPage(user)
+            .openAddHabitsPage()
+            .openEcoNewsPage()
+            .openTipsTricksPage()
+            .openPlacesPage()
+            .openAboutUsPage()
+            .openMyHabitsPage()
+            .openWelcomePage()
+            .logOut();
         //
         // Check
-        Assert.assertEquals(welcomePage.getButtonStartAttributeClass(),
+        Assert.assertEquals(welcomePage.getFirstButtonAttributeClass(),
                 WelcomePage.HEADER_LEFT_ATTRIBUTE);
         Assert.assertTrue(welcomePage.isSignInAvailable());
     }

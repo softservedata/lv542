@@ -9,8 +9,6 @@ import com.softserve.edu.pageobject.pages.TopPart;
 
 public class AboutPage extends TopPart {
 
-    //protected WebDriver driver;
-
     private WebElement formHabitUpperButton;
     private WebElement formHabitBottomButton;
     private WebElement findEcoPlacesButton;
@@ -18,11 +16,8 @@ public class AboutPage extends TopPart {
     private WebElement findPeopleUpperButton;
     private WebElement getInspiredButton;
     private WebElement findPeopleBottomButton;
-
     private WebElement aboutUsText;
-
     private WebElement about;
-
 
     public AboutPage(WebDriver driver) {
         super(driver);
@@ -30,10 +25,7 @@ public class AboutPage extends TopPart {
     }
 
     private void initElements() {
-//        //not all correct paths (page changes often)
         about = driver.findElement(By.cssSelector("div.container-about h2"));
-
-
 
 //        formHabitUpperButton = driver.findElement(By.cssSelector(".container-about .full-text-block > button"));
 //        formHabitBottomButton =  driver.findElement(By.cssSelector(".container-vision .full-text-block > button"));
@@ -43,7 +35,7 @@ public class AboutPage extends TopPart {
 //        getInspiredButton = driver.findElement(By.xpath("//a[contains(text(),'inspired')]"));
 //        findPeopleBottomButton = driver.findElement(By.cssSelector("#fifth-card-text + a"));
 
-          aboutUsText = driver.findElement(By.cssSelector("div.container-about h2"));
+        aboutUsText = driver.findElement(By.cssSelector("div.container-about h2"));
     }
 
     // Buttons
@@ -113,12 +105,12 @@ public class AboutPage extends TopPart {
     }
 
     // about
-    public WebElement getAbout() {
+    public WebElement getAboutUsMenuItem() {
         return about;
     }
 
-    public String getAboutText() {
-        return getAbout().getText().trim();
+    public String getAboutUsMenuItemText() {
+        return getAboutUsMenuItem().getText().trim();
     }
 
     public WebElement getAboutElement() {

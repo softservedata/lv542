@@ -2,6 +2,7 @@ package com.softserve.edu.pageobject.pages;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,367 +22,285 @@ public abstract class TopPart implements Attributes {
     protected final String COMPONENT_NULL_MESSAGE = "Component is null or Disabled";
 
     protected WebDriver driver;
-    //
-    // private final String IMG_LOGO_CSS = "div.logo a";
-    // private By logo;
-    // @FindBy(css = "div.logo a")
     private WebElement logo;
-    private WebElement search;
-    private WebElement language;
-    //
-    private SearchComponent searchComponent;
-    private LanguageComponent languageComponent;
-    private GuestComponent guestComponent;
-    private LoggedComponent loggedComponent;
-    //
-    private WebElement burger;
-    private WebElement econews;
-    private WebElement tipsTricks;
-    private WebElement places;
-    private WebElement about;
-    private WebElement myHabits;
-    //
+    private WebElement searchButton;
+    private WebElement languagePopUp;
+    private SearchBlock searchBlock;
+    private LanguageBlock languageBlock;
+    private LogInBlock logInBlock;
+    private userProfileBlock userProfileBlock;
+    private WebElement burgerButton;
+    private WebElement ecoNewsMenuItem;
+    private WebElement tipsTricksMenuItem;
+    private WebElement placesMenuItem;
+    private WebElement aboutMenuItem;
+    private WebElement myHabitsMenuItem;
     Map<Languages, Map<WebElement, String>> localization;
 
     public TopPart(WebDriver driver) {
-        // super(driver);
-        // PageFactory.initElements(driver, this); // for @FindBy
         this.driver = driver;
         initElements();
-        // checkElements();
         initLocalization();
     }
 
     private void initElements() {
-        //System.out.println("***TopPart Created");
-        // init elements
-        // logo = By.cssSelector("div.logo a");
         logo = driver.findElement(By.cssSelector("div.logo a"));
-        search = driver.findElement(By.cssSelector("li[class*='search'] a"));
-        language = driver.findElement(By.cssSelector("div.switcher-wrapper ul"));
-        //
-        burger = driver.findElement(By.cssSelector("li.burger-b"));
-        econews = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/news']"));
-        tipsTricks = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/tips']"));
-        places = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/map']"));
-        about = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/about']"));
-        myHabits = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/profile']"));
+        searchButton = driver.findElement(By.cssSelector("li[class*='search'] a"));
+        languagePopUp = driver.findElement(By.cssSelector("div.switcher-wrapper ul"));
+        burgerButton = driver.findElement(By.cssSelector("li.burger-b"));
+        ecoNewsMenuItem = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/news']"));
+        tipsTricksMenuItem = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/tips']"));
+        placesMenuItem = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/map']"));
+        aboutMenuItem = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/about']"));
+        myHabitsMenuItem = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/profile']"));
     }
 
-//    private void checkElements() {
-//        getLogo();
-//    }
-    
     private void initLocalization() {
         localization = new HashMap<>();
-        //
         Map<WebElement, String> localizationEn = new HashMap<>();
-        localizationEn.put(econews, "Eco news");
-        localizationEn.put(tipsTricks, "Tips & Tricks");
-        localizationEn.put(places, "Places");
-        localizationEn.put(about, "About us");
-        localizationEn.put(myHabits, "My habits");
+        localizationEn.put(ecoNewsMenuItem, "Eco news");
+        localizationEn.put(tipsTricksMenuItem, "Tips & Tricks");
+        localizationEn.put(placesMenuItem, "Places");
+        localizationEn.put(aboutMenuItem, "About us");
+        localizationEn.put(myHabitsMenuItem, "My habits");
         localization.put(Languages.EN, localizationEn);
-        //System.out.println("EN = " + localization.get(Languages.EN).values());
-        //
         Map<WebElement, String> localizationUa = new HashMap<>();
-        localizationUa.put(econews, "Еко новини");
-        localizationUa.put(tipsTricks, "Поради");
-        localizationUa.put(places, "Карта");
-        localizationUa.put(about, "Про нас");
-        localizationUa.put(myHabits, "Мій кабінет");
+        localizationUa.put(ecoNewsMenuItem, "Еко новини");
+        localizationUa.put(tipsTricksMenuItem, "Поради");
+        localizationUa.put(placesMenuItem, "Карта");
+        localizationUa.put(aboutMenuItem, "Про нас");
+        localizationUa.put(myHabitsMenuItem, "Мій кабінет");
         localization.put(Languages.UA, localizationUa);
-        //
-        //System.out.println("EN = " + localization.get(Languages.EN).values());
-        //System.out.println("UA = " + localization.get(Languages.UA).values());
     }
 
-    // Page Object
-
-    // logo
-    public WebElement getLogo() {
-        // return driver.findElement(logo);
-        // return driver.findElement(By.cssSelector(IMG_LOGO_CSS));
-        // return driver.findElement(By.cssSelector("div.logo a"));
-        return logo;
-    }
-
-    public void clickLogo() {
-        getLogo().click();
-    }
-
-    // search
-    public WebElement getSearch() {
-        return search;
+    private void clickLogo() {
+        logo.click();
     }
 
     public void clickSearch() {
-        getSearch().click();
+        searchButton.click();
         // TODO
-    }
-
-    // language
-    public WebElement getLanguage() {
-        return language;
     }
 
     public String getLanguageText() {
-        return getLanguage().getText().trim();
+        return languagePopUp.getText().trim();
     }
 
     public void clickLanguage() {
-        getLanguage().click();
+        languagePopUp.click();
         // TODO
     }
 
-    // burger
-    public WebElement getBurger() {
-        return burger;
-    }
-
     public boolean isDisplayedBurger() {
-        return getBurger().isDisplayed();
+        return burgerButton.isDisplayed();
     }
 
-    public void clickBurger() {
+    public void openBurgerMenu() {
         if (isDisplayedBurger()) {
-            getBurger().click();
+            burgerButton.click();
         }
         // TODO else new Exception();
     }
 
-    // econews
-    public boolean isDisplayedEconews() {
-        return econews.isDisplayed();
+    public boolean isDisplayedEcoNewsMenuItem() {
+        return ecoNewsMenuItem.isDisplayed();
     }
 
-    public WebElement getEconews() {
-        if (!isDisplayedEconews()) {
-            clickBurger();
+    public WebElement getEcoNewsMenuItem() {
+        if (!isDisplayedEcoNewsMenuItem()) {
+            openBurgerMenu();
         }
-        return econews;
+        return ecoNewsMenuItem;
     }
 
-    public String getEconewsText() {
-        return getEconews().getText();
+    public String getEcoNewsMenuItemText() {
+        return getEcoNewsMenuItem().getText();
     }
 
-    public void clickEconews() {
-        getEconews().click();
+    private void clickEcoNews() {
+        getEcoNewsMenuItem().click();
     }
 
-    // tipsTricks
-    public boolean isDisplayedTipsTricks() {
-        return tipsTricks.isDisplayed();
+    public boolean isDisplayedTipsTricksMenuItem() {
+        return tipsTricksMenuItem.isDisplayed();
     }
 
-    public WebElement getTipsTricks() {
-        if (!isDisplayedTipsTricks()) {
-            clickBurger();
+    public WebElement getTipsTricksMenuItem() {
+        if (!isDisplayedTipsTricksMenuItem()) {
+            openBurgerMenu();
         }
-        return tipsTricks;
+        return tipsTricksMenuItem;
     }
 
-    public String getTipsTricksText() {
-        return getTipsTricks().getText();
+    public String getTipsTricksMenuItemText() {
+        return getTipsTricksMenuItem().getText();
     }
 
-    public void clickTipsTricks() {
-        getTipsTricks().click();
+    private void clickTipsTricks() {
+        getTipsTricksMenuItem().click();
     }
 
-    // places
-    public boolean isDisplayedPlaces() {
-        return places.isDisplayed();
+    public boolean isDisplayedPlacesMenuItem() {
+        return placesMenuItem.isDisplayed();
     }
 
-    public WebElement getPlaces() {
-        if (!isDisplayedPlaces()) {
-            clickBurger();
+    public WebElement getPlacesMenuItem() {
+        if (!isDisplayedPlacesMenuItem()) {
+            openBurgerMenu();
         }
-        return places;
+        return placesMenuItem;
     }
 
-    public String getPlacesText() {
-        return getPlaces().getText();
+    public String getPlacesMenuItemText() {
+        return getPlacesMenuItem().getText();
     }
 
-    public void clickPlaces() {
-        getPlaces().click();
+    private void clickPlaces() {
+        getPlacesMenuItem().click();
     }
 
-    // about
-    public boolean isDisplayedAbout() {
-        return about.isDisplayed();
+    public boolean isDisplayedAboutUsMenuItem() {
+        return aboutMenuItem.isDisplayed();
     }
 
-    public WebElement getAbout() {
-        if (!isDisplayedAbout()) {
-            clickBurger();
+    public WebElement getAboutUsMenuItem() {
+        if (!isDisplayedAboutUsMenuItem()) {
+            openBurgerMenu();
         }
-        return about;
+        return aboutMenuItem;
     }
 
-    public String getAboutText() {
-        return getAbout().getText();
+    public String getAboutUsMenuItemText() {
+        return getAboutUsMenuItem().getText();
     }
 
-    public void clickAbout() {
-        getAbout().click();
+    private void clickAboutUs() {
+        getAboutUsMenuItem().click();
     }
 
-    // myHabits
-    public boolean isDisplayedMyHabits() {
-        return myHabits.isDisplayed();
+    public boolean isDisplayedMyHabitsMenuItem() {
+        return myHabitsMenuItem.isDisplayed();
     }
 
-    public WebElement getMyHabits() {
-        if (!isDisplayedMyHabits()) {
-            clickBurger();
+    public WebElement getMyHabitsMenuItem() {
+        if (!isDisplayedMyHabitsMenuItem()) {
+            openBurgerMenu();
         }
-        return myHabits;
+        return myHabitsMenuItem;
     }
 
-    public String getMyHabitsText() {
-        return getMyHabits().getText();
+    public String getMyHabitsMenuItemText() {
+        return getMyHabitsMenuItem().getText();
     }
 
-    public void clickMyHabits() {
-        getMyHabits().click();
+    private void clickMyHabits() {
+        getMyHabitsMenuItem().click();
     }
-    
-    // languageComponent
-    protected LanguageComponent getLanguageComponent() {
-        if ((languageComponent == null) || (!language.isEnabled())) {
+
+    protected LanguageBlock getLanguageBlock() {
+        if ((languageBlock == null) || (!languagePopUp.isEnabled())) {
             // TODO Develop Custom Exception
             throw new RuntimeException(COMPONENT_NULL_MESSAGE);
         }
-        return languageComponent;
+        return languageBlock;
     }
 
-    private LanguageComponent createLanguageComponent() {
+    private LanguageBlock createLanguageBlock() {
         clickLanguage();
-        languageComponent = new LanguageComponent(driver);
-        return getLanguageComponent();
+        languageBlock = new LanguageBlock(driver);
+        return getLanguageBlock();
     }
 
-    private void clickLanguageComponentEn() {
-        getLanguageComponent().clickEn();
-        languageComponent = null;
+    private void chooseEnglish() {
+        getLanguageBlock().chooseEnglish();
+        languageBlock = null;
     }
-    
-    protected void clickLanguageComponentUa() {
-        getLanguageComponent().clickEn();
-        languageComponent = null;
+
+    protected void chooseUkrainian() {
+        getLanguageBlock().chooseUkrainian();
+        languageBlock = null;
     }
-    
-    protected void clickLanguageComponentRu() {
-        getLanguageComponent().clickEn();
-        languageComponent = null;
+
+    protected void choseRussian() {
+        getLanguageBlock().chooseRussian();
+        languageBlock = null;
     }
-    
-    protected void clickLanguageComponentByName(String name) {
-        getLanguageComponent().clickLanguageByName(name);
-        languageComponent = null;
+
+    protected void chooseLanguageByName(String name) {
+        getLanguageBlock().clickLanguageByName(name);
+        languageBlock = null;
     }
-    
-    protected void closeLanguageComponent() {
-        languageComponent = null;
-    }
-    
-    // guestComponent
-    protected GuestComponent getGuestComponent() {
-        if ((guestComponent == null) || (!guestComponent.getSignIn().isEnabled())) {
+
+    protected LogInBlock getLogInBlock() {
+        if ((logInBlock == null) || (!logInBlock.getSignInButton().isEnabled())) {
             // TODO Develop Custom Exception
             throw new RuntimeException(COMPONENT_NULL_MESSAGE);
         }
-        if (!guestComponent.getSignIn().isDisplayed()) {
-            clickBurger();
+        if (!logInBlock.getSignInButton().isDisplayed()) {
+            openBurgerMenu();
         }
-        return guestComponent;
+        return logInBlock;
     }
 
-    private GuestComponent createGuestComponent() {
-        guestComponent = new GuestComponent(driver);
-        return getGuestComponent();
+    private LogInBlock createLogInBlock() {
+        logInBlock = new LogInBlock(driver);
+        return getLogInBlock();
     }
 
-    private void clickGuestComponentSignIn() {
-        getGuestComponent().clickSignIn();
-        // dropdownGuest = null;
+    private void clickSignIn() {
+        getLogInBlock().clickSignIn();
     }
 
-    private void clickGuestComponentSignUp() {
-        getGuestComponent().clickSignUp();
-        // dropdownGuest = null;
+    private void clickSignUp() {
+        getLogInBlock().clickSignUp();
     }
 
-    protected void closeGuestComponent() {
-        guestComponent = null;
-    }
-
-    // loggedComponent;
-    protected LoggedComponent getLoggedComponent() {
-        if ((loggedComponent == null) || (!loggedComponent.getProfile().isEnabled())) {
+    protected userProfileBlock getUserProfileBlock() {
+        if ((userProfileBlock == null) || (!userProfileBlock.getProfilePopUp().isEnabled())) {
             // TODO Develop Custom Exception
             throw new RuntimeException(COMPONENT_NULL_MESSAGE);
         }
-        if (!loggedComponent.getProfile().isDisplayed()) {
-            clickBurger();
+        if (!userProfileBlock.getProfilePopUp().isDisplayed()) {
+            openBurgerMenu();
         }
-        return loggedComponent;
+        return userProfileBlock;
     }
 
-    private LoggedComponent createLoggedComponent() {
-        loggedComponent = new LoggedComponent(driver);
-        return getLoggedComponent();
+    private userProfileBlock createUserProfileBlock() {
+        userProfileBlock = new userProfileBlock(driver);
+        return getUserProfileBlock();
     }
 
-    private void clickLoggedComponentSettings() {
-        getLoggedComponent().clickSettings();
-        // loggedComponent = null;
+    private void clickUserSettings() {
+        getUserProfileBlock().openUserSettingsPage();
     }
 
-    private void clickLoggedComponentSignOut() {
-        getLoggedComponent().clickSignOut();
-        // loggedComponent = null;
+    private void clickSignOut() {
+        getUserProfileBlock().clickSignOut();
     }
-
-    protected void closeLoggedComponent() {
-        loggedComponent = null;
-    }
-
-    // Functional
 
     protected void chooseLanguageByName(Languages languagesName) {
         String languageText = getLanguageText();
         if (!languageText.toLowerCase().trim().equals(languagesName.toString().toLowerCase().trim())) {
-            createLanguageComponent();
-            clickLanguageComponentByName(languagesName.toString());
-            WaitWrapper.invisibilityOfElementLocated​Wait(driver, By.xpath("//div[@class='switcher-wrapper']//ul/li[contains(text(),'" + languageText + "')]"));
+            createLanguageBlock();
+            chooseLanguageByName(languagesName.toString());
+            WaitWrapper.waitForInvisibilityOfElementLocated(driver, By.xpath("//div[@class='switcher-wrapper']//ul/li[contains(text(),'" + languageText + "')]"));
         }
     }
 
-    // guestComponent
     public boolean isSignInAvailable() {
-        return createGuestComponent() != null;
+        return createLogInBlock() != null;
     }
-    
-    // loggedComponent;
+
     public String getProfileText() {
-        return createLoggedComponent().getProfileText();
+        return createUserProfileBlock().getProfileText();
     }
-    
-    // localization
-    public boolean isValidLocalization(Languages languageName) {
-        //System.out.println("languageName = " + languageName.name());
-        //System.out.println("MAP = " + localization.get(languageName).values());
+
+    public boolean isValidLocalization(Languages languageName) { //TODO Oksana
         boolean result = true;
         for (Map.Entry<WebElement, String> current : localization.get(languageName).entrySet()) {
             if (!current.getKey().getText().toLowerCase().trim()
-                    .contains(current.getValue().toLowerCase().trim()) ) {
-                //System.out.println("***Actual = " + current.getKey().getText().toLowerCase().trim());
-                //System.out.println("***Expected = " + current.getValue().toLowerCase().trim());
+                    .contains(current.getValue().toLowerCase().trim())) {
                 result = false;
                 break;
             }
@@ -389,63 +308,59 @@ public abstract class TopPart implements Attributes {
         return result;
     }
 
-    // Business Logic
-
-    public WelcomePage navigateWelcome() {
+    public WelcomePage openWelcomePage() {
         clickLogo();
         return new WelcomePage(driver);
     }
 
-    public EconewsPage navigateEconews() {
-        clickEconews();
+    public EconewsPage openEcoNewsPage() {
+        clickEcoNews();
         return new EconewsPage(driver);
     }
 
-    public TipsTricksPage navigateTipsTricks() {
+    public TipsTricksPage openTipsTricksPage() {
         clickTipsTricks();
         return new TipsTricksPage(driver);
     }
 
-    public PlacesPage navigatePlaces() {
+    public PlacesPage openPlacesPage() {
         clickPlaces();
         return new PlacesPage(driver);
     }
 
-    public AboutPage navigateAbout() {
-        clickAbout();
+    public AboutPage openAboutUsPage() {
+        clickAboutUs();
         return new AboutPage(driver);
     }
 
-    public MyHabitsPage navigateMyHabits() {
+    public MyHabitsPage openMyHabitsPage() {
         clickMyHabits();
         return new MyHabitsPage(driver);
     }
 
-    //andriyc implementation
-    public LoginPage navigateMyHabitsLoggedOut() {
+    public SignInPage openMyHabitsPageLoggedOutUser() {
         clickMyHabits();
-        return new LoginPage(driver);
-    }
-    
-    public MyHabitsPage navigateMyHabits(User user) {
-        return navigateLogin().successfulLogin(user);
-    }
-
-    public SignInPage navigateLogin() {
-        // createGuestComponent().clickSignIn();
-        createGuestComponent();
-        clickGuestComponentSignIn();
         return new SignInPage(driver);
     }
 
-    public WelcomePage gotoLogout() {
-        createLoggedComponent();
-        clickLoggedComponentSignOut();
+    public MyHabitsPage openMyHabitsPage(User user) {
+        return openSignInPage().successfulLogin(user);
+    }
+
+    public SignInPage openSignInPage() {
+        createLogInBlock();
+        clickSignIn();
+        return new SignInPage(driver);
+    }
+
+    public WelcomePage logOut() {
+        createUserProfileBlock();
+        clickSignOut();
         return new WelcomePage(driver);
     }
 
-    //andriyc implementation
     public String getPageTitle() {
         return driver.getTitle();
-    };
+    }
+
 }
