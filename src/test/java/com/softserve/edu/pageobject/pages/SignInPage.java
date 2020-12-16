@@ -149,8 +149,8 @@ public class SignInPage implements Attributes {
         return new MyHabitsPage(driver);
     }
     
-    public SignInPage unsuccessfulLogin(User user) {
-        fillCredentials(user);
+    public SignInPage unsuccessfulLogin(User invaldUser) {
+        fillCredentials(invaldUser);
         return new SignInPage(driver);
     }
     

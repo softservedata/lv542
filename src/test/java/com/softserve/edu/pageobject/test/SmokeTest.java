@@ -59,7 +59,7 @@ public class SmokeTest extends GreencityTestRunner {
     @Issue("SSITAGT-1")
     @Link(name = "LINK goto site", url = "https://ita-social-projects.github.io/GreenCityClient/")
     //@TmsLink(value = "TL-678")
-    @Test(dataProvider = "users")
+    //@Test(dataProvider = "users")
     public void checkLogin(User user) {
         logger.info("@Test checkMenu() start, user = " + user);
         MyHabitsPage myHabitsPage = loadApplication()
@@ -67,6 +67,19 @@ public class SmokeTest extends GreencityTestRunner {
                 .successfulLogin(user);
         Assert.assertEquals(myHabitsPage.getProfileText(),
                 user.getName());
+        WelcomePage welcomePage = myHabitsPage.gotoLogout();
+        Assert.assertTrue(welcomePage.isSignInAvailable());
+    }
+    
+    
+    @Test(dataProvider = "users")
+    public void checkSignUp(User newUser) {
+        logger.info("@Test checkSignUp() start, user = " + newUser);
+        MyHabitsPage myHabitsPage = loadApplication()
+                .navigateSignUp()
+                .successfulSignUp(newUser);
+        Assert.assertEquals(myHabitsPage.getProfileText(),
+                newUser.getName());
         WelcomePage welcomePage = myHabitsPage.gotoLogout();
         Assert.assertTrue(welcomePage.isSignInAvailable());
     }

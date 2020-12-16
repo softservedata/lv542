@@ -443,6 +443,13 @@ public abstract class TopPart implements Attributes {
         return new SignInPage(driver);
     }
 
+    public SignUpPage navigateSignUp() {
+        // createGuestComponent().clickSignIn();
+        createGuestComponent();
+        clickGuestComponentSignUp();
+        return new SignUpPage(driver);
+    }
+    
     @Step("STEP Logout")
     public WelcomePage gotoLogout() {
         createLoggedComponent();
