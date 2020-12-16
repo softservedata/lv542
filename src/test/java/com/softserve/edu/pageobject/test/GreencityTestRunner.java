@@ -2,6 +2,7 @@ package com.softserve.edu.pageobject.test;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -29,6 +30,8 @@ import com.softserve.edu.pageobject.engine.WaitWrapper;
 import com.softserve.edu.pageobject.pages.welcome.WelcomePage;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 
 public abstract class GreencityTestRunner {
 
@@ -107,6 +110,8 @@ public abstract class GreencityTestRunner {
             //System.out.println("***Test " + result.getName() + " ERROR");
             logger.error("***Test " + result.getName() + " ERROR");
             takeScreenShot(result.getName());
+            saveImageAttach("PICTURE: Test name = " + result.getName());
+            saveHtmlAttach("HTML: PAGE ");
             // previous state, logout, etc.
         }
         // logout; clear cache; delete cookie; delete session;
@@ -126,6 +131,25 @@ public abstract class GreencityTestRunner {
         // log.info("Screenshot was taken");
     }
 
+    @Attachment(value = "{0}", type = "image/png")
+    public byte[] saveImageAttach(String attachName) {
+        byte[] result = null;
+        File scrFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
+        try {
+            result = Files.readAllBytes(scrFile.toPath());
+            //FileUtils.copyFile(scrFile, new File(System.getenv().get("USERPROFILE") + "\\Downloads\\screenshot.png"));
+        } catch (IOException e) {
+            // TODO Create Custom Exception 
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @Attachment(value = "{0}", type = "text/plain")
+    public byte[] saveHtmlAttach(String attachName) {
+        return getDriver().getPageSource().getBytes();
+    }
+    
     // Overload
     protected void presentationSleep() {
         presentationSleep(1);
@@ -145,6 +169,7 @@ public abstract class GreencityTestRunner {
         getDriver().manage().window().setSize(new Dimension(width, height));
     }
     
+    @Step("STEP Load Application")
     protected WelcomePage loadApplication() {
         // return new HomePage(driver);
         return new WelcomePage(getDriver());

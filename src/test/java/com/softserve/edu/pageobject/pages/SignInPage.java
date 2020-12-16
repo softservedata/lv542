@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import com.softserve.edu.pageobject.data.User;
 import com.softserve.edu.pageobject.pages.myhabits.MyHabitsPage;
 
+import io.qameta.allure.Step;
+
 public class SignInPage implements Attributes {
     
     protected final String INVALID_EMAIL_PASSWORD_MESSAGE = "Submit Button Disable. Invalid Email or Password";
@@ -141,6 +143,7 @@ public class SignInPage implements Attributes {
 
     // Business Logic
     
+    @Step("STEP Successful Login")
     public MyHabitsPage successfulLogin(User user) {
         fillCredentials(user);
         return new MyHabitsPage(driver);

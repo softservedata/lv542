@@ -20,6 +20,8 @@ import com.softserve.edu.pageobject.pages.places.PlacesPage;
 import com.softserve.edu.pageobject.pages.tipstricks.TipsTricksPage;
 import com.softserve.edu.pageobject.pages.welcome.WelcomePage;
 
+import io.qameta.allure.Step;
+
 public abstract class TopPart implements Attributes {
 
     public static final Logger logger = LoggerFactory.getLogger(TopPart.class);
@@ -433,6 +435,7 @@ public abstract class TopPart implements Attributes {
         return navigateLogin().successfulLogin(user);
     }
 
+    @Step("STEP Navigate Login")
     public SignInPage navigateLogin() {
         // createGuestComponent().clickSignIn();
         createGuestComponent();
@@ -440,6 +443,7 @@ public abstract class TopPart implements Attributes {
         return new SignInPage(driver);
     }
 
+    @Step("STEP Logout")
     public WelcomePage gotoLogout() {
         createLoggedComponent();
         clickLoggedComponentSignOut();

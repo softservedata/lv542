@@ -10,6 +10,20 @@ import com.softserve.edu.pageobject.data.UserRepository;
 import com.softserve.edu.pageobject.pages.myhabits.MyHabitsPage;
 import com.softserve.edu.pageobject.pages.welcome.WelcomePage;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Link;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
+
+@Owner(value = "OWNER First name")
+@Epic("EPIC AllureTest")
+@Feature("FEATURE SearchAllureTes")
 public class SmokeTest extends GreencityTestRunner {
 
     //@Test
@@ -39,7 +53,13 @@ public class SmokeTest extends GreencityTestRunner {
         };
     }
     
-    //@Test(dataProvider = "users")
+    @Description("TEST DESCRIPTION: class SearchAllureTest; findByXPath().")
+    @Severity(SeverityLevel.BLOCKER)
+    @Story("STORY SearchAllureTest")
+    @Issue("SSITAGT-1")
+    @Link(name = "LINK goto site", url = "https://ita-social-projects.github.io/GreenCityClient/")
+    //@TmsLink(value = "TL-678")
+    @Test(dataProvider = "users")
     public void checkLogin(User user) {
         logger.info("@Test checkMenu() start, user = " + user);
         MyHabitsPage myHabitsPage = loadApplication()
@@ -80,7 +100,7 @@ public class SmokeTest extends GreencityTestRunner {
         };
     }
     
-    @Test(dataProvider = "languages")
+    //@Test(dataProvider = "languages")
     public void checkLanguage(Languages languageName) {
         logger.info("@Test checkLanguage() start, languageName = " + languageName.toString());
         // Steps
