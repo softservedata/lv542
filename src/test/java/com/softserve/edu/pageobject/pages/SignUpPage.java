@@ -35,12 +35,11 @@ public class SignUpPage implements Attributes {
 
     private void initElements() {
         // init elements
-        // TODO +++++++++++++++++++++++++++++++++
         emailField = driver.findElement(By.id("email"));
-        usernameField = driver.findElement(By.cssSelector("button[type='submit']"));
+        usernameField = driver.findElement(By.id("firstName"));
         passwordField = driver.findElement(By.id("password"));
-        confirmPasswordField = driver.findElement(By.id("password"));
-        signupButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        confirmPasswordField = driver.findElement(By.id("repeatPassword"));
+        signupButton = driver.findElement(By.cssSelector("form button.primary-global-button"));
         signupGooleButton = driver.findElement(By.cssSelector("button.google-sign-in"));
         closeButton = driver.findElement(By.cssSelector("a.close-modal-window"));
     }
@@ -237,7 +236,7 @@ public class SignUpPage implements Attributes {
 
     public MyHabitsPage successfulSignUp(User user) {
         fillCredentials(user);
-        // TODO Confirm email
+        // TODO Confirm email+++++++++++++++++++++
         return new MyHabitsPage(driver);
     }
 

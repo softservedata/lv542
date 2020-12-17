@@ -22,8 +22,8 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 
 @Owner(value = "OWNER First name")
-@Epic("EPIC AllureTest")
-@Feature("FEATURE SearchAllureTes")
+@Epic("EPIC Greencity Test")
+@Feature("FEATURE Smoke Test")
 public class SmokeTest extends GreencityTestRunner {
 
     //@Test
@@ -71,7 +71,12 @@ public class SmokeTest extends GreencityTestRunner {
         Assert.assertTrue(welcomePage.isSignInAvailable());
     }
     
-    
+    @Description("TEST DESCRIPTION: class SearchAllureTest; findByXPath().")
+    @Severity(SeverityLevel.BLOCKER)
+    @Story("STORY SearchAllureTest")
+    @Issue("LVTAQC542-95")
+    @Link(name = "LINK goto site", url = "https://ita-social-projects.github.io/GreenCityClient/")
+    //@TmsLink(value = "TL-678")
     @Test(dataProvider = "users")
     public void checkSignUp(User newUser) {
         logger.info("@Test checkSignUp() start, user = " + newUser);
