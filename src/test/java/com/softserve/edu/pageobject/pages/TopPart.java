@@ -3,7 +3,6 @@ package com.softserve.edu.pageobject.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import com.softserve.edu.pageobject.data.User;
 import com.softserve.edu.pageobject.pages.about.AboutPage;
 import com.softserve.edu.pageobject.pages.econews.EconewsPage;
@@ -287,7 +286,7 @@ public abstract class TopPart implements Attributes {
     public boolean isSignInAvailable() {
         return createGuestComponent() != null;
     }
-    
+
     // loggedComponent;
     public String getProfileText() {
         return createLoggedComponent().getProfileText();
@@ -324,7 +323,7 @@ public abstract class TopPart implements Attributes {
         clickMyHabits();
         return new MyHabitsPage(driver);
     }
-    
+
     public MyHabitsPage navigateMyHabits(User user) {
         return navigateLogin().successfulLogin(user);
     }

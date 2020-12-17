@@ -3,7 +3,6 @@ package com.softserve.edu.pageobject.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import com.softserve.edu.pageobject.data.User;
 import com.softserve.edu.pageobject.pages.myhabits.MyHabitsPage;
 
@@ -13,10 +12,10 @@ public class SignInPage implements Attributes {
 
     private WebDriver driver;
     //
-    private WebElement email;
-    private WebElement password;
-    private WebElement buttonSubmit;
-    private WebElement buttonGoole;
+    private WebElement signInEmail;
+    private WebElement signInPassword;
+    private WebElement buttonSignIn;
+    private WebElement buttonSignInWithGoogle;
     private WebElement buttonClose;
 
     public SignInPage(WebDriver driver) {
@@ -26,87 +25,87 @@ public class SignInPage implements Attributes {
 
     private void initElements() {
         // init elements
-        email = driver.findElement(By.id("email"));
-        password = driver.findElement(By.id("password"));
-        buttonSubmit = driver.findElement(By.cssSelector("button[type='submit']"));
-        buttonGoole = driver.findElement(By.cssSelector("button.google-sign-in"));
+        signInEmail = driver.findElement(By.id("email"));
+        signInPassword = driver.findElement(By.id("password"));
+        buttonSignIn = driver.findElement(By.cssSelector("button[type='submit']"));
+        buttonSignInWithGoogle = driver.findElement(By.cssSelector("button.google-sign-in"));
         buttonClose = driver.findElement(By.cssSelector("a.close-modal-window"));
     }
 
     // Page Object
 
     // email
-    public WebElement getEmail() {
-        return email;
+    public WebElement getSignInEmail() {
+        return signInEmail;
     }
 
-    public String getEmailText() {
-        return getEmail().getAttribute(TAG_ATTRIBUTE_VALUE);
+    public String getSignInEmailText() {
+        return getSignInEmail().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
 
-    public void clearEmail() {
-        getEmail().clear();
+    public void clearSignInEmail() {
+        getSignInEmail().clear();
     }
 
-    public void clickEmail() {
-        getEmail().click();
+    public void clickSignInEmail() {
+        getSignInEmail().click();
     }
 
-    public void typeEmail(String text) {
-        getEmail().sendKeys(text);
+    public void typeSignInEmail(String text) {
+        getSignInEmail().sendKeys(text);
     }
 
     // password
-    public WebElement getPassword() {
-        return password;
+    public WebElement getSignInPassword() {
+        return signInPassword;
     }
 
-    public String getPasswordText() {
-        return getPassword().getAttribute(TAG_ATTRIBUTE_VALUE);
+    public String getSignInPasswordText() {
+        return getSignInPassword().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
 
-    public void clearPassword() {
-        getPassword().clear();
+    public void clearSignInPassword() {
+        getSignInPassword().clear();
     }
 
-    public void clickPassword() {
-        getPassword().click();
+    public void clickSignInPassword() {
+        getSignInPassword().click();
     }
 
-    public void typePassword(String text) {
-        getPassword().sendKeys(text);
+    public void typeSignInPassword(String text) {
+        getSignInPassword().sendKeys(text);
     }
 
     // buttonSubmit
-    public WebElement getButtonSubmit() {
-        //System.out.println("buttonSubmit.isDisplayed() = " + buttonSubmit.isDisplayed());
-        //System.out.println("buttonSubmit.isEnabled() = " + buttonSubmit.isEnabled());
-        if (!buttonSubmit.isEnabled()) {
-            // TODO Deevelop Custom Exception
+    public WebElement getButtonSignIn() {
+        //System.out.println("buttonSignIn.isDisplayed() = " + buttonSignIn.isDisplayed());
+        //System.out.println("buttonSignIn.isEnabled() = " + buttonSignIn.isEnabled());
+        if (!buttonSignIn.isEnabled()) {
+            //TODO Develop Custom Exception
             throw new RuntimeException(INVALID_EMAIL_PASSWORD_MESSAGE);
         }
-        return buttonSubmit;
+        return buttonSignIn;
     }
 
-    public String getButtonSubmitText() {
-        return getButtonSubmit().getAttribute(TAG_ATTRIBUTE_VALUE);
+    public String getButtonSignInText() {
+        return getButtonSignIn().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
 
-    public void clickButtonSubmit() {
-        getButtonSubmit().click();
+    public void clickButtonSignIn() {
+        getButtonSignIn().click();
     }
 
-    // buttonGoole
-    public WebElement getButtonGoole() {
-        return buttonGoole;
+    //buttonSignInWithGoogle
+    public WebElement getButtonSignInWithGoogle() {
+        return buttonSignInWithGoogle;
     }
 
-    public String getButtonGooleText() {
-        return getButtonGoole().getAttribute(TAG_ATTRIBUTE_VALUE);
+    public String getButtonSignInWithGoogleText() {
+        return getButtonSignInWithGoogle().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
 
-    public void clickButtonGoole() {
-        getButtonGoole().click();
+    public void clickButtonSignInWithGoogle() {
+        getButtonSignInWithGoogle().click();
     }
 
     // buttonClose
@@ -121,26 +120,24 @@ public class SignInPage implements Attributes {
     
     // Functional
     
-    private void fillEmail(String email) {
-        clickEmail();
-        clearEmail();
-        typeEmail(email);
+    private void fillSignInEmail(String email) {
+        clickSignInEmail();
+        clearSignInEmail();
+        typeSignInEmail(email);
     }
     
-    private void fillPassword(String password) {
-        clickPassword();
-        clearPassword();
-        typePassword(password);
+    private void fillSignInPassword(String password) {
+        clickSignInPassword();
+        clearSignInPassword();
+        typeSignInPassword(password);
     }
     
     private void fillCredentials(User user) {
-        fillEmail(user.getEmail());
-        fillPassword(user.getPassword());
-        clickButtonSubmit();
+        fillSignInEmail(user.getEmail());
+        fillSignInPassword(user.getPassword());
+        clickButtonSignIn();
     }
-
     // Business Logic
-    
     public MyHabitsPage successfulLogin(User user) {
         fillCredentials(user);
         return new MyHabitsPage(driver);
@@ -155,5 +152,4 @@ public class SignInPage implements Attributes {
         clickButtonClose();
         return new TopPart(driver) {};
     }
-    
 }
