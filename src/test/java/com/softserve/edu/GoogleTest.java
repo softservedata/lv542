@@ -1,5 +1,7 @@
 package com.softserve.edu;
 
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -9,6 +11,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -20,59 +24,115 @@ public class GoogleTest {
     @BeforeSuite
     public void beforeSuite() {
         WebDriverManager.chromedriver().setup();
-        //WebDriverManager.firefoxdriver().setup();
+        // WebDriverManager.firefoxdriver().setup();
     }
-    
-    @Test
+
+    // @Test
     public void testGoogle() throws Exception {
 //        System.setProperty("webdriver.chrome.driver",
 //                "./lib/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
-        //WebDriver driver = new FirefoxDriver();
-        //WebDriver driver = new InternetExplorerDriver();
-        //Thread.sleep(1000); // For Presentation Only
+        // WebDriver driver = new FirefoxDriver();
+        // WebDriver driver = new InternetExplorerDriver();
+        // Thread.sleep(1000); // For Presentation Only
         //
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        // driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         driver.get("http://www.google.com");
         // driver.navigate().to("http://www.google.com");
-        //Thread.sleep(1000); // For Presentation Only
+        // Thread.sleep(1000); // For Presentation Only
         //
         WebElement element = driver.findElement(By.name("q"));
         element.sendKeys("Cheese!" + Keys.ENTER);
         System.out.println("1. Page title is: " + driver.getTitle());
-        //element.sendKeys("Cheese!");
-        //Thread.sleep(2000); // For Presentation Only
+        // element.sendKeys("Cheese!");
+        // Thread.sleep(2000); // For Presentation Only
         //
-        //element.submit();
+        // element.submit();
         // System.out.println("1. Page title is: " + driver.getTitle());
         driver.findElement(By.partialLinkText("Cheese - Wikipedia"));
-        //WebElement check = driver.findElement(By.partialLinkText("Cheese - Wikipedia"));
-        //System.out.println("Check = " + check.getText());
-        //Thread.sleep(1000); // For Presentation Only
+        // WebElement check = driver.findElement(By.partialLinkText("Cheese -
+        // Wikipedia"));
+        // System.out.println("Check = " + check.getText());
+        // Thread.sleep(1000); // For Presentation Only
         String strTitle = driver.getTitle();
         System.out.println("2. Page title is: " + strTitle);
         System.out.println("2. Page title is: " + driver.getTitle());
         //
         // driver.findElement(By.cssSelector("a[href*='en.wikipedia.org/wiki/Cheese']")).click();
         driver.findElement(By.partialLinkText("Cheese - Wikipedia")).click();
-        //Thread.sleep(2000); // For Presentation Only
+        // Thread.sleep(2000); // For Presentation Only
         System.out.println("3. Page title is: " + driver.getTitle());
         //
         WebElement actual = driver.findElement(By.id("siteSub"));
         Assert.assertEquals("From Wikipedia, the free encyclopedia", actual.getText());
         //
-        //driver.findElement(By.cssSelector(".mw-headlinee"));
+        // driver.findElement(By.cssSelector(".mw-headlinee"));
         List<WebElement> headline = driver.findElements(By.cssSelector(".mw-headline"));
         System.out.println("headline.size() = " + headline.size());
-        //System.out.println("Etymology;  headline.get(0).getText() = " + headline.get(0).getText());
+        // System.out.println("Etymology; headline.get(0).getText() = " +
+        // headline.get(0).getText());
         //
-        ((JavascriptExecutor) driver).executeScript("alert('hello');"); 
+        ((JavascriptExecutor) driver).executeScript("alert('hello');");
         Thread.sleep(2000); // For Presentation Only
         driver.switchTo().alert().accept();
         Thread.sleep(1000); // For Presentation Only
         // driver.close();
+        driver.quit();
+    }
+
+    @Test
+    public void testGoogleWTab() throws Exception {
+        WebDriver driver = new ChromeDriver();
+        Thread.sleep(1000); // For Presentation Only
+        //
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.get("http://www.google.com");
+        Thread.sleep(1000); // For Presentation Only
+        driver.findElement(By.name("q")).sendKeys("Cheese!" + Keys.ENTER);
+        Thread.sleep(2000); // For Presentation Only
+        String currentTab = driver.getWindowHandle();
+        System.out.println("currentTab = " + currentTab);
+        //
+        // driver.findElement(By.tagName("body")).sendKeys(Keys.chord(Keys.LEFT_CONTROL,"T"));
+        // driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "T");
+        // driver.get("https://www.yahoo.com/");
+        //
+        // Working
+//         JavascriptExecutor js = (JavascriptExecutor) driver;
+//         js.executeScript("window.open();");
+        //
+        // Invisible for Selenium
+        Robot rob = new Robot();
+        rob.keyPress(KeyEvent.VK_CONTROL);
+        rob.keyPress(KeyEvent.VK_T);
+        //Thread.sleep(1000); // For Presentation Only
+        //
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        (new WebDriverWait(driver, 10)).until(new 
+                ExpectedCondition<Boolean>() {
+                    public Boolean apply(WebDriver driver) {
+                        return driver.getWindowHandles().size() > 1;
+            }    }    );
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //
+        System.out.println("Count = " + driver.getWindowHandles().size());
+        for (String current : driver.getWindowHandles()) {
+            System.out.println("Window Handle: " + current);
+            if (!current.equals(currentTab)) {
+                driver.switchTo().window(current);
+                break;
+            }
+        }
+        //
+        driver.get("https://www.yahoo.com/");
+        Thread.sleep(4000); // For Presentation Only
+        driver.close();
+        Thread.sleep(4000); // For Presentation Only
+        driver.switchTo().window(currentTab);
+        driver.get("https://www.bing.com/");
+        Thread.sleep(4000); // For Presentation Only
         driver.quit();
     }
 

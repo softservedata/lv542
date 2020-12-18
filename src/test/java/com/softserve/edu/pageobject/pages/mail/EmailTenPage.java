@@ -5,29 +5,42 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.pageobject.data.Languages;
+import com.softserve.edu.pageobject.engine.BrowserTabUtils;
 import com.softserve.edu.pageobject.engine.WaitWrapper;
+import com.softserve.edu.pageobject.pages.Attributes;
 import com.softserve.edu.pageobject.pages.welcome.WelcomePage;
 
-public class EmailTenPage {
+public class EmailTenPage implements Attributes, BrowserTabUtils {
 
-    public static final String HEADER_LEFT_ATTRIBUTE = "button primary-global-button";
-
+    //public static final String HEADER_LEFT_ATTRIBUTE = "button primary-global-button";
+    public static final String EMAIL_TEN_PAGE_URL = "https://10minutemail.com/";
+    
     protected WebDriver driver;
     //
     private WebElement inboxLabel;
+    private WebElement mailAddress;
+    //private WebElement smallSender
     // private WebElement confirmLink;
+    //
+    private String tabHandle;
 
     public EmailTenPage(WebDriver driver) {
         this.driver = driver;
+        initPage();
         initElements();
         // System.out.println("***WelcomePage Created");
     }
 
+    private void initPage() {
+        WaitWrapper.gotoUrl(driver, EMAIL_TEN_PAGE_URL);
+        tabHandle = getCurrentTabHandle(driver);
+    }
+    
     private void initElements() {
         // init elements
         inboxLabel = driver.findElement(By.cssSelector("div#inbox_count"));
-        // confirmLink =
-        // driver.findElement(By.cssSelector("a[href*='/GreenCityClient/?token']"));
+        mailAddress = driver.findElement(By.id("mail_address"));
+        // confirmLink = driver.findElement(By.cssSelector("a[href*='/GreenCityClient/?token']"));
     }
 
     // Page Object
@@ -41,6 +54,24 @@ public class EmailTenPage {
         return getInboxLabel().getText().trim();
     }
 
+    // mailAddress
+    public WebElement getMailAddress() {
+        return mailAddress;
+    }
+
+    public String getMailAddressText() {
+        return getMailAddress().getAttribute(TAG_ATTRIBUTE_VALUE).trim();
+    }
+    
+    // smallSender
+    public WebElement getSmallSender() {
+        return driver.findElement(By.cssSelector("div.small_sender"));
+    }
+    
+    public void clickSmallSender() {
+        getSmallSender().click();
+    }
+    
     // confirmLink
     public WebElement getConfirmLink() {
         return driver.findElement(By.cssSelector("a[href*='/GreenCityClient/?token']"));
@@ -55,14 +86,20 @@ public class EmailTenPage {
     }
 
     // Functional
-
+    
+    public EmailTenPage switchToEmailTenPage() {
+        switchToTab(driver, tabHandle);
+        return this;
+    }
+    
     // Business Logic
 
-    public EmptyPage confirmEmail() {
+    public ConfirmPage confirmEmail() {
         // TODO create const
         WaitWrapper.invisibilityOfElementLocated​Wait(driver,
                 By.xpath("//span[@id='inbox_count_number' and text()='0']"));
+        clickSmallSender();
         clickConfirmLink();
-        return new EmptyPage(driver);
+        return new ConfirmPage(driver);
     }
 }

@@ -8,24 +8,22 @@ import com.softserve.edu.pageobject.engine.WaitWrapper;
 import com.softserve.edu.pageobject.pages.myhabits.MyHabitsPage;
 import com.softserve.edu.pageobject.pages.welcome.WelcomePage;
 
-public class EmptyPage {
+public class ConfirmPage {
 
     protected WebDriver driver;
 
-    public EmptyPage(WebDriver driver) {
+    public ConfirmPage(WebDriver driver) {
         this.driver = driver;
     }
 
     // Page Object
-    
+
     // Functional
 
     // Business Logic
-    
-    public  MyHabitsPage chooseLanguage(Languages languageName) {
-        // TODO create const
-        
 
-        return new  MyHabitsPage(driver);
+    public MyHabitsPage chooseLanguage(Languages languageName) {
+        // TODO create const
+        return new MyHabitsPage(driver);
     }
 }

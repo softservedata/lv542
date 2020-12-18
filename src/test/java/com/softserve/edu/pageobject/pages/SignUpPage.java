@@ -1,18 +1,28 @@
 package com.softserve.edu.pageobject.pages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.softserve.edu.pageobject.data.User;
+import com.softserve.edu.pageobject.engine.BrowserTabUtils;
+import com.softserve.edu.pageobject.engine.WaitWrapper;
+import com.softserve.edu.pageobject.pages.mail.EmailTenPage;
 import com.softserve.edu.pageobject.pages.myhabits.MyHabitsPage;
 
-public class SignUpPage implements Attributes {
+public class SignUpPage implements Attributes, BrowserTabUtils {
 
     public final String EMAIL_REQUIRED_EXPECTED_MESSAGE = "Email is required";
     //
     protected final String SUBMIT_DISABLE_MESSAGE = "Submit Button Disable. Empty field(s)";
-
+    //
+    public static final Logger logger = LoggerFactory.getLogger(SignUpPage.class);
+    
     private WebDriver driver;
     //
     private WebElement emailField;
@@ -235,9 +245,31 @@ public class SignUpPage implements Attributes {
     // Business Logic
 
     public MyHabitsPage successfulSignUp(User user) {
+        List<String> windowHandles = new ArrayList<>();
+        String currentTabHandle = getCurrentTabHandle(driver);
+        openNewTab(driver, 1);
+        windowHandles.add(currentTabHandle);
+        switchToAnotherTab(driver, windowHandles);
+        EmailTenPage emailTenPage = new EmailTenPage(driver);
+        user.setEmail(emailTenPage.getMailAddressText());
+        switchToTab(driver, currentTabHandle);
         fillCredentials(user);
-        // TODO Confirm email+++++++++++++++++++++
-        return new MyHabitsPage(driver);
+        //
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }  // TODO DELETE +++++++++++++++++==
+        //
+        emailTenPage.switchToEmailTenPage().confirmEmail();
+        switchToTab(driver, currentTabHandle);
+        WaitWrapper.invisibilityOfElementLocated​Wait(driver, By.cssSelector("a.close-modal-window"));
+        closeAllTab(driver, currentTabHandle);
+        logger.info("User registered: " + user);
+        // TODO Save User
+        new TopPart(driver) {}.navigateMyHabits(); // ++++++++++++++++++++++  Home
+        return new MyHabitsPage(driver);  // ++++++++++++++++++++++  Home
     }
 
     public SignUpPage unsuccessfulSignUp(User invaldUser) {

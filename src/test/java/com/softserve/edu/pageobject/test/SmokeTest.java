@@ -71,13 +71,20 @@ public class SmokeTest extends GreencityTestRunner {
         Assert.assertTrue(welcomePage.isSignInAvailable());
     }
     
+    @DataProvider//(parallel = true)
+    public Object[][] newUsers() {
+        return new Object[][] {
+            { UserRepository.getNewUser() },
+        };
+    }
+    
     @Description("TEST DESCRIPTION: class SearchAllureTest; findByXPath().")
     @Severity(SeverityLevel.BLOCKER)
     @Story("STORY SearchAllureTest")
     @Issue("LVTAQC542-95")
     @Link(name = "LINK goto site", url = "https://ita-social-projects.github.io/GreenCityClient/")
     //@TmsLink(value = "TL-678")
-    @Test(dataProvider = "users")
+    @Test(dataProvider = "newUsers")
     public void checkSignUp(User newUser) {
         logger.info("@Test checkSignUp() start, user = " + newUser);
         MyHabitsPage myHabitsPage = loadApplication()

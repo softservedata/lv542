@@ -88,7 +88,7 @@ public abstract class GreencityTestRunner {
         // };
         for (Map.Entry<Long, WebDriver> currentWebDriver : drivers.entrySet()) {
             if (currentWebDriver.getValue() != null) {
-                currentWebDriver.getValue().quit();
+                //currentWebDriver.getValue().quit();
             }
         }
     }
@@ -96,7 +96,8 @@ public abstract class GreencityTestRunner {
     @BeforeMethod
     public void beforeMethod() {
         // driver.get(BASE_URL);
-        getDriver().get(serverUrl);
+        //getDriver().get(serverUrl);
+        WaitWrapper.gotoUrl(getDriver(), serverUrl);
         presentationSleep(); // For Presentation ONLY
     }
 
