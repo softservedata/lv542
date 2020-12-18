@@ -42,7 +42,7 @@ public class FilterBlock {
         }
     }
 
-    public FilterBlock activateTwoFilterItems(String firstFilter, String secondFilter) {
+    public FilterBlock getFiltersWitTwohActivatedItems(String firstFilter, String secondFilter) {
         activateFilterByName(firstFilter);
         activateFilterByName(secondFilter);
         return this;

@@ -3,6 +3,7 @@ package com.softserve.edu.pageobject.pages;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +12,7 @@ import com.softserve.edu.pageobject.data.Languages;
 import com.softserve.edu.pageobject.data.User;
 import com.softserve.edu.pageobject.engine.WaitWrapper;
 import com.softserve.edu.pageobject.pages.about.AboutPage;
-import com.softserve.edu.pageobject.pages.econews.EconewsPage;
+import com.softserve.edu.pageobject.pages.econews.EcoNewsPage;
 import com.softserve.edu.pageobject.pages.myhabits.MyHabitsPage;
 import com.softserve.edu.pageobject.pages.places.PlacesPage;
 import com.softserve.edu.pageobject.pages.tipstricks.TipsTricksPage;
@@ -313,9 +314,9 @@ public abstract class TopPart implements Attributes {
         return new WelcomePage(driver);
     }
 
-    public EconewsPage openEcoNewsPage() {
+    public EcoNewsPage openEcoNewsPage() {
         clickEcoNews();
-        return new EconewsPage(driver);
+        return new EcoNewsPage(driver);
     }
 
     public TipsTricksPage openTipsTricksPage() {
@@ -328,6 +329,7 @@ public abstract class TopPart implements Attributes {
         return new PlacesPage(driver);
     }
 
+    @Step("STEP openAboutUsPage")
     public AboutPage openAboutUsPage() {
         clickAboutUs();
         return new AboutPage(driver);

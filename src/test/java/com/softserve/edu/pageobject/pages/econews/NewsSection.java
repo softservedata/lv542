@@ -21,7 +21,7 @@ public class NewsSection {
     private void initElements() {
         countOfFoundItems = Integer.parseInt(
                 driver.findElement(By.xpath("//app-remaining-count//p")).getText().replaceAll("[^0-9]", ""));
-        scrollNews();
+        scrollNewsUntilPageLoaded();
         newsItems = new ArrayList<>();
         for (WebElement current : driver.findElements(By.xpath("//li[@class = 'gallery-view-li-active ng-star-inserted']"))) {
             newsItems.add(new NewsItem(current));
@@ -44,20 +44,20 @@ public class NewsSection {
         return newsItemsTitles;
     }
 
-    public boolean checkFiltersWithNews(String firstFilter, String secondFilter) { //TODO Diana
-        boolean result = true;
+    public boolean areNewsSortedByFilters(String firstFilter, String secondFilter) {
+        boolean isNewsItemCorrespondsToFilters = true;
         for (NewsItem component : newsItems
         ) {
-            if (!component.checkIfLablesCorrespondToFilter(firstFilter) &&
-                    !component.checkIfLablesCorrespondToFilter(secondFilter)) {
-                result = false;
+            if (!component.areLablesCorrespondToFilter(firstFilter) &&
+                    !component.areLablesCorrespondToFilter(secondFilter)) {
+                isNewsItemCorrespondsToFilters = false;
                 //break;
             }
         }
-        return result;
+        return isNewsItemCorrespondsToFilters;
     }
 
-    public void scrollNews() {
+    public void scrollNewsUntilPageLoaded() {
         List<WebElement> actualNews = driver.findElements(By.className("list-gallery"));
         int currentScrollIndex = 0;
         while (actualNews.size() < countOfFoundItems && currentScrollIndex < MAX_SCROLL_COUNT) {

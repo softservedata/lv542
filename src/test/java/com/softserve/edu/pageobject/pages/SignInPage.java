@@ -1,5 +1,7 @@
 package com.softserve.edu.pageobject.pages;
 
+import com.softserve.edu.pageobject.pages.about.AboutPage;
+import com.softserve.edu.pageobject.pages.econews.EcoNewsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -111,6 +113,11 @@ public class SignInPage implements Attributes {
     // buttonClose
     public WebElement getButtonClose() {
         return buttonClose;
+    }
+
+    public AboutPage openAboutPageWithClose(){
+        buttonClose.click();
+        return new AboutPage(driver);
     }
 
     public void clickButtonClose() {

@@ -8,13 +8,13 @@ import com.softserve.edu.pageobject.data.Languages;
 
 import com.softserve.edu.pageobject.pages.TopPart;
 
-public class EconewsPage extends TopPart {
+public class EcoNewsPage extends TopPart {
 
     private WebElement mainHeader;
     private NewsSection newsSection;
     private FilterBlock filterBlock;
 
-    public EconewsPage(WebDriver driver) {
+    public EcoNewsPage(WebDriver driver) {
         super(driver);
         initElements();
     }
@@ -33,24 +33,24 @@ public class EconewsPage extends TopPart {
         return getMainHeader().getText().trim();
     }
 
-    public EconewsPage activateTwoFilterItems(String firstFilter, String secondFilter) {
-        createFilterBlock().activateTwoFilterItems(firstFilter, secondFilter);
+    public EcoNewsPage activateTwoFilterItems(String firstFilter, String secondFilter) {
+        getFilterBlock().getFiltersWitTwohActivatedItems(firstFilter, secondFilter);
         return this;
     }
 
-    public FilterBlock createFilterBlock() {
+    public FilterBlock getFilterBlock() {
         filterBlock = new FilterBlock(driver);
         return filterBlock;
     }
 
-    public NewsSection createNewsSection() {
+    public NewsSection getNewsSection() {
         newsSection = new NewsSection(driver);
         return newsSection;
     }
 
-    public EconewsPage chooseLanguage(Languages languageName) {
+    public EcoNewsPage chooseLanguage(Languages languageName) {
         chooseLanguageByName(languageName);
-        return new EconewsPage(driver);
+        return new EcoNewsPage(driver);
     }
 
 }

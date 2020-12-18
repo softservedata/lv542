@@ -8,12 +8,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import io.qameta.allure.Step;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -34,6 +38,7 @@ public abstract class GreencityTestRunner {
     private final Long ONE_SECOND_DELAY = 1000L;
     private final String TIME_TEMPLATE = "yyyy-MM-dd_HH-mm-ss";
     //
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
     private String serverUrl = "https://ita-social-projects.github.io/GreenCityClient/";
     // private WebDriver driver;
     private Map<Long, WebDriver> drivers;
@@ -101,6 +106,7 @@ public abstract class GreencityTestRunner {
             getDriver().manage().deleteAllCookies();
             // Take Screenshot, save sourceCode, save to log, prepare report, Return to
             System.out.println("***Test " + result.getName() + " ERROR");
+            logger.error("***Test " + result.getName() + " ERROR");
             //takeScreenShot(result.getName());
             // previous state, logout, etc.
         }
@@ -139,7 +145,8 @@ public abstract class GreencityTestRunner {
     protected void setWindowSize(int width, int height) {
         getDriver().manage().window().setSize(new Dimension(width, height));
     }
-    
+
+    @Step("STEP loadApplication")
     protected WelcomePage loadApplication() {
         // return new HomePage(driver);
         return new WelcomePage(getDriver());

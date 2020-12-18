@@ -1,6 +1,11 @@
 package com.softserve.edu.pageobject.pages.about;
 
 import com.softserve.edu.pageobject.data.Languages;
+import com.softserve.edu.pageobject.pages.SignInPage;
+import com.softserve.edu.pageobject.pages.places.PlacesPage;
+import com.softserve.edu.pageobject.pages.tipstricks.TipsTricksPage;
+import com.softserve.edu.pageobject.pages.welcome.WelcomePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,25 +32,42 @@ public class AboutPage extends TopPart {
     private void initElements() {
         about = driver.findElement(By.cssSelector("div.container-about h2"));
 
-//        formHabitUpperButton = driver.findElement(By.cssSelector(".container-about .full-text-block > button"));
+        formHabitUpperButton = driver.findElement(By.cssSelector(".container-about .full-text-block > button"));
 //        formHabitBottomButton =  driver.findElement(By.cssSelector(".container-vision .full-text-block > button"));
-//        findEcoPlacesButton = driver.findElement(By.xpath("//a[contains(text(),'places')]")); //map
-//        tipsAndTricksButton = driver.findElement(By.id("//a[contains(text(),'Go')]"));
+        findEcoPlacesButton = driver.findElement(By.xpath("//a[contains(text(),'places')]")); //map
+        tipsAndTricksButton = driver.findElement(By.xpath("//a[contains(text(),'Go')]"));
 //        findPeopleUpperButton = driver.findElement(By.id("fourth-card-link")); //disabled link
-//        getInspiredButton = driver.findElement(By.xpath("//a[contains(text(),'inspired')]"));
+        getInspiredButton = driver.findElement(By.xpath("//a[contains(text(),'inspired')]"));
 //        findPeopleBottomButton = driver.findElement(By.cssSelector("#fifth-card-text + a"));
 
         aboutUsText = driver.findElement(By.cssSelector("div.container-about h2"));
     }
 
     // Buttons
-    public WebElement getFormHabitUpperButton() {
-        return formHabitUpperButton;
+    public SignInPage getSignInPageFormHabitButton() {
+        formHabitUpperButton.click();
+        return new SignInPage(driver);
     }
 
-    public void clickFormHabitUpperButton() {
-        getFormHabitUpperButton().click();
+    public PlacesPage getPlacesPage() {
+        findEcoPlacesButton.click();
+        return new PlacesPage(driver);
     }
+
+    public TipsTricksPage getTipsTricksPage() {
+        tipsAndTricksButton.click();
+        return new TipsTricksPage(driver);
+    }
+
+    public WelcomePage getWelcomePage() {
+        getInspiredButton.click();
+        return new WelcomePage(driver);
+    }
+
+
+//    public void clickFormHabitUpperButton() {
+//        getFormHabitUpperButton().click();
+//    }
 
     public WebElement getFormHabitBottomButton() {
         return formHabitBottomButton;
@@ -96,6 +118,8 @@ public class AboutPage extends TopPart {
     }
 
     // Text
+
+    @Step("STEP isAboutUsTextDisplayed")
     public boolean isAboutUsTextDisplayed() {
         return aboutUsText.getText().contains("About Us");
     }

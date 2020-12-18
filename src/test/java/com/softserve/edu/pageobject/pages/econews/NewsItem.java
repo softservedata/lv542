@@ -45,7 +45,7 @@ public class NewsItem {
         // TODO : should return NewsItemPage
     }
 
-    public List<String> lablesToString() { // TODO Diana should rename
+    public List<String> getListOfNewsLables() {
         List<String> elementsLabels = new ArrayList<>();
         for (int k = 0; k < listLabels.size(); k++) {
             elementsLabels.add(listLabels.get(k).getText().toUpperCase());
@@ -53,11 +53,8 @@ public class NewsItem {
         return elementsLabels;
     }
 
-    public boolean checkIfLablesCorrespondToFilter(String filter) { // TODO Diana should rename
-        List<String> elementLables = lablesToString();
+    public boolean areLablesCorrespondToFilter(String filter) {
+        List<String> elementLables = getListOfNewsLables();
         return elementLables.contains(filter);
     }
-
-    // Business Logic
-
 }

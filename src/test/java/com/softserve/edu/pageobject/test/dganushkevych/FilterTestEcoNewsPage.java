@@ -12,8 +12,8 @@ public class FilterTestEcoNewsPage  extends GreencityTestRunner {
         boolean isLabelsCorrect = loadApplication()
                 .openEcoNewsPage()
                 .activateTwoFilterItems(firstFilter, secondFilter)
-                .createNewsSection()
-                .checkFiltersWithNews(firstFilter, secondFilter);
+                .getNewsSection()
+                .areNewsSortedByFilters(firstFilter, secondFilter);
 
         FilterBlock filters = new FilterBlock(getDriver());
         filters.deactivateAllFilters();
