@@ -11,8 +11,11 @@ import org.openqa.selenium.interactions.Actions;
 public class FilterBlock {
     private WebDriver driver;
     private List<WebElement> filters;
+    private WebElement filterBy;
+
 
     public FilterBlock(WebDriver driver) {
+        filterBy = driver.findElement(By.xpath("//div[@class='wrapper']/span[. ='Filter by']"));
         this.driver = driver;
         initElements();
     }
@@ -48,4 +51,46 @@ public class FilterBlock {
         return this;
     }
 
+    public boolean areFilterButtonsPresent(String expectedFilterElement) {
+        boolean isButtonPresent = false;
+        for (WebElement element : filters) {
+            if (element.getText().contains(expectedFilterElement)) {
+                isButtonPresent = true;
+            }
+        }
+        return isButtonPresent;
+    }
+
+    public String getFilterButtonClass(String expectedFilterElement) {
+        String filterButtonClass = "";
+        for (WebElement filterButton : filters) {
+            if (filterButton.getText().trim().equals(expectedFilterElement)) {
+                filterButton.click();
+                filterButtonClass = filterButton.getAttribute("class");
+            }
+        }
+        return filterButtonClass;
+    }
+
+    public NewsSection activateFilterButtonByName(String expectedFilterElement) {
+        for (WebElement filterButton : filters) {
+            if (filterButton.getText().trim().equals(expectedFilterElement)) {
+                filterButton.click();
+            }
+        }
+        return new NewsSection(driver);
+    }
+
+    public EconewsPage unActivateFilterButton() {
+        for (WebElement filterButton : filters) {
+            if (filterButton.getAttribute("class").equals("custom-chip global-tag global-tag-clicked")) {
+                filterButton.click();
+            }
+        }
+        return new EconewsPage(driver);
+    }
+
+    public String getFilterByElement() {
+        return filterBy.getText();
+    }
 }

@@ -22,6 +22,7 @@ public class NewsItem {
 
     private void initElements() {
         listLabels = newsItem.findElements(By.cssSelector(".ul-eco-buttons.ng-star-inserted"));
+        title = newsItem.findElement(By.cssSelector(".ul-eco-buttons.ng-star-inserted"));
     }
 
     public WebElement getNewsItem() {
@@ -57,7 +58,4 @@ public class NewsItem {
         List<String> elementLables = lablesToString();
         return elementLables.contains(filter);
     }
-
-    // Business Logic
-
 }

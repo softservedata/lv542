@@ -3,6 +3,7 @@ package com.softserve.edu.pageobject.pages.econews;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.softserve.edu.pageobject.engine.WaitWrapper;
 import org.openqa.selenium.*;
 
 public class NewsSection {
@@ -10,7 +11,6 @@ public class NewsSection {
     private WebDriver driver;
     private int countOfFoundItems;
     private final int MAX_SCROLL_COUNT = 60;
-
     private List<NewsItem> newsItems;
 
     public NewsSection(WebDriver driver) {
@@ -20,10 +20,11 @@ public class NewsSection {
 
     private void initElements() {
         countOfFoundItems = Integer.parseInt(
-                driver.findElement(By.xpath("//app-remaining-count//p")).getText().replaceAll("[^0-9]", ""));
-        scrollNews();
+                driver.findElement(By
+                        .xpath("//app-remaining-count//p")).getText().replaceAll("[^0-9]", ""));
         newsItems = new ArrayList<>();
-        for (WebElement current : driver.findElements(By.xpath("//li[@class = 'gallery-view-li-active ng-star-inserted']"))) {
+        for (WebElement current : driver.findElements(By
+                .xpath("//li[@class = 'gallery-view-li-active ng-star-inserted']"))) {
             newsItems.add(new NewsItem(current));
         }
     }
@@ -65,6 +66,11 @@ public class NewsSection {
             actualNews = driver.findElements(By.className("list-gallery"));
             currentScrollIndex++;
         }
+    }
+
+    public NewsItemPage getFirstNewsComponent() {
+        newsItems.get(0).openNewsItem();
+        return new NewsItemPage(driver);
     }
 
     protected NewsItem getNewsItemsByTitle(String title) {

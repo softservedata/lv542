@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -29,6 +30,16 @@ public class WaitWrapper {
         setZeroImplicitlyWait(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        setDefaultImplicitlyWait(driver);
+    }
+
+    public static void waitForPresenceOfElementLocated(WebDriver driver) {
+        setZeroImplicitlyWait(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement firstSearchResult = driver.findElement(By
+                .xpath("//li[@class='gallery-view-li-active ng-star-inserted'][1]//div[@class='list-gallery']//p"));
+        //wait until the element changed
+        wait.until(ExpectedConditions.stalenessOf(firstSearchResult));
         setDefaultImplicitlyWait(driver);
     }
 
