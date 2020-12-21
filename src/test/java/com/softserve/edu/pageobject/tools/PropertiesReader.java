@@ -40,7 +40,7 @@ public class PropertiesReader {
     public Map<String, String> getAllProperties() {
         return mapProperties;
     }
-    
+
     public String getPropertiesByKey(String key) {
         return getAllProperties().get(key);
     }

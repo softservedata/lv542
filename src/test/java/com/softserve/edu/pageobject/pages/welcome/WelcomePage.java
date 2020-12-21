@@ -1,5 +1,6 @@
 package com.softserve.edu.pageobject.pages.welcome;
 
+import com.softserve.edu.pageobject.pages.SignInPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ public class WelcomePage extends TopPart {
 
     private WebElement headerLeft;
     private WebElement buttonStart;
+    private WebElement signInButton;
 
     public WelcomePage(WebDriver driver) {
         super(driver);
@@ -24,13 +26,19 @@ public class WelcomePage extends TopPart {
         // init elements
         headerLeft = driver.findElement(By.cssSelector("div#header-left h1"));
         buttonStart = driver.findElement(By.cssSelector("#header .button.primary-global-button"));
+        signInButton=driver.findElement(By.xpath("//*[@class='sign-in-link tertiary-global-button last-nav-item']"));
     }
+
 
     // Page Object
 
     // headerLeft
     public WebElement getHeaderLeft() {
         return headerLeft;
+    }
+
+    public WebElement getSignInButton(){
+        return signInButton;
     }
 
     public String getHeaderLeftText() {
@@ -45,7 +53,10 @@ public class WelcomePage extends TopPart {
     public String getButtonStartText() {
         return getButtonStart().getText().trim();
     }
-
+    public SignInPage clickGetSignInButton(){
+        getSignInButton();
+        return new SignInPage(driver);
+    }
     public String getButtonStartAttributeClass() {
         return getButtonStart().getAttribute(TAG_ATTRIBUTE_CLASS);
     }

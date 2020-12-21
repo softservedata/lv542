@@ -12,7 +12,7 @@ public class SignInPage implements Attributes {
     protected final String INVALID_EMAIL_PASSWORD_MESSAGE = "Submit Button Disable. Invalid Email or Password";
 
     private WebDriver driver;
-    //
+    private WebElement SignInButton;
     private WebElement email;
     private WebElement password;
     private WebElement buttonSubmit;
@@ -26,6 +26,7 @@ public class SignInPage implements Attributes {
 
     private void initElements() {
         // init elements
+        //SignInButton=driver.findElement(By.xpath("//*[@class='sign-in-link tertiary-global-button last-nav-item']"))
         email = driver.findElement(By.id("email"));
         password = driver.findElement(By.id("password"));
         buttonSubmit = driver.findElement(By.cssSelector("button[type='submit']"));
@@ -34,7 +35,11 @@ public class SignInPage implements Attributes {
     }
 
     // Page Object
+    /*public  WebElement getSignInButton (){
+        return SignInButton;
+    }
 
+     */
     // email
     public WebElement getEmail() {
         return email;
@@ -79,10 +84,7 @@ public class SignInPage implements Attributes {
 
     // buttonSubmit
     public WebElement getButtonSubmit() {
-        //System.out.println("buttonSubmit.isDisplayed() = " + buttonSubmit.isDisplayed());
-        //System.out.println("buttonSubmit.isEnabled() = " + buttonSubmit.isEnabled());
         if (!buttonSubmit.isEnabled()) {
-            // TODO Deevelop Custom Exception
             throw new RuntimeException(INVALID_EMAIL_PASSWORD_MESSAGE);
         }
         return buttonSubmit;

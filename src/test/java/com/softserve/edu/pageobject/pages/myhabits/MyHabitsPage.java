@@ -12,6 +12,7 @@ public class MyHabitsPage extends TopPart {
 
     private WebElement myHabitsTab;
     private WebElement addNewHabits;
+    private WebElement accountDescription;
 
     public MyHabitsPage(WebDriver driver) {
         super(driver);
@@ -23,11 +24,18 @@ public class MyHabitsPage extends TopPart {
         // init elements
         myHabitsTab = driver.findElement(By.cssSelector("div.profile-menu > span.profile-span.active.ng-star-inserted"));
         addNewHabits = driver.findElement(By.cssSelector("div.menu-title a"));
+        accountDescription=driver.findElement(By.xpath("//*[@class='details__credo']"));
     }
 
     // Page Object
 
     // myHabitsTab
+    public  WebElement getAccountDescription(){
+        return accountDescription;
+    }
+    public String actualAccountDescription(){
+        return getAccountDescription().getText().trim();
+    }
     public WebElement getMyHabitsTab() {
         return myHabitsTab;
     }

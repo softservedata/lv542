@@ -14,7 +14,7 @@ public class LoginPage {
     }
 
     private void initElements() {
-        // init elements
+
     }
 
     // Page Object

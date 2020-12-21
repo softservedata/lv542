@@ -31,14 +31,14 @@ public class SmokeTest extends GreencityTestRunner {
                 WelcomePage.HEADER_LEFT_ATTRIBUTE);
     }
     
-    @DataProvider//(parallel = true)
+    @DataProvider(name = "users")
     public Object[][] users() {
         return new Object[][] {
             { UserRepository.getDefault() },
         };
     }
     
-    //@Test(dataProvider = "users")
+    @Test(dataProvider = "users")
     public void checkLogin(User user) {
         MyHabitsPage myHabitsPage = loadApplication()
                 .navigateLogin()
