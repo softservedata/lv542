@@ -102,6 +102,9 @@ public class SignInPage implements Attributes {
     public WebElement getButtonGoole() {
         return buttonGoole;
     }
+    public void clickGmailButton(){
+        getButtonGoole().click();
+    }
 
     public String getButtonGooleText() {
         return getButtonGoole().getAttribute(TAG_ATTRIBUTE_VALUE);
@@ -141,13 +144,18 @@ public class SignInPage implements Attributes {
         clickButtonSubmit();
     }
 
+
     // Business Logic
-    
+
     public MyHabitsPage successfulLogin(User user) {
         fillCredentials(user);
         return new MyHabitsPage(driver);
     }
-    
+    public SignInViaGmail successfulGmailLogin(){
+        clickGmailButton();
+        return new SignInViaGmail(driver);
+
+    }
     public SignInPage unsuccessfulLogin(User user) {
         fillCredentials(user);
         return new SignInPage(driver);
