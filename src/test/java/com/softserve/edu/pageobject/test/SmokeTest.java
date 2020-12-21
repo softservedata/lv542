@@ -19,7 +19,7 @@ public class SmokeTest extends GreencityTestRunner {
         //setWindowSize(480, 640);
         //
         // Steps
-        WelcomePage welcomePage = loadApplication()
+        WelcomePage welcomePage = openHomePage()
             .openEcoNewsPage()
             .openTipsTricksPage()
             .openPlacesPage()
@@ -40,7 +40,7 @@ public class SmokeTest extends GreencityTestRunner {
     
     //@Test(dataProvider = "users")
     public void checkLogin(User user) {
-        MyHabitsPage myHabitsPage = loadApplication()
+        MyHabitsPage myHabitsPage = openHomePage()
                 .openSignInPage()
                 .successfulLogin(user);
         Assert.assertEquals(myHabitsPage.getProfileText(),
@@ -52,7 +52,7 @@ public class SmokeTest extends GreencityTestRunner {
     //@Test(dataProvider = "users")
     public void checkMyHabits(User user) {
         // Steps
-        WelcomePage welcomePage = loadApplication()
+        WelcomePage welcomePage = openHomePage()
             .openMyHabitsPage(user)
             .openAddHabitsPage()
             .openEcoNewsPage()
@@ -80,7 +80,7 @@ public class SmokeTest extends GreencityTestRunner {
     @Test(dataProvider = "languages")
     public void checkLanguage(Languages languageName) {
         // Steps
-        WelcomePage welcomePage = loadApplication()
+        WelcomePage welcomePage = openHomePage()
                 .chooseLanguage(languageName);
         //
         // Check

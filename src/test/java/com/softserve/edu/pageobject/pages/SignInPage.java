@@ -115,7 +115,7 @@ public class SignInPage implements Attributes {
         return buttonClose;
     }
 
-    public AboutPage openAboutPageWithClose(){
+    public AboutPage closeSignInWindowOpenAboutPage(){
         buttonClose.click();
         return new AboutPage(driver);
     }

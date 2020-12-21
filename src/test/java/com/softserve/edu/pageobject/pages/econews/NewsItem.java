@@ -48,13 +48,13 @@ public class NewsItem {
     public List<String> getListOfNewsLables() {
         List<String> elementsLabels = new ArrayList<>();
         for (int k = 0; k < listLabels.size(); k++) {
-            elementsLabels.add(listLabels.get(k).getText().toUpperCase());
+            elementsLabels.add(listLabels.get(k).getText().toLowerCase());
         }
         return elementsLabels;
     }
 
     public boolean areLablesCorrespondToFilter(String filter) {
         List<String> elementLables = getListOfNewsLables();
-        return elementLables.contains(filter);
+        return elementLables.contains(filter.toLowerCase());
     }
 }

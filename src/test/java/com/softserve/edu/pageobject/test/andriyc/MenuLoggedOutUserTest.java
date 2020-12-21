@@ -12,7 +12,7 @@ public class MenuLoggedOutUserTest extends GreencityTestRunner {
 
     @Test
     void verifyEcoNewsMenuTargetPageTitleCompliance() {
-        String actualEcoNewsPageTitle = loadApplication()
+        String actualEcoNewsPageTitle = openHomePage()
                 .openEcoNewsPage()
                 .getPageTitle();
 
@@ -21,7 +21,7 @@ public class MenuLoggedOutUserTest extends GreencityTestRunner {
 
     @Test
     void verifyTipsTricksMenuTargetPageTitleCompliance() {
-        String actualTipsTricksPageTitle = loadApplication()
+        String actualTipsTricksPageTitle = openHomePage()
                 .openTipsTricksPage()
                 .getPageTitle();
 
@@ -30,7 +30,7 @@ public class MenuLoggedOutUserTest extends GreencityTestRunner {
 
     @Test
     void verifyPlacesMenuTargetPageTitleCompliance() {
-        String actualPlacesPageTitle = loadApplication()
+        String actualPlacesPageTitle = openHomePage()
                 .openPlacesPage()
                 .getPageTitle();
 
@@ -39,7 +39,7 @@ public class MenuLoggedOutUserTest extends GreencityTestRunner {
 
     @Test
     void verifyAboutUsMenuTargetPageTitleCompliance() {
-        String actualAboutUsPageTitle = loadApplication()
+        String actualAboutUsPageTitle = openHomePage()
                 .openAboutUsPage()
                 .getPageTitle();
 

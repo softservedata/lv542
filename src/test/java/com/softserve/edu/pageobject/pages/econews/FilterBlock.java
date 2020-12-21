@@ -25,11 +25,8 @@ public class FilterBlock {
     }
 
     public void activateFilterByName(String filter) {
-        for (WebElement filterItem : filters) {
-            if (filterItem.getText().toUpperCase().contains(filter)) {
-                filterItem.click();
-            }
-        }
+        driver.findElement(By.xpath("//*[contains(text(),  '" + filter + "') " +
+                "and @class = 'custom-chip global-tag']")).click();
     }
 
     public void deactivateAllFilters() {

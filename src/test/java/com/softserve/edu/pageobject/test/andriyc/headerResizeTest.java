@@ -13,7 +13,7 @@ public class headerResizeTest extends GreencityTestRunner {
 
     private boolean areAllMenuItemsAvailable() {
         try {
-            loadApplication()
+            openHomePage()
                     .openEcoNewsPage()
                     .openTipsTricksPage()
                     .openPlacesPage()
@@ -34,7 +34,7 @@ public class headerResizeTest extends GreencityTestRunner {
     @Test
     void verifySignInLinkAppearance_inWindowWidth_900px() {
         setWindowSize(WINDOW_WIDTH_900, DEFAULT_WINDOW_HEIGHT);
-        Assert.assertTrue(loadApplication()
+        Assert.assertTrue(openHomePage()
                 .isSignInAvailable());
     }
 
@@ -47,7 +47,7 @@ public class headerResizeTest extends GreencityTestRunner {
     @Test
     void verifySignInLinkAppearance_inWindowWidth_850px() {
         setWindowSize(WINDOW_WIDTH_850, DEFAULT_WINDOW_HEIGHT);
-        Assert.assertTrue(loadApplication()
+        Assert.assertTrue(openHomePage()
                 .isSignInAvailable());
     }
 
@@ -60,7 +60,7 @@ public class headerResizeTest extends GreencityTestRunner {
     @Test
     void verifySignInLinkAppearance_inWindowWidth_500px() {
         setWindowSize(WINDOW_WIDTH_500, DEFAULT_WINDOW_HEIGHT);
-        Assert.assertTrue(loadApplication()
+        Assert.assertTrue(openHomePage()
                 .isSignInAvailable());
     }
 

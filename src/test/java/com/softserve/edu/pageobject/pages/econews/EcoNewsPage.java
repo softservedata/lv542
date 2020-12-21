@@ -33,7 +33,7 @@ public class EcoNewsPage extends TopPart {
         return getMainHeader().getText().trim();
     }
 
-    public EcoNewsPage activateTwoFilterItems(String firstFilter, String secondFilter) {
+    public EcoNewsPage activateTwoFilters(String firstFilter, String secondFilter) {
         getFilterBlock().getFiltersWitTwohActivatedItems(firstFilter, secondFilter);
         return this;
     }
@@ -43,7 +43,7 @@ public class EcoNewsPage extends TopPart {
         return filterBlock;
     }
 
-    public NewsSection getNewsSection() {
+    public NewsSection goToNewsSection() {
         newsSection = new NewsSection(driver);
         return newsSection;
     }

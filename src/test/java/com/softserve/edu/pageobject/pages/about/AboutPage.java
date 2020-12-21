@@ -7,6 +7,7 @@ import com.softserve.edu.pageobject.pages.tipstricks.TipsTricksPage;
 import com.softserve.edu.pageobject.pages.welcome.WelcomePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -44,22 +45,22 @@ public class AboutPage extends TopPart {
     }
 
     // Buttons
-    public SignInPage getSignInPageFormHabitButton() {
+    public SignInPage openSignInWindow() {
         formHabitUpperButton.click();
         return new SignInPage(driver);
     }
 
-    public PlacesPage getPlacesPage() {
+    public PlacesPage openPlacesPageFromAboutPage() {
         findEcoPlacesButton.click();
         return new PlacesPage(driver);
     }
 
-    public TipsTricksPage getTipsTricksPage() {
+    public TipsTricksPage openTipsTricksPageFromAboutPage() {
         tipsAndTricksButton.click();
         return new TipsTricksPage(driver);
     }
 
-    public WelcomePage getWelcomePage() {
+    public WelcomePage openWelcomePageFromAboutPage() {
         getInspiredButton.click();
         return new WelcomePage(driver);
     }

@@ -79,7 +79,6 @@ public abstract class GreencityTestRunner {
 
     @AfterClass(alwaysRun = true)
     public void afterClass() {
-        presentationSleep(); // For Presentation ONLY
         // driver.close();
         // if (driver != null) {
         // driver.quit();
@@ -95,12 +94,10 @@ public abstract class GreencityTestRunner {
     public void beforeMethod() {
         // driver.get(BASE_URL);
         getDriver().get(serverUrl);
-        presentationSleep(); // For Presentation ONLY
     }
 
     @AfterMethod
     public void afterMethod(ITestResult result) {
-        presentationSleep(); // For Presentation ONLY
         // TODO Logout
         if (!result.isSuccess()) {
             getDriver().manage().deleteAllCookies();
@@ -127,27 +124,12 @@ public abstract class GreencityTestRunner {
         // log.info("Screenshot was taken");
     }
 
-    // Overload
-    protected void presentationSleep() {
-        presentationSleep(1);
-    }
-
-    // Overload
-    protected void presentationSleep(int seconds) {
-        try {
-            Thread.sleep(seconds * ONE_SECOND_DELAY); // For Presentation ONLY
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
     protected void setWindowSize(int width, int height) {
         getDriver().manage().window().setSize(new Dimension(width, height));
     }
 
     @Step("STEP loadApplication")
-    protected WelcomePage loadApplication() {
+    protected WelcomePage openHomePage() {
         // return new HomePage(driver);
         return new WelcomePage(getDriver());
     }
