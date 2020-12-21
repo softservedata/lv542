@@ -6,7 +6,7 @@
 
 	<test name="Test01">
 		<classes>
-			<!-- <class name="com.softserve.edu.pageobject.test.SmokeTest" /> -->
+			<class name="com.softserve.edu.pageobject.test.imartyniuk.SignUpTest" />
 			<!-- <class name="com.softserve.edu.GoogleTest" /> -->
 			<!-- <class name="com.softserve.edu.AppTest" /> -->
 		</classes>

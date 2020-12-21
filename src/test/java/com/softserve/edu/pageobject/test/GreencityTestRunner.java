@@ -14,6 +14,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -34,6 +36,8 @@ public abstract class GreencityTestRunner {
     private final Long ONE_SECOND_DELAY = 1000L;
     private final String TIME_TEMPLATE = "yyyy-MM-dd_HH-mm-ss";
     //
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private String serverUrl = "https://ita-social-projects.github.io/GreenCityClient/";
     // private WebDriver driver;
     private Map<Long, WebDriver> drivers;

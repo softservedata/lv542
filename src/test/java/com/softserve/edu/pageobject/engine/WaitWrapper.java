@@ -4,13 +4,18 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WaitWrapper {
 
     public static final long IMPLICITLY_WAIT_SECONDS = 10L;
-    public static final long EXPLICITLY_WAIT_SECONDS = 10L;
+    public static final long EXPLICITLY_WAIT_SECONDS = 50L;
+
+    public static void gotoUrl(WebDriver driver, String serverUrl) {
+        driver.get(serverUrl);
+    }
 
     public static void setDefaultImplicitlyWait(WebDriver driver) {
         driver.manage().timeouts().implicitlyWait(IMPLICITLY_WAIT_SECONDS, TimeUnit.SECONDS);
@@ -27,8 +32,19 @@ public class WaitWrapper {
 
     public static void waitForInvisibilityOfElementLocated(WebDriver driver, By locator) {
         setZeroImplicitlyWait(driver);
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, EXPLICITLY_WAIT_SECONDS);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        setDefaultImplicitlyWait(driver);
+    }
+
+    public static void waitForNewTabAppearance(WebDriver driver, int countTab) {
+        setZeroImplicitlyWait(driver);
+        WebDriverWait wait = new WebDriverWait(driver, EXPLICITLY_WAIT_SECONDS);
+        wait.until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return driver.getWindowHandles().size() > countTab;
+            }
+        });
         setDefaultImplicitlyWait(driver);
     }
 

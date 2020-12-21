@@ -15,6 +15,10 @@ public class User {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getName() {
         return name;
     }
@@ -23,4 +27,11 @@ public class User {
         return password;
     }
 
+    @Override
+    public String toString() {
+        return "User [email=" + email
+                + ", name=" + name
+                + ", password=" + password
+                + "]";
+    }
 }

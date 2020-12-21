@@ -16,8 +16,12 @@ import com.softserve.edu.pageobject.pages.myhabits.MyHabitsPage;
 import com.softserve.edu.pageobject.pages.places.PlacesPage;
 import com.softserve.edu.pageobject.pages.tipstricks.TipsTricksPage;
 import com.softserve.edu.pageobject.pages.welcome.WelcomePage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class TopPart implements Attributes {
+
+    public static final Logger logger = LoggerFactory.getLogger(TopPart.class);
 
     protected final String COMPONENT_NULL_MESSAGE = "Component is null or Disabled";
 
@@ -35,6 +39,7 @@ public abstract class TopPart implements Attributes {
     private WebElement placesMenuItem;
     private WebElement aboutMenuItem;
     private WebElement myHabitsMenuItem;
+
     Map<Languages, Map<WebElement, String>> localization;
 
     public TopPart(WebDriver driver) {
@@ -351,6 +356,12 @@ public abstract class TopPart implements Attributes {
         createLogInBlock();
         clickSignIn();
         return new SignInPage(driver);
+    }
+
+    public SignUpPage openSignUpPage() {
+        createLogInBlock();
+        clickSignUp();
+        return new SignUpPage(driver);
     }
 
     public WelcomePage logOut() {

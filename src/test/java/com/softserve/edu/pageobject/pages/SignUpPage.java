@@ -1,24 +1,35 @@
 package com.softserve.edu.pageobject.pages;
 
+import com.softserve.edu.pageobject.engine.BrowserTabUtils;
+import com.softserve.edu.pageobject.engine.WaitWrapper;
+import com.softserve.edu.pageobject.pages.mailforregistration.EmailTenPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import com.softserve.edu.pageobject.data.User;
 import com.softserve.edu.pageobject.pages.myhabits.MyHabitsPage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class SignUpPage implements Attributes {
-    protected final String INVALID_EMAIL_MESSAGE = "Sign Up Button is Disabled. Invalid Email";
-    protected final String INVALID_USERNAME_MESSAGE = "Sign Up Button is Disabled. Invalid Username";
-    protected final String INVALID_PASSWORD_MESSAGE = "Submit Button is Disabled. Invalid Password";
-    protected final String INVALID_CONFIRM_PASSWORD_MESSAGE = "Submit Button is Disabled. Invalid Confirmed Password";
-    protected final String INVALID_EMAIL_PASSWORD_MESSAGE = "Submit Button Disable. Invalid Email or Password";
+import java.util.ArrayList;
+import java.util.List;
+
+public class SignUpPage implements Attributes, BrowserTabUtils {
+    public static final String EMAIL_IS_REQUIRED_EXPECTED_MESSAGE = "Email is required";
+    public static final String USERNAME_IS_REQUIRED_EXPECTED_MESSAGE = "User name is required";
+    public static final String PASSWORD_IS_REQUIRED_EXPECTED_MESSAGE = "Password is required";
+    public static final String CONFIRM_PASSWORD_IS_REQUIRED_MESSAGE = "Password is required";
+
+    protected final String SUBMIT_BUTTON_IS_DISABLED_MESSAGE = "Submit Button Is Disabled. Empty field(s)";
+
+    public static final Logger logger = LoggerFactory.getLogger(SignUpPage.class);
 
     private WebDriver driver;
 
-    private WebElement signUpEmail;
-    private WebElement signUpUsername;
-    private WebElement signUpPassword;
-    private WebElement signUpConfirmPassword;
+    private WebElement signUpEmailField;
+    private WebElement signUpUsernameField;
+    private WebElement signUpPasswordField;
+    private WebElement signUpConfirmPasswordField;
     private WebElement buttonSignUp;
     private WebElement buttonSignUpWithGoogle;
     private WebElement buttonClose;
@@ -29,103 +40,221 @@ public class SignUpPage implements Attributes {
     }
 
     private void initElements() {
-        signUpEmail = driver.findElement(By.id("email"));
-        signUpUsername = driver.findElement(By.id("firstName"));
-        signUpPassword = driver.findElement(By.id("password"));
-        signUpConfirmPassword = driver.findElement(By.id("repeatPassword"));
-        buttonSignUp = driver.findElement(By.cssSelector("button[type='submit']"));
+        signUpEmailField = driver.findElement(By.id("email"));
+        signUpUsernameField = driver.findElement(By.id("firstName"));
+        signUpPasswordField = driver.findElement(By.id("password"));
+        signUpConfirmPasswordField = driver.findElement(By.id("repeatPassword"));
+        buttonSignUp = driver.findElement(By.cssSelector("form button.primary-global-button"));
         buttonSignUpWithGoogle = driver.findElement(By.cssSelector("button.google-sign-in"));
         buttonClose = driver.findElement(By.cssSelector("a.close-modal-window"));
     }
 
-    public WebElement getSignUpEmail() {
-        return signUpEmail;
+    public WebElement getSignUpEmailField() {
+        return signUpEmailField;
     }
 
-    public String getSignUpEmailText() {
-        return getSignUpEmail().getAttribute(TAG_ATTRIBUTE_VALUE);
+    public String getSignUpEmailFieldText() {
+        return getSignUpEmailField().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
 
-    public void clearSignUpEmail() {
-        getSignUpEmail().clear();
+    public void clearSignUpEmailField() {
+        getSignUpEmailField().clear();
     }
 
-    public void clickSignUpEmail() {
-        getSignUpEmail().click();
+    public void clickSignUpEmailField() {
+        getSignUpEmailField().click();
     }
 
-    public void typeSignUpEmail(String text) {
-        getSignUpEmail().sendKeys(text);
+    public void typeSignUpEmailField(String text) {
+        getSignUpEmailField().sendKeys(text);
     }
 
-    public WebElement getSignUpUsername() {
-        return signUpUsername;
+    public WebElement getSignUpUsernameField() {
+        return signUpUsernameField;
     }
 
-    public String getSignUpUsernameText() {
-        return getSignUpUsername().getAttribute(TAG_ATTRIBUTE_VALUE);
+    public String getSignUpUsernameFieldText() {
+        return getSignUpUsernameField().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
 
-    public void clearSignUpUsername() {
-        getSignUpUsername().clear();
+    public void clearSignUpUsernameField() {
+        getSignUpUsernameField().clear();
     }
 
-    public void clickSignUpUsername() {
-        getSignUpUsername().click();
+    public void clickSignUpUsernameField() {
+        getSignUpUsernameField().click();
     }
 
-    public void typeSignUpUsername(String text) {
-        getSignUpUsername().sendKeys(text);
+    public void typeSignUpUsernameField(String text) {
+        getSignUpUsernameField().sendKeys(text);
     }
 
-    public WebElement getSignUpPassword() {
-        return signUpPassword;
+    public WebElement getSignUpPasswordField() {
+        return signUpPasswordField;
     }
 
-    public String getSignUpPasswordText() {
-        return getSignUpPassword().getAttribute(TAG_ATTRIBUTE_VALUE);
+    public String getSignUpPasswordFieldText() {
+        return getSignUpPasswordField().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
 
-    public void clearSignUpPassword() {
-        getSignUpPassword().clear();
+    public void clearSignUpPasswordField() {
+        getSignUpPasswordField().clear();
     }
 
-    public void clickSignUpPassword() {
-        getSignUpPassword().click();
+    public void clickSignUpPasswordField() {
+        getSignUpPasswordField().click();
     }
 
-    public void typeSignUpPassword(String text) {
-        getSignUpPassword().sendKeys(text);
+    public void typeSignUpPasswordField(String text) {
+        getSignUpPasswordField().sendKeys(text);
     }
 
-    public WebElement getSignUpConfirmPassword() {
-        return getSignUpConfirmPassword();
+    public WebElement getSignUpConfirmPasswordField() {
+        return getSignUpConfirmPasswordField();
     }
 
-    public String getSignUpConfirmPasswordText() {
-        return getSignUpConfirmPassword().getAttribute(TAG_ATTRIBUTE_VALUE);
+    public String getSignUpConfirmPasswordFieldText() {
+        return getSignUpConfirmPasswordField().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
 
-    public void clearSignUpConfirmPassword() {
-        getSignUpConfirmPassword().clear();
+    public void clearSignUpConfirmPasswordField() {
+        getSignUpConfirmPasswordField().clear();
     }
 
-    public void clickSignUpConfirmPassword() {
-        getSignUpConfirmPassword().click();
+    public void clickSignUpConfirmPasswordField() {
+        getSignUpConfirmPasswordField().click();
     }
 
-    public void typeSignUpConfirmPassword(String text) {
-        getSignUpConfirmPassword().sendKeys(text);
+    public void typeSignUpConfirmPasswordField(String text) {
+        getSignUpConfirmPasswordField().sendKeys(text);
     }
 
-    // buttonSubmit
     public WebElement getButtonSignUp() {
-        //System.out.println("buttonSignUp.isDisplayed() = " + buttonSignUp.isDisplayed());
-        //System.out.println("buttonSignUp.isEnabled() = " + buttonSignUp.isEnabled());
         if (!buttonSignUp.isEnabled()) {
-            //TODO Develop Custom Exception
-            throw new RuntimeException(INVALID_EMAIL_PASSWORD_MESSAGE);
+            logger.error(SUBMIT_BUTTON_IS_DISABLED_MESSAGE);
+            throw new RuntimeException(SUBMIT_BUTTON_IS_DISABLED_MESSAGE);
         }
         return buttonSignUp;
     }
+
+    public String getButtonSignUpText() {
+        return getButtonSignUp().getAttribute(TAG_ATTRIBUTE_VALUE);
+    }
+
+    public void clickButtonSignUp() {
+        getButtonSignUp().click();
+    }
+
+    //TODO signUpGoogleButton
+
+    public WebElement getButtonClose() {
+        return buttonClose;
+    }
+
+    public void clickButtonClose() {
+        getButtonClose().click();
+    }
+
+    public WebElement getSignUpEmailValidator() {
+        return driver.findElement(By.cssSelector("input#email + div div"));
+    }
+
+    public String getSignUpEmailValidatorText() {
+        return getSignUpEmailValidator().getText();
+    }
+
+    public WebElement getSignUpUsernameValidator() {
+        return driver.findElement(By.cssSelector("input#firstName + div div"));
+    }
+
+    public String getSignUpUsernameValidatorText() {
+        return getSignUpUsernameValidator().getText();
+    }
+
+    public WebElement getSignUpPasswordValidator() {
+        return driver.findElement(By.xpath("//*[@class='error-message ng-star-inserted']"));
+    }
+
+    public String getSignUpPasswordValidatorText() {
+        return getSignUpPasswordValidator().getText();
+    }
+
+    public WebElement getSignUpConfirmPasswordValidator() {
+        return driver.findElement(By.xpath("//*[@class='error-message ng-star-inserted']"));
+    }
+
+    public String getSignUpConfirmPasswordValidatorText() {
+        return getSignUpConfirmPasswordValidator().getText();
+    }
+
+    private void fillSignUpEmailField(String email) {
+        clickSignUpEmailField();
+        clearSignUpEmailField();
+        typeSignUpEmailField(email);
+    }
+
+    private void fillSignUpUsernameField(String username) {
+        clickSignUpUsernameField();
+        clearSignUpUsernameField();
+        typeSignUpUsernameField(username);
+    }
+
+    private void fillSignUpPasswordField(String password) {
+        clickSignUpPasswordField();
+        clearSignUpPasswordField();
+        typeSignUpPasswordField(password);
+    }
+
+    private void fillSignUpConfirmPasswordField(String password) {
+        clickSignUpConfirmPasswordField();
+        clearSignUpConfirmPasswordField();
+        typeSignUpConfirmPasswordField(password);
+    }
+
+    private void fillCredentials(User user) {
+        fillSignUpEmailField(user.getEmail());
+        fillSignUpUsernameField(user.getName());
+        fillSignUpPasswordField(user.getPassword());
+        fillSignUpConfirmPasswordField(user.getPassword());
+        clickButtonSignUp();
+    }
+
+    // Business Logic
+    public SignInPage successfulSignUp(User user) {
+        List<String> windowHandles = new ArrayList<>();
+        String currentTabHandle = getCurrentTabHandle(driver);
+        openNewTab(driver, 1);
+        windowHandles.add(currentTabHandle);
+        switchToAnotherTab(driver, windowHandles);
+        EmailTenPage emailTenPage = new EmailTenPage(driver);
+        user.setEmail(emailTenPage.getMailAddressText());
+        switchToTab(driver, currentTabHandle);
+        fillCredentials(user);
+        //
+        try {
+            Thread.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        WaitWrapper.waitForInvisibilityOfElementLocated(driver, By.cssSelector("a.close-modal-window"));
+        //
+        emailTenPage.switchToEmailTenPage().confirmEmail();
+        switchToTab(driver, currentTabHandle);
+        //WaitWrapper.waitForInvisibilityOfElementLocated(driver, By.cssSelector("a.close-modal-window"));
+        closeAllTab(driver, currentTabHandle);
+        logger.info("User registered: " + user);
+        new TopPart(driver) {}.openSignInPage();
+        return new SignInPage(driver);
+    }
+
+    public SignUpPage unsuccessfulSignUp(User invalidUser) {
+        fillCredentials(invalidUser);
+        return new SignUpPage(driver);
+    }
+
+    public TopPart closeLogin() {
+        clickButtonClose();
+        return new TopPart(driver) {};
+    }
 }
+
