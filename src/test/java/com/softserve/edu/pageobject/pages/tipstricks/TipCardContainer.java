@@ -1,38 +1,92 @@
 package com.softserve.edu.pageobject.pages.tipstricks;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.softserve.edu.pageobject.pages.econews.NewsComponent;
-
 public class TipCardContainer {
-    private final String TIP_CARD_COMPONENT_CSSSELECTOR = "????";
-
     private WebDriver driver;
-    //
-    private List<TipCardComponent> tipCardComponents;
 
     public TipCardContainer(WebDriver driver) {
         this.driver = driver;
-        initElements();
     }
 
-    private void initElements() {
-        // init elements
-        tipCardComponents = new ArrayList<>();
-        for (WebElement current : driver.findElements(By.cssSelector(TIP_CARD_COMPONENT_CSSSELECTOR))) {
-            tipCardComponents.add(new TipCardComponent(current));
-        }
+    public List<WebElement> getBottleImage() {
+        return driver.findElements(By
+                .xpath("//app-tips-card[@class='swiper-slide swiper-slide-duplicate swiper-slide-prev']//img"));
     }
 
-    // Page Object
+    public List<WebElement> getSpoonForkKnifeImage() {
+        return driver.findElements(By
+                .xpath("//app-tips-card[@class='swiper-slide swiper-slide-active ng-star-inserted']//img"));
+    }
 
-    // Functional
+    public List<WebElement> getCoffeCupImage() {
+        return driver.findElements(By
+                .xpath("//app-tips-card[@class='swiper-slide ng-star-inserted']//img"));
+    }
 
-    // Business Logic
+    public WebElement getLeftTipCardParagraph() {
+        return driver.findElement(By
+                .xpath("//app-tips-card[@class='swiper-slide swiper-slide-duplicate swiper-slide-prev']//p"));
+    }
+
+    public WebElement getMiddleTipCardParagraph() {
+        return driver.findElement(By
+                .xpath("//app-tips-card[@class='swiper-slide swiper-slide-active ng-star-inserted']//p"));
+    }
+
+    public WebElement getMiddleTipCardParagraphAfterRightButtonClick() {
+        return driver.findElement(By
+                .xpath("//app-tips-card[@class='swiper-slide ng-star-inserted swiper-slide-active']//p"));
+    }
+
+    public WebElement getMiddleTipCardParagraphAfterLeftButtonClick() {
+        return driver.findElement(By
+                .xpath("//app-tips-card[@class='swiper-slide swiper-slide-duplicate swiper-slide-active']//p"));
+    }
+
+    public WebElement getRightTipCardParagraph() {
+        return driver.findElement(By
+                .xpath("//app-tips-card[@class='swiper-slide swiper-slide-next ng-star-inserted']//p"));
+    }
+
+    public String getMiddleTipCardParagraphTextAfterLeftButtonClick() {
+        return getMiddleTipCardParagraphAfterLeftButtonClick().getText();
+    }
+
+    public String getMiddleTipCardParagraphTextAfterRightButtonClick() {
+        return getMiddleTipCardParagraphAfterRightButtonClick().getText();
+    }
+
+    public String getMiddleTipCardParagraphText() {
+        return getMiddleTipCardParagraph().getText();
+    }
+
+    public boolean isBottleImagePresent() {
+        return !getBottleImage().isEmpty();
+    }
+
+    public boolean isSpoonForkKnifeImagePresent() {
+        return !getSpoonForkKnifeImage().isEmpty();
+    }
+
+    public boolean isCoffeCupImagePresent() {
+        return !getCoffeCupImage().isEmpty();
+    }
+
+    public boolean isLeftTipCardParagraphPresent() {
+        return getLeftTipCardParagraph().getText().length() > 0;
+    }
+
+    public boolean isMiddleTipCardParagraphPresent() {
+        return getMiddleTipCardParagraph().getText().length() > 0;
+    }
+
+    public boolean isRightTipCardParagraphPresent() {
+        return getRightTipCardParagraph().getText().length() > 0;
+    }
 
 }
