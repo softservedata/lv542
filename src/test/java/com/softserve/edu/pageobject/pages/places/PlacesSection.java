@@ -1,25 +1,18 @@
 package com.softserve.edu.pageobject.pages.places;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class FiltersComponent {
+public class PlacesSection {
 
     private WebDriver driver;
+    private PlacesContainer placesContainer;
 
-    public FiltersComponent(WebDriver driver) {
+    public PlacesSection(WebDriver driver) {
         this.driver = driver;
         initElements();
     }
 
     private void initElements() {
-        // init elements
     }
-
-    // Page Object
-
-    // Functional
-
-    // Business Logic
-
 }
+

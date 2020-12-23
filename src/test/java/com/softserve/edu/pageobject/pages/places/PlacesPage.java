@@ -4,15 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.softserve.edu.pageobject.data.Languages;
 import com.softserve.edu.pageobject.pages.TopPart;
 
 public class PlacesPage extends TopPart {
 
-    private WebElement sectionCaption;
-    //
+    private WebElement searchField;
     private WebElement clearFilters;
-    private PlacesComponent placesComponent;
-    private FiltersComponent filtersComponent;
+    private PlacesSection placesComponent;
+    private FiltersSection filtersComponent;
 
     public PlacesPage(WebDriver driver) {
         super(driver);
@@ -20,23 +20,16 @@ public class PlacesPage extends TopPart {
     }
 
     private void initElements() {
-        // init elements
-        sectionCaption = driver.findElement(By.name("search"));
+        searchField = driver.findElement(By.name("search"));
     }
 
-    // Page Object
-
-    // sectionCaption
-    public WebElement getSectionCaption() {
-        return sectionCaption;
+    public WebElement getSearchField() {
+        return searchField;
     }
 
-    public String getSectionCaptionText() {
-        return getSectionCaption().getText().trim();
+    public PlacesPage chooseLanguage(Languages languageName) {
+        chooseLanguageByName(languageName);
+        return new PlacesPage(driver);
     }
-
-    // Functional
-
-    // Business Logic
 
 }

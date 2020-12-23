@@ -4,13 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.softserve.edu.pageobject.data.Languages;
+
 import com.softserve.edu.pageobject.pages.TopPart;
 
 public class EconewsPage extends TopPart {
 
     private WebElement mainHeader;
-    //
-    private NewsContainer newsContainer;
+    private NewsSection newsSection;
+    private FilterBlock filterBlock;
 
     public EconewsPage(WebDriver driver) {
         super(driver);
@@ -18,14 +20,11 @@ public class EconewsPage extends TopPart {
     }
 
     private void initElements() {
-        // init elements
         mainHeader = driver.findElement(By.cssSelector("h1.main-header"));
-        //newsContainer = new NewsContainer(driver);
+        filterBlock = new FilterBlock(driver);
+        newsSection = new NewsSection(driver);
     }
 
-    // Page Object
-
-    // mainHeader
     public WebElement getMainHeader() {
         return mainHeader;
     }
@@ -34,8 +33,24 @@ public class EconewsPage extends TopPart {
         return getMainHeader().getText().trim();
     }
 
-    // Functional
+    public EconewsPage activateTwoFilterItems(String firstFilter, String secondFilter) {
+        createFilterBlock().activateTwoFilterItems(firstFilter, secondFilter);
+        return this;
+    }
 
-    // Business Logic
+    public FilterBlock createFilterBlock() {
+        filterBlock = new FilterBlock(driver);
+        return filterBlock;
+    }
+
+    public NewsSection createNewsSection() {
+        newsSection = new NewsSection(driver);
+        return newsSection;
+    }
+
+    public EconewsPage chooseLanguage(Languages languageName) {
+        chooseLanguageByName(languageName);
+        return new EconewsPage(driver);
+    }
 
 }

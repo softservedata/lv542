@@ -1,13 +1,14 @@
 package com.softserve.edu.pageobject.pages.econews;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
 import com.softserve.edu.pageobject.pages.TopPart;
 
-public class NewsDetailsPage extends TopPart {
+/**
+ * A template class for News Page
+ */
+public class NewsItemPage extends TopPart {
 
-    public NewsDetailsPage(WebDriver driver) {
+    public NewsItemPage(WebDriver driver) {
         super(driver);
         initElements();
     }
@@ -16,9 +17,4 @@ public class NewsDetailsPage extends TopPart {
         // init elements
     }
 
-    // Page Object
-
-    // Functional
-
-    // Business Logic
 }
