@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.softserve.edu.pageobject.data.Languages;
 import com.softserve.edu.pageobject.data.User;
 import com.softserve.edu.pageobject.data.UserRepository;
 import com.softserve.edu.pageobject.pages.myhabits.MyHabitsPage;
@@ -18,15 +19,15 @@ public class SmokeTest extends GreencityTestRunner {
         //setWindowSize(480, 640);
         //
         // Steps
-        WelcomePage welcomePage = loadApplication()
-            .navigateEconews()
-            .navigateTipsTricks()
-            .navigatePlaces()
-            .navigateAbout()
-            .navigateWelcome();
+        WelcomePage welcomePage = openHomePage()
+            .openEcoNewsPage()
+            .openTipsTricksPage()
+            .openPlacesPage()
+            .openAboutUsPage()
+            .openWelcomePage();
         //
         // Check
-        Assert.assertEquals(welcomePage.getButtonStartAttributeClass(),
+        Assert.assertEquals(welcomePage.getFirstButtonAttributeClass(),
                 WelcomePage.HEADER_LEFT_ATTRIBUTE);
     }
     
@@ -39,33 +40,51 @@ public class SmokeTest extends GreencityTestRunner {
     
     //@Test(dataProvider = "users")
     public void checkLogin(User user) {
-        MyHabitsPage myHabitsPage = loadApplication()
-                .navigateLogin()
+        MyHabitsPage myHabitsPage = openHomePage()
+                .openSignInPage()
                 .successfulLogin(user);
         Assert.assertEquals(myHabitsPage.getProfileText(),
                 user.getName());
-        WelcomePage welcomePage = myHabitsPage.gotoLogout();
+        WelcomePage welcomePage = myHabitsPage.logOut();
         Assert.assertTrue(welcomePage.isSignInAvailable());
     }
     
-    @Test(dataProvider = "users")
+    //@Test(dataProvider = "users")
     public void checkMyHabits(User user) {
         // Steps
-        WelcomePage welcomePage = loadApplication()
-            .navigateMyHabits(user)
-            .gotoAddHabits()
-            .navigateEconews()
-            .navigateTipsTricks()
-            .navigatePlaces()
-            .navigateAbout()
-            .navigateMyHabits()
-            .navigateWelcome()
-            .gotoLogout();
+        WelcomePage welcomePage = openHomePage()
+            .openMyHabitsPage(user)
+            .openAddHabitsPage()
+            .openEcoNewsPage()
+            .openTipsTricksPage()
+            .openPlacesPage()
+            .openAboutUsPage()
+            .openMyHabitsPage()
+            .openWelcomePage()
+            .logOut();
         //
         // Check
-        Assert.assertEquals(welcomePage.getButtonStartAttributeClass(),
+        Assert.assertEquals(welcomePage.getFirstButtonAttributeClass(),
                 WelcomePage.HEADER_LEFT_ATTRIBUTE);
         Assert.assertTrue(welcomePage.isSignInAvailable());
+    }
+    
+    @DataProvider//(parallel = true)
+    public Object[][] languages() {
+        return new Object[][] {
+            { Languages.UA },
+            { Languages.EN },
+        };
+    }
+    
+    @Test(dataProvider = "languages")
+    public void checkLanguage(Languages languageName) {
+        // Steps
+        WelcomePage welcomePage = openHomePage()
+                .chooseLanguage(languageName);
+        //
+        // Check
+        Assert.assertTrue(welcomePage.isValidLocalization(languageName));
     }
     
 }
