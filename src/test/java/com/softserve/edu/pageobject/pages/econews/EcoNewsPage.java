@@ -34,11 +34,11 @@ public class EcoNewsPage extends TopPart {
     }
 
     public EcoNewsPage activateTwoFilters(String firstFilter, String secondFilter) {
-        getFilterBlock().getFiltersWitTwohActivatedItems(firstFilter, secondFilter);
+        cteateFilterBlock().getFiltersWitTwoActivatedItems(firstFilter, secondFilter);
         return this;
     }
 
-    public FilterBlock getFilterBlock() {
+    public FilterBlock cteateFilterBlock() {
         filterBlock = new FilterBlock(driver);
         return filterBlock;
     }
