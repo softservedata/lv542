@@ -47,7 +47,7 @@ public class AppTest {
         System.out.println("***System.getenv().MY_IDE = " + System.getenv().get("MY_IDE"));
     }
     
-    @Test
+    //@Test
     public void checkCSV() {
         String fileName = "./target/test-classes/users.csv";
         //String fileName = AppTest.class.getResource("/users.csv").getPath();
