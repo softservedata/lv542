@@ -66,7 +66,7 @@ public abstract class GreencityTestRunner {
         // driver = new ChromeDriver();
         // driver.manage().timeouts().implicitlyWait(IMPLICITLY_WAIT_SECONDS,
         // TimeUnit.SECONDS);
-        // driver.manage().window().maximize();
+        getDriver().manage().window().maximize();
         for (Map.Entry<String, String> entry : context.getCurrentXmlTest().getAllParameters().entrySet()) {
             System.out.println("Key: " + entry.getKey() + "  Value: " + entry.getValue());
             if (entry.getKey().toLowerCase().equals(BASE_URL)) {
@@ -104,7 +104,7 @@ public abstract class GreencityTestRunner {
         if (!result.isSuccess()) {
             getDriver().manage().deleteAllCookies();
             // Take Screenshot, save sourceCode, save to log, prepare report, Return to
-            System.out.println("***Test " + result.getName() + " ERROR");
+            logger.error("***Test " + result.getName() + " ERROR");
             //takeScreenShot(result.getName());
             // previous state, logout, etc.
         }
@@ -143,7 +143,7 @@ public abstract class GreencityTestRunner {
     protected void setWindowSize(int width, int height) {
         getDriver().manage().window().setSize(new Dimension(width, height));
     }
-    
+
     protected WelcomePage loadApplication() {
         // return new HomePage(driver);
         return new WelcomePage(getDriver());

@@ -16,8 +16,8 @@ public class LogInBlock {
     }
 
     private void initElements() {
-        signInButton = driver.findElement(By.cssSelector("li[class*='sign-in'] a"));
-        signUpButton = driver.findElement(By.cssSelector("li[class*='sign-up'] div"));
+        signInButton = driver.findElement(By.cssSelector("a.header_sign-in-link"));
+        signUpButton = driver.findElement(By.cssSelector("div.header_sign-up-btn"));
     }
 
     public WebElement getSignInButton() {
