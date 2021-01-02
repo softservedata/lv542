@@ -20,7 +20,7 @@ public class SignUpPage implements Attributes, BrowserTabUtils {
     public static final String PASSWORD_IS_REQUIRED_EXPECTED_MESSAGE = "Password is required";
     public static final String CONFIRM_PASSWORD_IS_REQUIRED_MESSAGE = "Password is required";
 
-    protected final String SUBMIT_BUTTON_IS_DISABLED_MESSAGE = "Submit Button Is Disabled. Empty field(s)";
+    protected final String SIGN_UP_BUTTON_IS_DISABLED_MESSAGE = "Submit Button Is Disabled. Empty field(s)";
 
     public static final Logger logger = LoggerFactory.getLogger(SignUpPage.class);
 
@@ -110,7 +110,7 @@ public class SignUpPage implements Attributes, BrowserTabUtils {
     }
 
     public WebElement getSignUpConfirmPasswordField() {
-        return getSignUpConfirmPasswordField();
+        return signUpConfirmPasswordField;
     }
 
     public String getSignUpConfirmPasswordFieldText() {
@@ -131,8 +131,8 @@ public class SignUpPage implements Attributes, BrowserTabUtils {
 
     public WebElement getButtonSignUp() {
         if (!buttonSignUp.isEnabled()) {
-            logger.error(SUBMIT_BUTTON_IS_DISABLED_MESSAGE);
-            throw new RuntimeException(SUBMIT_BUTTON_IS_DISABLED_MESSAGE);
+            logger.error(SIGN_UP_BUTTON_IS_DISABLED_MESSAGE);
+            throw new RuntimeException(SIGN_UP_BUTTON_IS_DISABLED_MESSAGE);
         }
         return buttonSignUp;
     }

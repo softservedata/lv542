@@ -3,6 +3,7 @@ package com.softserve.edu.pageobject.pages;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,15 +50,15 @@ public abstract class TopPart implements Attributes {
     }
 
     private void initElements() {
-        logo = driver.findElement(By.cssSelector("div.logo a"));
-        searchButton = driver.findElement(By.cssSelector("li[class*='search'] a"));
-        languagePopUp = driver.findElement(By.cssSelector("div.switcher-wrapper ul"));
-        burgerButton = driver.findElement(By.cssSelector("li.burger-b"));
-        ecoNewsMenuItem = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/news']"));
-        tipsTricksMenuItem = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/tips']"));
-        placesMenuItem = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/map']"));
-        aboutMenuItem = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/about']"));
-        myHabitsMenuItem = driver.findElement(By.cssSelector("div.navigation-menu a[href*='/profile']"));
+        logo = driver.findElement(By.cssSelector("a.header_logo"));
+        searchButton = driver.findElement(By.cssSelector("li.search-icon"));
+        languagePopUp = driver.findElement(By.cssSelector("ul.header_lang-switcher-wrp"));
+        burgerButton = driver.findElement(By.cssSelector("li.header_burger-btn"));
+        ecoNewsMenuItem = driver.findElement(By.cssSelector("div.header_navigation-menu a[href*='/news']"));
+        tipsTricksMenuItem = driver.findElement(By.cssSelector("div.header_navigation-menu a[href*='/tips']"));
+        placesMenuItem = driver.findElement(By.cssSelector("div.header_navigation-menu a[href*='/map']"));
+        aboutMenuItem = driver.findElement(By.cssSelector("div.header_navigation-menu a[href*='/about']"));
+        myHabitsMenuItem = driver.findElement(By.cssSelector("div.header_navigation-menu a[href*='/profile']"));
     }
 
     private void initLocalization() {
@@ -358,6 +359,7 @@ public abstract class TopPart implements Attributes {
         return new SignInPage(driver);
     }
 
+    @Step("Open Sign Up Page")
     public SignUpPage openSignUpPage() {
         createLogInBlock();
         clickSignUp();
