@@ -42,7 +42,7 @@ public class AppTest {
         // From Maven
         System.out.println("***surefire.application.password = " + System.getProperty("surefire.application.password"));
         // From OS
-        System.out.println("***System.getenv().MY_PASSWORD = " + System.getenv().get("MY_PASSWORD"));
+        System.out.println("***System.getenv(\"MY_PASSWORD\") = " + System.getenv("MY_PASSWORD"));
         // From Eclipse/Idea
         System.out.println("***System.getenv().MY_IDE = " + System.getenv().get("MY_IDE"));
     }
