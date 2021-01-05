@@ -35,7 +35,7 @@ public class SmokeRestTest extends GreencityRestTestRunner {
         };
     }
 	
-	@Test(dataProvider = "invalidUsers")
+	//@Test(dataProvider = "invalidUsers")
 	public void checkInvalidLoginGreenCity(User invalidUser) {
 		logger.info("@Test checkLoginGreenCity() start, user = " + invalidUser);
 		GuestLogic guestLogic = loadApplication()

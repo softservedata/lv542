@@ -19,6 +19,18 @@ public class PropertiesReader {
         readProperties(fileName);
     }
 
+    private String filterProperties(String value) {
+    	value = value.trim().replace(" ", "_").toUpperCase();
+    	String result = value;
+    	//System.out.println("filterProperties() value = " + value);
+    	//System.out.println("RegexUtils.isSecurityMatches(value) = " + RegexUtils.isSecurityMatches(value));
+    	if (RegexUtils.isSecurityMatches(value)) {
+    		result = EnvironmentUtils.readEnvironment(RegexUtils.extractSecurityValue(value)); 
+    	}
+    	//System.out.println("filterProperties() result = " + result);
+    	return result;
+    }
+
     private void readProperties(String fileName) {
         String path = PropertiesReader.class.getResource(RIGHT_SLASH + fileName).getPath();
         try (InputStream input = new FileInputStream(path)) {
@@ -26,7 +38,7 @@ public class PropertiesReader {
             properties.load(input);
             for (String current : properties.stringPropertyNames()) {
                 mapProperties.put(current.toLowerCase().trim(),
-                        properties.getProperty(current, DEFAULT_VALUE));
+                		filterProperties(properties.getProperty(current, DEFAULT_VALUE)));
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -42,6 +54,7 @@ public class PropertiesReader {
     }
     
     public String getPropertiesByKey(String key) {
+    	System.out.println("getPropertiesByKey(): key = " + key + " value = " +  getAllProperties().get(key));
         return getAllProperties().get(key);
     }
 
