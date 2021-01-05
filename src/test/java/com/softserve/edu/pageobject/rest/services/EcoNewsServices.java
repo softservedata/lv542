@@ -3,9 +3,10 @@ package com.softserve.edu.pageobject.rest.services;
 import com.softserve.edu.pageobject.rest.data.econewsdata.FirstNewsEntity;
 import okhttp3.Request;
 import okhttp3.Response;
+
 import java.io.IOException;
 
-public class EcoNewsServices extends TopService{
+public class EcoNewsServices extends TopService {
     public EcoNewsServices() {
         super();
     }
