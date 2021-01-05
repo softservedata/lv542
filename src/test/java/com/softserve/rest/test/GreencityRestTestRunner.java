@@ -11,6 +11,8 @@ import org.testng.annotations.BeforeClass;
 
 import com.softserve.rest.business.GuestLogic;
 
+import io.qameta.allure.Step;
+
 public abstract class GreencityRestTestRunner {
 	
 	public static final String BASE_SERVER_URL = "https://greencity.azurewebsites.net";
@@ -38,6 +40,7 @@ public abstract class GreencityRestTestRunner {
         // logout; clear cache; delete cookie; delete session;
     }
 	
+	@Step("STEP Load Application")
 	protected GuestLogic loadApplication() {
         // return new HomePage(driver);
         return new GuestLogic();
