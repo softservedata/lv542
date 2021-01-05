@@ -21,6 +21,7 @@ public class PropertiesReader {
 
     private void readProperties(String fileName) {
         String path = PropertiesReader.class.getResource(RIGHT_SLASH + fileName).getPath();
+        System.out.println(path);
         try (InputStream input = new FileInputStream(path)) {
             Properties properties = new Properties();
             properties.load(input);

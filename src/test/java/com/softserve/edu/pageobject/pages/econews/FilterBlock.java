@@ -81,7 +81,7 @@ public class FilterBlock {
         return new NewsSection(driver);
     }
 
-    public EconewsPage unActivateFilterButton() {
+    public EconewsPage deactivateFilterButton() {
         for (WebElement filterButton : filters) {
             if (filterButton.getAttribute("class").equals("custom-chip global-tag global-tag-clicked")) {
                 filterButton.click();

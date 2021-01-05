@@ -7,13 +7,12 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 public class EcoNewsSmokeTest extends GreencityTestRunner {
-    @Description("TEST DESCRIPTION: class SearchAllureTest; findByXPath().")
+    @Description("TEST DESCRIPTION: Eco news smoke test")
     @Severity(SeverityLevel.MINOR)
     @Story("STORY SearchAllureTest")
     @Issue("LVTAQC542-115")
-    @Link(name = "LINK goto site", url = "https://ita-social-projects.github.io/GreenCityClient/")
+    @Link(name = "LINK to Greencity site", url = "https://ita-social-projects.github.io/GreenCityClient/")
 
-    @Step("1")
     @Test
     public void verifyPageTitleIsPresent() {
         String pageTitle = loadApplication()
@@ -23,7 +22,6 @@ public class EcoNewsSmokeTest extends GreencityTestRunner {
         Assert.assertTrue(pageTitle.length() > 0);
     }
 
-    @Step("2")
     @Test
     public void verifyPageTitleName() {
         String pageTitle = loadApplication()
@@ -33,7 +31,6 @@ public class EcoNewsSmokeTest extends GreencityTestRunner {
         Assert.assertTrue(pageTitle.equals("Eco news"));
     }
 
-    @Step("3")
     @Test
     public void verifyEcoNewsPageHeaderIsPresent() {
         String mainHeader = loadApplication()
@@ -52,7 +49,7 @@ public class EcoNewsSmokeTest extends GreencityTestRunner {
         Assert.assertTrue(mainHeader.equals("Eco news"));
     }
 
-    public void verifyPresenceOfFilterButtons(String expectedFilterElement) {
+    private void verifyPresenceOfFilterButtons(String expectedFilterElement) {
         logger.info("@Test verifyAdsFilterButtonIsPresent() Filter button name = " + expectedFilterElement);
         boolean isButtonPresent = loadApplication()
                 .openEcoNewsPage()
@@ -165,83 +162,83 @@ public class EcoNewsSmokeTest extends GreencityTestRunner {
 
     @Test
     public void verifyFollowUsElementIsPresent() {
+        logger.info("@Test verifyFollowUsElementIsPresent()");
         String followUsElement = loadApplication()
                 .openEcoNewsPage()
                 .getFollowUs();
-        logger.info("@Test verifyFollowUsElementIsPresent()");
         Assert.assertTrue(followUsElement.length() > 0);
     }
 
     @Test
     public void verifyFollowUsElementName() {
+        logger.info("@Test verifyFollowUsElementName()");
         String followUsElement = loadApplication()
                 .openEcoNewsPage()
                 .getFollowUs();
-        logger.info("@Test verifyFollowUsElementName()");
         Assert.assertTrue(followUsElement.equals("Follow us"));
     }
 
     @Test
     public void verifyItemsFoundParagraphIsPresent() {
+        logger.info("@Test verifyItemsFoundParagraphIsPresent()");
         String actualItemsFoundParagraph = loadApplication()
                 .openEcoNewsPage()
                 .getItemsFoundParagraph();
-        logger.info("@Test verifyItemsFoundParagraphIsPresent()");
         Assert.assertEquals(actualItemsFoundParagraph, "items found");
     }
 
     @Test
     public void verifyGridButtonIsPresent() {
+        logger.info("@Test verifyGridButtonIsPresent()");
         boolean isPresentGridButton = loadApplication()
                 .openEcoNewsPage()
-                .isPresentGridButton();
-        logger.info("@Test verifyGridButtonIsPresent()");
+                .isGridButtonPresent();
         Assert.assertTrue(isPresentGridButton);
     }
 
     @Test
     public void verifyListButtonIsPresent() {
+        logger.info("@Test verifyListButtonIsPresent()");
         boolean isPresentListButton = loadApplication()
                 .openEcoNewsPage()
-                .isPresentListButton();
-        logger.info("@Test verifyListButtonIsPresent()");
+                .isListButtonPresent();
         Assert.assertTrue(isPresentListButton);
     }
 
     @Test
     public void verifyListButtonIsClickable() {
+        logger.info("@Test verifyListButtonIsClickable()");
         boolean isClickableListButton = loadApplication()
                 .openEcoNewsPage()
                 .isListButtonClickable();
-        logger.info("@Test verifyListButtonIsClickable()");
         Assert.assertTrue(isClickableListButton);
     }
 
     @Test
     public void verifyGridButtonIsClickable() {
+        logger.info("@Test verifyGridButtonIsClickable()");
         boolean isClickableGridButton = loadApplication()
                 .openEcoNewsPage()
                 .isGridButtonClickable();
-        logger.info("@Test verifyGridButtonIsClickable()");
         Assert.assertTrue(isClickableGridButton);
     }
 
     @Test
     public void verifyGreencityLogoIsClickable() {
+        logger.info("@Test verifyGreencityLogoIsClickable()");
         String welcomePageLeftHeader = loadApplication()
                 .openEcoNewsPage()
                 .isGreenCityLogoClickable()
                 .getFirstHeaderText();
-        logger.info("@Test verifyGreencityLogoIsClickable()");
         Assert.assertTrue("A new way to cultivate useful habits".equals(welcomePageLeftHeader));
     }
 
     @Test
     public void verifyGreencityLogoIsPresent() {
+        logger.info("@Test verifyGreencityLogoIsPresent()");
         boolean isGreencityLogoPresent = loadApplication()
                 .openEcoNewsPage()
                 .isGreenCityLogoPresent();
-        logger.info("@Test verifyGreencityLogoIsPresent()");
         Assert.assertTrue(isGreencityLogoPresent);
     }
 }

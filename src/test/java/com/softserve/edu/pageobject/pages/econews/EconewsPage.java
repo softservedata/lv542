@@ -99,11 +99,15 @@ public class EconewsPage extends TopPart {
         return followUs.getText();
     }
 
-    public boolean isPresentListButton() {
-        return !getListButton().isEmpty();
+    public boolean isListButtonPresent() {
+        boolean isListButtonPresent = false;
+        if (getListButton().isEmpty()) {
+            isListButtonPresent = !getListButtonClicked().isEmpty();
+        }
+        return isListButtonPresent;
     }
 
-    public boolean isPresentGridButton() {
+    public boolean isGridButtonPresent() {
         return !getGridButtonClicked().isEmpty();
     }
 

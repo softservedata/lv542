@@ -8,6 +8,11 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 public class TipsTricksSmokeTest extends GreencityTestRunner {
+    @Description("TEST DESCRIPTION: Tips & Tricks smoke test")
+    @Severity(SeverityLevel.MINOR)
+    @Story("STORY SearchAllureTest")
+    @Issue("LVTAQC542-132")
+    @Link(name = "LINK to Greencity site", url = "https://ita-social-projects.github.io/GreenCityClient/")
 
     @Test
     public void verifyPageTitleIsPresent() {
@@ -74,15 +79,6 @@ public class TipsTricksSmokeTest extends GreencityTestRunner {
                 .isRightTipCardParagraphPresent();
         Assert.assertTrue(isParagraphPresent);
     }
-
-//    @Test
-//    public void verifyHiddenTipCardItemParagraphIsPresent() {
-//        boolean isParagraphPresent = loadApplication()
-//                .openTipsTricksPage()
-//                .openTipCardSection()
-//                .isHiddenTipCardParagraphPresent();
-//        Assert.assertTrue(isParagraphPresent);
-//    }
 
     @Test
     public void verifyBottleImageIsPresent() {

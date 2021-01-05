@@ -1,10 +1,17 @@
 package com.softserve.edu.pageobject.test.vkuksenko;
 
 import com.softserve.edu.pageobject.test.GreencityTestRunner;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class EcoNewsSearchResultTest extends GreencityTestRunner {
+
+    @Description("TEST DESCRIPTION: Verify clickability of search result")
+    @Severity(SeverityLevel.MINOR)
+    @Story("STORY SearchAllureTest")
+    @Issue("LVTAQC542-131")
+    @Link(name = "LINK to Greencity site", url = "https://ita-social-projects.github.io/GreenCityClient/")
 
     private void verifyClickabilityFirstSearchResult(String filterButton) {
         logger.info("@Test verifyClickabilityFirstSearchResult Filter button name = " + filterButton);
@@ -14,7 +21,7 @@ public class EcoNewsSearchResultTest extends GreencityTestRunner {
                 .activateFilterButtonByName(filterButton)
                 .getFirstNewsComponent()
                 .activateBackToNewsButton()
-                .unActivateFilterButton()
+                .deactivateFilterButton()
                 .getMainHeaderText();
         Assert.assertEquals(mainHeader, "Eco news");
     }
