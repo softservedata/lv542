@@ -7,7 +7,7 @@ import com.softserve.edu.pageobject.pages.TopPart;
 import org.openqa.selenium.WebElement;
 
 /**
- * A template class for News Page
+ * A template class for News PageEntity
  */
 public class NewsItemPage extends TopPart {
 
@@ -23,7 +23,7 @@ public class NewsItemPage extends TopPart {
         // init elements
     }
 
-    // Page Object
+    // PageEntity Object
     public FilterBlock activateBackToNewsButton() {
         backToNewsButton.click();
         return new FilterBlock(driver);

@@ -23,6 +23,7 @@ public class SmokeRestTest extends GreencityRestTestRunner {
 		LogginedLogic logginedLogic = loadApplication()
                 .successfulLogin(existUser)
                 .generateUserProfileEntity();
+		System.out.println(logginedLogic.getUserProfileEntity().toString());
         Assert.assertEquals(logginedLogic.getUserProfileEntity().getFirstName(),
         		existUser.getName());
 	}

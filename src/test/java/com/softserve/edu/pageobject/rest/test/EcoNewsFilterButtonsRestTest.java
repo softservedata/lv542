@@ -7,13 +7,12 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+@Owner(value = "OWNER First name")
+@Epic("EPIC Greencity Test")
+@Feature("FEATURE Smoke Test")
+
 public class EcoNewsFilterButtonsRestTest extends GreencityRestTestRunner {
 
-    @Description("TEST DESCRIPTION: Eco news filter test")
-    @Severity(SeverityLevel.MINOR)
-    @Story("STORY SearchAllureTest")
-    @Issue("LVTAQC542-115")
-    @Link(name = "LINK to Greencity site", url = "https://ita-social-projects.github.io/GreenCityClient/")
     public void filterButtonsTest(String expectedFilterButton) {
         logger.info("@Test filterButtonsTest filter button name = " + expectedFilterButton);
         List<String> actualFilterButtons = new EcoNewsLogic()
@@ -25,6 +24,11 @@ public class EcoNewsFilterButtonsRestTest extends GreencityRestTestRunner {
         Assert.assertTrue(actualFilterButtons.contains(expectedFilterButton));
     }
 
+    @Description("TEST DESCRIPTION: Eco news filter test")
+    @Severity(SeverityLevel.MINOR)
+    @Story("STORY SearchAllureTest")
+    @Issue("LVTAQC542-115")
+    @Link(name = "LINK to Greencity site", url = "https://ita-social-projects.github.io/GreenCityClient/")
     @Test
     public void verifyNewsFilterButtonIsPresent() {
         filterButtonsTest("News");

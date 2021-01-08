@@ -2,25 +2,25 @@ package com.softserve.edu.pageobject.rest.data.econewsdata;
 
 import java.util.List;
 
-public class Page {
+public class PageEntity {
     private String creationDate;
     private String imagePath;
     private long id;
     private String title;
     private String text;
     private String source;
-    private Author author;
+    private AuthorEntity authorEntity;
     private List<String> tags;
 
-    public Page(String creationDate, String imagePath, int id, String title, String text, String source
-            , Author author, List<String> tags) {
+    public PageEntity(String creationDate, String imagePath, int id, String title, String text, String source
+            , AuthorEntity authorEntity, List<String> tags) {
         this.creationDate = creationDate;
         this.imagePath = imagePath;
         this.id = id;
         this.title = title;
         this.text = text;
         this.source = source;
-        this.author = author;
+        this.authorEntity = authorEntity;
         this.tags = tags;
     }
 
@@ -48,8 +48,8 @@ public class Page {
         return source;
     }
 
-    public Author getAuthor() {
-        return author;
+    public AuthorEntity getAuthor() {
+        return authorEntity;
     }
 
     public List<String> getTags() {
@@ -58,14 +58,14 @@ public class Page {
 
     @Override
     public String toString() {
-        return "Page{" +
+        return "PageEntity{" +
                 "creationDate='" + creationDate + '\'' +
                 ", imagePath='" + imagePath + '\'' +
                 ", id=" + id +
                 ", title='" + title + '\'' +
                 ", text='" + text + '\'' +
                 ", source='" + source + '\'' +
-                ", author=" + author +
+                ", authorEntity=" + authorEntity +
                 ", tags=" + tags +
                 '}';
     }

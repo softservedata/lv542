@@ -1,10 +1,10 @@
 package com.softserve.edu.pageobject.rest.data.econewsdata;
 
-public class Author {
+public class AuthorEntity {
     private long id;
     private String name;
 
-    public Author(long id, String name) {
+    public AuthorEntity(long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -19,7 +19,7 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author{" +
+        return "AuthorEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

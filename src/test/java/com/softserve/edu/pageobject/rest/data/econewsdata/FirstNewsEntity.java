@@ -3,7 +3,7 @@ package com.softserve.edu.pageobject.rest.data.econewsdata;
 import java.util.List;
 
 public class FirstNewsEntity {
-    private List<Page> page;
+    private List<PageEntity> page;
     private int totalElements;
     private int currentPage;
     private int totalPages;
@@ -13,7 +13,7 @@ public class FirstNewsEntity {
     private boolean first;
     private boolean last;
 
-    public FirstNewsEntity(List<Page> page, int totalElements, int currentPage, int totalPages, int number
+    public FirstNewsEntity(List<PageEntity> page, int totalElements, int currentPage, int totalPages, int number
             , boolean hasPrevious, boolean hasNext, boolean first, boolean last) {
         this.page = page;
         this.totalElements = totalElements;
@@ -26,7 +26,7 @@ public class FirstNewsEntity {
         this.last = last;
     }
 
-    public List<Page> getPages() {
+    public List<PageEntity> getPages() {
         return page;
     }
 

@@ -32,7 +32,7 @@ public class SignInPage implements Attributes {
         buttonClose = driver.findElement(By.cssSelector("a.close-modal-window"));
     }
 
-    // Page Object
+    // PageEntity Object
 
     // email
     public WebElement getSignInEmail() {
