@@ -33,4 +33,8 @@ public final class UserRepository {
                 propertiesReader.getPropertiesByKey(USER_PASSWORD_KEY));
     }
 
+    public static User getInvalidUser() {
+        return new User("abc@abc.com", "temp11", "qwerty");
+    }
+
 }
