@@ -54,7 +54,7 @@ public class PropertiesReader {
     }
 
     public String getPropertiesByKey(String key) {
-        System.out.println("getPropertiesByKey(): key = " + key + " value = " +  getAllProperties().get(key));
+//        System.out.println("getPropertiesByKey(): key = " + key + " value = " +  getAllProperties().get(key));
         return getAllProperties().get(key);
     }
 

@@ -7,10 +7,6 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-@Owner(value = "OWNER First name")
-@Epic("EPIC Greencity Test")
-@Feature("FEATURE Smoke Test")
-
 public class EcoNewsFilterButtonsRestTest extends GreencityRestTestRunner {
 
     public void filterButtonsTest(String expectedFilterButton) {
@@ -20,37 +16,37 @@ public class EcoNewsFilterButtonsRestTest extends GreencityRestTestRunner {
                 .getPages()
                 .get(0)
                 .getTags();
-        System.out.println(new EcoNewsLogic().activateFilterButton(expectedFilterButton).toString());
+//        System.out.println(new EcoNewsLogic().activateFilterButton(expectedFilterButton).toString());
         Assert.assertTrue(actualFilterButtons.contains(expectedFilterButton));
     }
 
-    @Description("TEST DESCRIPTION: Eco news filter test")
+    @Description("TEST DESCRIPTION: Eco news tags test")
     @Severity(SeverityLevel.MINOR)
     @Story("STORY SearchAllureTest")
-    @Issue("LVTAQC542-115")
+    @Issue("LVTAQC542-135")
     @Link(name = "LINK to Greencity site", url = "https://ita-social-projects.github.io/GreenCityClient/")
     @Test
-    public void verifyNewsFilterButtonIsPresent() {
+    public void verifyNewsTagIsPresentInResponseBody() {
         filterButtonsTest("News");
     }
 
     @Test
-    public void verifyAdsFilterButtonIsPresent() {
+    public void verifyAdsTagIsPresentInResponseBody() {
         filterButtonsTest("Ads");
     }
 
     @Test
-    public void verifyEventsFilterButtonIsPresent() {
+    public void verifyEventsTagIsPresentInResponseBody() {
         filterButtonsTest("Events");
     }
 
     @Test
-    public void verifyInitiativesFilterButtonIsPresent() {
+    public void verifyInitiativesTagIsPresentInResponseBody() {
         filterButtonsTest("Initiatives");
     }
 
     @Test
-    public void verifyEducationFilterButtonIsPresent() {
+    public void verifyEducationTagIsPresentInResponseBody() {
         filterButtonsTest("Education");
     }
 }

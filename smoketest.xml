@@ -7,6 +7,7 @@
 	<test name="Test03">
 		<classes>
 			<class name="com.softserve.edu.pageobject.rest.test.EcoNewsFilterButtonsRestTest" />
+			<class name="com.softserve.edu.pageobject.rest.test.EcoNewsCommentsTest" />
 		</classes>
 	</test> <!-- Test -->
 
