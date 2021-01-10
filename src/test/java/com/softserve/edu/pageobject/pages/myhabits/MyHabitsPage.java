@@ -18,7 +18,7 @@ public class MyHabitsPage extends TopPart {
     }
 
     private void initElements() {
-        myHabitsTab = driver.findElement(By.cssSelector("div.profile-menu > span.profile-span.active.ng-star-inserted"));
+        myHabitsTab = driver.findElement(By.cssSelector("span.profile-span.active.ng-star-inserted"));
         addNewHabitsButton = driver.findElement(By.cssSelector("div.menu-title a"));
     }
 

@@ -61,6 +61,7 @@ public interface BrowserTabUtils {
         }
     }
 
+
    /*-
     default void getTitle(WebDriver driver, List<String> titlesToClose) {
       List<String> windowHandles = new ArrayList<>();

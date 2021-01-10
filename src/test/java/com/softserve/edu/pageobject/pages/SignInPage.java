@@ -139,6 +139,11 @@ public class SignInPage implements Attributes {
     }
     // Business Logic
     public MyHabitsPage successfulLogin(User user) {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         fillCredentials(user);
         return new MyHabitsPage(driver);
     }

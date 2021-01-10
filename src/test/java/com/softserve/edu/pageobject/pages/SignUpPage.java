@@ -232,7 +232,7 @@ public class SignUpPage implements Attributes, BrowserTabUtils {
         fillCredentials(user);
         //
         try {
-            Thread.sleep(1);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -241,7 +241,7 @@ public class SignUpPage implements Attributes, BrowserTabUtils {
         emailTenPage.switchToEmailTenPage().confirmEmail();
         switchToTab(driver, currentTabHandle);
         //WaitWrapper.waitForInvisibilityOfElementLocated(driver, By.cssSelector("a.close-modal-window"));
-        closeAllTab(driver, currentTabHandle);
+        //closeAllTab(driver, currentTabHandle);
         logger.info("User registered: " + user);
         new TopPart(driver) {}.openSignInPage();
         return new SignInPage(driver);
