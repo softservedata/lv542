@@ -1,9 +1,6 @@
 package com.softserve.edu.pageobject.rest.services;
 
 import com.google.gson.reflect.TypeToken;
-import com.softserve.edu.pageobject.data.User;
-import com.softserve.edu.pageobject.rest.data.LoginEntity;
-import com.softserve.edu.pageobject.rest.data.LoginErrorEntity;
 import com.softserve.edu.pageobject.rest.data.signupdata.SignUpErrorEntity;
 import okhttp3.MediaType;
 import okhttp3.Request;

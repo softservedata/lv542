@@ -4,17 +4,13 @@ import com.softserve.edu.pageobject.rest.data.LoginErrorEntity;
 import com.softserve.edu.pageobject.rest.data.signupdata.SignUpErrorEntity;
 import com.softserve.edu.pageobject.rest.test.GreencityRestTestRunner;
 import io.qameta.allure.*;
-import jdk.jfr.Description;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
-@Owner(value = "OWNER First name")
-@Epic("EPIC Greencity Test")
-@Feature("FEATURE Smoke Test")
 public class SignUpRestTest extends GreencityRestTestRunner {
 
-    @Description("TEST DESCRIPTION: Sign Up Test by Rest")
+    @Description("TEST DESCRIPTION: ")
     @Severity(SeverityLevel.BLOCKER)
     @Story("STORY SearchAllureTest")
     @Issue("LVTAQC542-134")

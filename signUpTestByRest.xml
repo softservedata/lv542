@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="SuiteRestGreencity">
+
+    <test name="SmokeTestSignUp" verbose="9">
+        <classes>
+            <class name="com.softserve.edu.pageobject.rest.test.imartyniuk.SignUpRestTest" />
+        </classes>
+    </test>
+
+</suite>
