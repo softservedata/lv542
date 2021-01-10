@@ -28,26 +28,19 @@ public class SignUpServices extends TopService {
         try {
             response = client.newCall(request).execute();
         } catch (IOException e) {
-            // Save log
-            // TODO Develop custom Exception
             throw new RuntimeException("signUp Request Error, user = " + e);
-            // TODO Auto-generated catch block
-            // e.printStackTrace();
         }
-        //if (!response.isSuccessful()) {
+
         if (response == null) {
-            // TODO Develop custom Exception
             throw new RuntimeException("signUp Response Error, response == null");
         }
+
         try {
             textBody = response.body().string();
         } catch (IOException e) {
-            // Save log
-            // TODO Develop custom Exception
             throw new RuntimeException("signUp Response Error, response = " + response, e);
-            // TODO Auto-generated catch block
-            // e.printStackTrace();
         }
+
         return textBody;
     }
 

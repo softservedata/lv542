@@ -1,6 +1,5 @@
 package com.softserve.edu.pageobject.rest.test.imartyniuk;
 
-import com.softserve.edu.pageobject.rest.data.LoginErrorEntity;
 import com.softserve.edu.pageobject.rest.data.signupdata.SignUpErrorEntity;
 import com.softserve.edu.pageobject.rest.test.GreencityRestTestRunner;
 import io.qameta.allure.*;
@@ -10,7 +9,7 @@ import java.util.List;
 
 public class SignUpRestTest extends GreencityRestTestRunner {
 
-    @Description("TEST DESCRIPTION: ")
+    @Description("TEST DESCRIPTION: Sign Up Test by Rest with incorrect user data")
     @Severity(SeverityLevel.BLOCKER)
     @Story("STORY SearchAllureTest")
     @Issue("LVTAQC542-134")

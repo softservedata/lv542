@@ -25,10 +25,8 @@ public class GuestLogic {
 
     public LoginErrorEntity getLoginErrorEntity() {
         if (loginErrorEntity == null) {
-            // TODO Developcustom Exception
             throw new RuntimeException("loginErrorEntity == null");
         }
-        //System.out.println(loginErrorEntity);
         return loginErrorEntity;
     }
 
