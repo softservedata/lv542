@@ -1,87 +1,69 @@
 package com.softserve.edu.pageobject.pages;
 
+import com.softserve.edu.pageobject.pages.welcome.WelcomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoggedComponent {
+public class userProfileBlock {
 
     private WebDriver driver;
-    //
-    private WebElement profile;
+    private WebElement profilePopUp;
     private WebElement settings;
     private WebElement signOut;
-    //
-    // private ProfileComponent profileComponent;
 
-    public LoggedComponent(WebDriver driver) {
+    public userProfileBlock(WebDriver driver) {
         this.driver = driver;
         initElements();
     }
 
     private void initElements() {
-        // init elements
-        profile = driver.findElement(By.xpath("//li[@class='tertiary-global-button']//a"));
+        profilePopUp = driver.findElement(By.xpath("//li[@class='tertiary-global-button']//a"));
         settings = driver.findElement(By.cssSelector("div#user-avatar-wrapper li.tertiary-global-button + li > a"));
         signOut = driver.findElement(By.cssSelector("div#user-avatar-wrapper li.tertiary-global-button + li + li > a"));
     }
 
-    // Page Object
-
-    // profile
-    public WebElement getProfile() {
-        return profile;
+    public WebElement getProfilePopUp() {
+        return profilePopUp;
     }
 
     public String getProfileText() {
-        return getProfile().getText().trim();
+        return profilePopUp.getText().trim();
     }
 
-    public void clickProfile() {
-        getProfile().click();
+    public void openProfilePopUp() {
+        profilePopUp.click();
     }
 
-    // settings
     public boolean isDisplayedSettings() {
         return settings.isDisplayed();
     }
-    
+
     public WebElement getSettings() {
         if (!isDisplayedSettings()) {
-            clickProfile();
+            openProfilePopUp();
         }
         return settings;
     }
 
-    public String getSettingsText() {
-        return getSettings().getText();
-    }
-
-    public void clickSettings() {
+    public void openUserSettingsPage() {
         getSettings().click();
+        //TODO create UserSettingsPage class
+        //TODO return userSettingsPage
     }
 
-    // signOut
     public boolean isDisplayedSignOut() {
-        return signOut.isDisplayed();
+        return getSignOut().isDisplayed();
     }
-    
+
     public WebElement getSignOut() {
         if (!isDisplayedSignOut()) {
-            clickProfile();
+            openProfilePopUp();
         }
         return signOut;
-    }
-
-    public String getSignOutText() {
-        return getSignOut().getText();
     }
 
     public void clickSignOut() {
         getSignOut().click();
     }
-
-    // Functional
-
-    // Business Logic
 }

@@ -7,14 +7,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.softserve.edu.pageobject.pages.econews.NewsComponent;
-
 public class TipCardContainer {
-    private final String TIP_CARD_COMPONENT_CSSSELECTOR = "????";
-
+    private final String TIP_CARD_COMPONENT_CSSSELECTOR = "????"; //TODO
     private WebDriver driver;
-    //
-    private List<TipCardComponent> tipCardComponents;
+    private List<TipCardItem> tipCardItems;
 
     public TipCardContainer(WebDriver driver) {
         this.driver = driver;
@@ -22,17 +18,9 @@ public class TipCardContainer {
     }
 
     private void initElements() {
-        // init elements
-        tipCardComponents = new ArrayList<>();
+        tipCardItems = new ArrayList<>();
         for (WebElement current : driver.findElements(By.cssSelector(TIP_CARD_COMPONENT_CSSSELECTOR))) {
-            tipCardComponents.add(new TipCardComponent(current));
+            tipCardItems.add(new TipCardItem(current));
         }
     }
-
-    // Page Object
-
-    // Functional
-
-    // Business Logic
-
 }
