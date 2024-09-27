@@ -25,6 +25,7 @@ public class GoogleTest {
     
     @Test
     public void testGoogle() throws Exception {
+    	System.out.println("Hello_Google!");
 //        System.setProperty("webdriver.chrome.driver",
 //                "./lib/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
